@@ -2,7 +2,15 @@
   "name": "@slikts/asyncqueue",
   "version": "1.0.0",
   "description": "",
-  "keywords": [],
+  "keywords": [
+    "async",
+    "queue",
+    "es2018",
+    "iteration",
+    "async-iterators",
+    "esnext",
+    "streams"
+  ],
   "main": "dist/asyncqueue.umd.js",
   "module": "dist/asyncqueue.es5.js",
   "typings": "dist/types/asyncqueue.d.ts",
@@ -12,7 +20,7 @@
   "author": "slikts <dabas@untu.ms>",
   "repository": {
     "type": "git",
-    "url": ""
+    "url": "git://git@github.com:slikts/asyncqueue.git"
   },
   "license": "MIT",
   "engines": {
