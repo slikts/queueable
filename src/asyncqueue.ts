@@ -3,6 +3,7 @@ import Deferred from './Deferred'
 
 const getState = memoize(<A>(o: AsyncQueue<A>) => {
   const resolvers: Set<Array<(a: A) => void>> = new Set()
+  // Value buffer
   const values: A[] = []
   return {
     resolvers,
@@ -29,6 +30,11 @@ export default class AsyncQueue<A> implements AsyncIterable<A> {
     return this
   }
 
+  pushMany(as: A[]): this {
+    as.forEach(this.push, this)
+    return this
+  }
+
   async *[Symbol.asyncIterator]() {
     const queue: Array<(a: A) => void> = []
     const { resolvers, update } = getState(this)
@@ -45,5 +51,3 @@ export default class AsyncQueue<A> implements AsyncIterable<A> {
     }
   }
 }
-
-let it: AsyncIterator<number>
