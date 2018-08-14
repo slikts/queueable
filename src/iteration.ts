@@ -1,4 +1,4 @@
-import AsyncQueue from './asyncqueue'
+import AsyncQueue from './AsyncQueue'
 
 type AI<A> = AsyncIterable<A>
 

@@ -1,8 +1,9 @@
 import { memoize } from 'tuplerone'
 import Deferred from './Deferred'
+import CallQueue from './CallQueue'
 
 const getState = memoize(<A>(o: AsyncQueue<A>) => {
-  const resolvers: Set<Array<(a: A) => void>> = new Set()
+  const resolvers = new Set<CallQueue<A>>()
   // Value buffer
   const values: A[] = []
   return {
@@ -13,10 +14,7 @@ const getState = memoize(<A>(o: AsyncQueue<A>) => {
         return
       }
       for (const queue of resolvers) {
-        if (queue.length === 0) {
-          continue
-        }
-        ;(queue.shift() as any)(values.shift())
+        queue.callNext(values.shift() as A)
       }
     },
   }
@@ -36,14 +34,13 @@ export default class AsyncQueue<A> implements AsyncIterable<A> {
   }
 
   async *[Symbol.asyncIterator]() {
-    const queue: Array<(a: A) => void> = []
+    const queue = new CallQueue<A>()
     const { resolvers, update } = getState(this)
     resolvers.add(queue)
     try {
       while (true) {
-        const { promise, resolve } = new Deferred() as Deferred<A>
+        const { promise, resolve } = new Deferred<A>()
         queue.push(resolve)
-        update()
         yield promise
       }
     } finally {

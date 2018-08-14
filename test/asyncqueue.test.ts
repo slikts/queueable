@@ -1,11 +1,11 @@
-import AsyncQueue from '../src/asyncqueue'
+import AsyncQueue from '../src/AsyncQueue'
 
 describe('AsyncQueue', () => {
   it('constructs', () => {
     expect(new AsyncQueue()).toBeInstanceOf(AsyncQueue)
   })
 
-  it('iterates', async () => {
+  it('pushes one', async () => {
     const q: any = new AsyncQueue()
     q.push(1)
     q.push(2)
@@ -21,5 +21,9 @@ describe('AsyncQueue', () => {
     } finally {
       expect(n).toBe(6)
     }
+  })
+
+  it('pushes many', async () => {
+    const q = new AsyncQueue<number>()
   })
 })

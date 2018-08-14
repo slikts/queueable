@@ -7,7 +7,7 @@ import json from 'rollup-plugin-json'
 
 const pkg = require('./package.json')
 
-const libraryName = 'asyncqueue'
+const libraryName = 'asyncqueue_'
 
 export default {
   input: `src/${libraryName}.ts`,

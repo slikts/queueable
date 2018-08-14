@@ -11,9 +11,9 @@
     "esnext",
     "streams"
   ],
-  "main": "dist/asyncqueue.umd.js",
-  "module": "dist/asyncqueue.es5.js",
-  "typings": "dist/types/asyncqueue.d.ts",
+  "main": "dist/asyncqueue_.umd.js",
+  "module": "dist/asyncqueue_.es5.js",
+  "typings": "dist/types/asyncqueue_.d.ts",
   "files": [
     "dist"
   ],

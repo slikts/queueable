@@ -1,5 +1,5 @@
 import { EventEmitter } from 'events'
-import AsyncQueue from './asyncqueue'
+import AsyncQueue from './AsyncQueue'
 
 export const fromDom = <A extends Event>(
   name: string,
