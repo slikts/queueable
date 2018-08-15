@@ -1,27 +1,27 @@
 import Deferred from './Deferred'
+import Queue from './Queue'
 
 export default class Balancer<A> implements AsyncIterableIterator<A> {
-  private readonly unpulled: A[] = []
-  private readonly unpushed: Array<any> = []
+  readonly unpulled = new Queue<IteratorResult<A>>()
+  readonly unpushed = new Queue<(a: IteratorResult<A>) => void>()
 
-  async next(): Promise<IteratorResult<A>> {
-    if (this.unpulled.length) {
-      return {
-        done: false,
-        value: this.unpulled.shift() as A,
-      }
-    }
-    const { resolve, promise } = new Deferred<IteratorResult<A>>()
-    this.unpushed.push(resolve)
-    return promise
+  next(): Promise<IteratorResult<A>> {
+    return this.unpulled.pull(
+      (value: IteratorResult<A>) => Promise.resolve(value),
+      () => {
+        const { resolve, promise } = new Deferred<IteratorResult<A>>()
+        this.unpushed.push(resolve)
+        return promise
+      },
+    )
   }
 
   push(value: A): void {
-    if (this.unpushed.length) {
-      ;(this.unpushed.shift() as any).call(null, value)
-      return
+    const result = {
+      done: false,
+      value,
     }
-    this.unpulled.push(value)
+    this.unpushed.pull(resolve => resolve(result), () => void this.unpulled.push(result))
   }
 
   [Symbol.asyncIterator]() {
