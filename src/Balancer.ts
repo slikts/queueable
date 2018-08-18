@@ -1,30 +1,40 @@
 import Deferred from './Deferred'
 import Queue from './Queue'
 
-export default class Balancer<A> implements AsyncIterableIterator<A> {
-  readonly unpulled = new Queue<IteratorResult<A>>()
-  readonly unpushed = new Queue<(a: IteratorResult<A>) => void>()
+type Result<A> = IteratorResult<A>
 
-  next(): Promise<IteratorResult<A>> {
-    return this.unpulled.pull(
-      (value: IteratorResult<A>) => Promise.resolve(value),
+export default class Balancer<A> implements AsyncIterableIterator<A> {
+  readonly pushOverflow = new Queue<Result<A>>()
+  readonly pullOverflow = new Queue<(a: Result<A>) => void>()
+
+  next(): Promise<Result<A>> {
+    return this.pushOverflow.pull(
+      (value: Result<A>) => Promise.resolve(value),
       () => {
-        const { resolve, promise } = new Deferred<IteratorResult<A>>()
-        this.unpushed.push(resolve)
+        const { resolve, promise } = new Deferred<Result<A>>()
+        this.pullOverflow.push(resolve)
         return promise
       },
     )
   }
 
-  push(value: A): void {
+  push(value: A, done = false): void {
     const result = {
-      done: false,
       value,
+      done,
     }
-    this.unpushed.pull(resolve => resolve(result), () => void this.unpulled.push(result))
+    this.pullOverflow.pull(resolve => resolve(result), () => void this.pushOverflow.push(result))
   }
 
   [Symbol.asyncIterator]() {
     return this
+  }
+
+  async *wrap(onReturn?: () => void) {
+    try {
+      yield* this
+    } finally {
+      if (onReturn) onReturn()
+    }
   }
 }
