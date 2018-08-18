@@ -32,7 +32,7 @@
     "build": "tsc --module commonjs && rollup -c rollup.config.ts && typedoc --out docs --target esnext --theme minimal --mode file src",
     "start": "rollup -c rollup.config.ts -w",
     "test": "jest",
-    "test:watch": "jest --watch",
+    "test:watch": "jest --watch --runInBand --verbose false",
     "test:prod": "npm run lint && npm run test -- --coverage --no-cache",
     "deploy-docs": "ts-node tools/gh-pages-publish",
     "report-coverage": "cat ./coverage/lcov.info | coveralls",
