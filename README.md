@@ -10,8 +10,18 @@ A library for turning push-based collections into pull-based ones that implement
 ## Features
 
 * Buffers pushed and pulled values
-* TypeScript types
+* Well-typed with TypeScript
 * Lightweight
+
+## Explanation
+
+Examples of push-based collections are streams and event emitters, and the 'push' aspect refers to control flow being handed to the collection to return the next value at a time determined by the collection. The control flow is normally passed in as an either explicit or implicit continuation (callbacks being explicit, and generator or async function continuations being implicit), and the values can be returned asynchronously, meaning with a time delay.
+
+Pull collections return values immediately upon request; an example of a pull collection is a JavaScript array, where methods like `Array#pop()` return values directly.
+
+Async iterators are pull collections that return promises, and, in turn, promises are push-based (albeit for singular values, not multiple, like with streams), so async iterators combine the pull- and push-based aspects.
+
+This library is for populating async iterators with values; the intended use case is to implement async iterability for data structures, and to convert collections like event emitters to async iterators.
 
 ## Install
 
