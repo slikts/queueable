@@ -32,6 +32,8 @@ npm install --save @slikts/asyncqueue
 ## Usage
 
 ```typescript
+import { AsyncQueue } from "@slikts/asyncqueue";
+
 const queue = new AsyncQueue<number>();
 queue.push(1);
 queue.push(2);
