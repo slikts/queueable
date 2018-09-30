@@ -43,9 +43,14 @@ for await (const n of queue) {
 }
 ```
 
+## Types
+
+To make TypeScript know about the asnyc iterable types (`AsyncIterable<T>`, `AsyncIterator<T>`, `AsyncIterableiterator<T>`), the TypeScript `--lib` [compiler option][options] should include `"esnext.asynciterable"` or `"esnext"`.
+
 ## Alternatives
 
 * [callback-to-async-iterator]
 
 [callback-to-async-iterator]: https://github.com/withspectrum/callback-to-async-iterator
 [async]: http://2ality.com/2016/10/asynchronous-iteration.html
+[options]: https://www.typescriptlang.org/docs/handbook/compiler-options.html
