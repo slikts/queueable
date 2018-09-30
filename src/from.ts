@@ -1,14 +1,13 @@
-import { EventEmitter } from 'events'
 import AsyncQueue from './AsyncQueue'
 
 export const fromDom = <A extends Event>(
-  name: string,
-  source: EventTarget,
+  type: string,
+  target: EventTarget,
   options?: boolean | AddEventListenerOptions,
 ): AsyncQueue<A> => {
   const queue = new AsyncQueue()
-  source.addEventListener(
-    name,
+  target.addEventListener(
+    type,
     (e: Event) => {
       queue.push(e)
     },
@@ -17,9 +16,12 @@ export const fromDom = <A extends Event>(
   return queue as AsyncQueue<A>
 }
 
-export const fromEmitter = <A>(name: string, emitter: EventEmitter): AsyncQueue<A> => {
+export const fromEmitter = <A>(
+  type: string | symbol,
+  emitter: NodeJS.EventEmitter,
+): AsyncQueue<A> => {
   const queue: AsyncQueue<A> = new AsyncQueue()
-  emitter.on(name, (a: A) => {
+  emitter.on(type, (a: A) => {
     queue.push(a)
   })
   return queue
