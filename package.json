@@ -29,7 +29,8 @@
   "scripts": {
     "lint": "tslint -t codeFrame 'src/**/*.ts' 'test/**/*.ts'",
     "prebuild": "rimraf dist",
-    "build": "tsc -p tsconfig.prod.json && rollup -c rollup.config.ts && typedoc --out docs --target esnext --theme minimal --mode file src",
+    "build": "tsc -p tsconfig.prod.json && rollup -c rollup.config.ts && npm run build:docs",
+    "build:docs": "typedoc --out docs --target esnext --theme minimal --mode file src --ignoreCompilerErrors",
     "start": "rollup -c rollup.config.ts -w",
     "test": "jest",
     "test:watch": "jest --watch --runInBand --verbose false",

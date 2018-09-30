@@ -1,4 +1,4 @@
-import AsyncQueue from './AsyncQueue'
+import Balancer from './Balancer'
 
 type EventMap = GlobalEventHandlersEventMap
 
@@ -6,20 +6,15 @@ type EventMap = GlobalEventHandlersEventMap
 /**
  * Convert DOM events to an async iterable iterator.
  */
-export const fromDom = <Event extends keyof EventMap>(
-  type: Event,
+export const fromDom = <EventType extends keyof EventMap>(
+  type: EventType,
   target: EventTarget,
   options?: boolean | AddEventListenerOptions,
-): AsyncIterableIterator<EventMap[Event]> => {
-  const queue = new AsyncQueue<EventMap[Event]>()
-  target.addEventListener(
-    type,
-    (e: EventMap[Event]) => {
-      queue.push(e)
-    },
-    options,
-  )
-  return queue[Symbol.asyncIterator]()
+): AsyncIterableIterator<EventMap[EventType]> => {
+  const balancer = new Balancer<EventMap[EventType]>()
+  const listener = (e: EventMap[EventType]) => void balancer.push(e)
+  target.addEventListener(type, listener, options)
+  return balancer.wrap(() => target.removeEventListener(type, listener, options))
 }
 
 // TODO implement strict-event-emitter-types support
@@ -30,9 +25,8 @@ export const fromEmitter = <Event>(
   type: string | symbol,
   emitter: NodeJS.EventEmitter,
 ): AsyncIterableIterator<Event> => {
-  const queue = new AsyncQueue<Event>()
-  emitter.on(type, (event: Event) => {
-    queue.push(event)
-  })
-  return queue[Symbol.asyncIterator]()
+  const balancer = new Balancer<Event>()
+  const listener = (event: Event) => void balancer.push(event)
+  emitter.addListener(type, listener)
+  return balancer.wrap(() => void emitter.removeListener(type, listener))
 }

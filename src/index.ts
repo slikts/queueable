@@ -1,8 +1,8 @@
-import AsyncQueue from './AsyncQueue'
+import Multicast from './Multicast'
 import Balancer from './Balancer'
 import Deferred from './Deferred'
 
-export { AsyncQueue, Balancer, Deferred }
+export { Multicast, Balancer, Deferred }
 export * from './from'
 export * from './iteration'
 export * from './Deferred'

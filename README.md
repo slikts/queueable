@@ -23,7 +23,7 @@ Async iterators are pull collections that return promises, and, in turn, promise
 
 This library is for populating async iterators with values; the intended use case is to implement async iterability for data structures, and to convert collections like event emitters to async iterators.
 
-## Install
+## Installation
 
 ```
 npm install --save @slikts/asyncqueue
@@ -32,14 +32,15 @@ npm install --save @slikts/asyncqueue
 ## Usage
 
 ```typescript
-import { AsyncQueue } from "@slikts/asyncqueue";
+import { Balancer } from "@slikts/asyncqueue";
 
-const queue = new AsyncQueue<number>();
+const queue = new Balancer<number>();
 queue.push(1);
 queue.push(2);
+queue.push(2, true); // the second argument closes the queue
 
 for await (const n of queue) {
-  console.log(n); // logs 1, 2
+  console.log(n); // logs 1, 2, 3
 }
 ```
 
