@@ -10,7 +10,7 @@ const domMock = ({
 } as any) as EventTarget
 
 it('handles listeners', async () => {
-  const it = fromDom('click', domMock)[Symbol.asyncIterator]()
+  const it = fromDom('click', domMock)
   const done = false
   expect(await Promise.all([it.next(), it.next()])).toEqual([
     { done, value: 1 },
@@ -28,7 +28,7 @@ const emitterMock = ({
 } as any) as NodeJS.EventEmitter
 
 it('handles emitters', async () => {
-  const it = fromEmitter('click', emitterMock)[Symbol.asyncIterator]()
+  const it = fromEmitter('click', emitterMock)
   const done = false
   expect(await Promise.all([it.next(), it.next()])).toEqual([
     { done, value: 1 },

@@ -1,28 +1,38 @@
 import AsyncQueue from './AsyncQueue'
 
-export const fromDom = <A extends Event>(
-  type: string,
+type EventMap = GlobalEventHandlersEventMap
+
+// TODO add overloads for special event targets (Window, Document)
+/**
+ * Convert DOM events to an async iterable iterator.
+ */
+export const fromDom = <Event extends keyof EventMap>(
+  type: Event,
   target: EventTarget,
   options?: boolean | AddEventListenerOptions,
-): AsyncQueue<A> => {
-  const queue = new AsyncQueue()
+): AsyncIterableIterator<EventMap[Event]> => {
+  const queue = new AsyncQueue<EventMap[Event]>()
   target.addEventListener(
     type,
-    (e: Event) => {
+    (e: EventMap[Event]) => {
       queue.push(e)
     },
     options,
   )
-  return queue as AsyncQueue<A>
+  return queue[Symbol.asyncIterator]()
 }
 
-export const fromEmitter = <A>(
+// TODO implement strict-event-emitter-types support
+/**
+ * Convert node EventEmitter events to an async iterable iterator.
+ */
+export const fromEmitter = <Event>(
   type: string | symbol,
   emitter: NodeJS.EventEmitter,
-): AsyncQueue<A> => {
-  const queue: AsyncQueue<A> = new AsyncQueue()
-  emitter.on(type, (a: A) => {
-    queue.push(a)
+): AsyncIterableIterator<Event> => {
+  const queue = new AsyncQueue<Event>()
+  emitter.on(type, (event: Event) => {
+    queue.push(event)
   })
-  return queue
+  return queue[Symbol.asyncIterator]()
 }
