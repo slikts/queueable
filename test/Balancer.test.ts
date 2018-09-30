@@ -1,10 +1,5 @@
 import Balancer from '../src/Balancer'
 
-type AsyncIterator<A> = any
-declare global {
-  interface AsyncIterable<A> {}
-}
-
 const take = async <A>(a: AsyncIterator<A>, n: number) =>
   (await Promise.all(Array.from(Array(n), (_, i) => a.next()))).map(({ value }) => value)
 
@@ -25,7 +20,7 @@ describe('AsyncQueue', () => {
     const b = new Balancer<number>()
     const ns = [1, 2, 3]
     ns.forEach(n => b.push(n))
-    b.push(undefined, true)
+    b.push(1, true)
     const r = []
     for await (const x of b) {
       r.push(x)
@@ -57,7 +52,7 @@ describe('AsyncQueue', () => {
       a = 1
     })
     it.next()
-    await it.return()
+    await (it.return && it.return())
     expect(a).toBe(1)
   })
 })

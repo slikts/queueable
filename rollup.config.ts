@@ -1,3 +1,5 @@
+/* tslint:disable */
+
 import resolve from 'rollup-plugin-node-resolve'
 import commonjs from 'rollup-plugin-commonjs'
 import sourceMaps from 'rollup-plugin-sourcemaps'
@@ -7,7 +9,7 @@ import json from 'rollup-plugin-json'
 
 const pkg = require('./package.json')
 
-const libraryName = 'AsyncQueue'
+const libraryName = 'asyncqueue'
 
 export default {
   input: `src/index.ts`,

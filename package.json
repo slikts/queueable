@@ -11,9 +11,9 @@
     "esnext",
     "streams"
   ],
-  "main": "dist/asyncqueue_.umd.js",
-  "module": "dist/asyncqueue_.es5.js",
-  "typings": "dist/types/asyncqueue_.d.ts",
+  "main": "dist/asyncqueue.umd.js",
+  "module": "dist/asyncqueue.es5.js",
+  "typings": "dist/types/asyncqueue.d.ts",
   "files": [
     "dist"
   ],
@@ -29,7 +29,7 @@
   "scripts": {
     "lint": "tslint -t codeFrame 'src/**/*.ts' 'test/**/*.ts'",
     "prebuild": "rimraf dist",
-    "build": "tsc --module commonjs && rollup -c rollup.config.ts && typedoc --out docs --target esnext --theme minimal --mode file src",
+    "build": "tsc -p tsconfig.prod.json && rollup -c rollup.config.ts && typedoc --out docs --target esnext --theme minimal --mode file src",
     "start": "rollup -c rollup.config.ts -w",
     "test": "jest",
     "test:watch": "jest --watch --runInBand --verbose false",
@@ -68,7 +68,9 @@
     ],
     "coveragePathIgnorePatterns": [
       "/node_modules/",
-      "/test/"
+      "/test/",
+      "/rollup.config.ts",
+      "/src/index.ts"
     ],
     "coverageThreshold": {
       "global": {
@@ -78,7 +80,10 @@
         "statements": 95
       }
     },
-    "collectCoverage": true
+    "collectCoverage": true,
+    "collectCoverageFrom": [
+      "src/**/*.ts"
+    ]
   },
   "prettier": {
     "semi": false,

@@ -33,7 +33,7 @@ describe('AsyncQueue', () => {
   it('can be closed', async () => {
     const q = new AsyncQueue<number>()
     const it = q[Symbol.asyncIterator]()
-    it.return()
+    it.return && it.return()
     expect(await it.next()).toEqual({ done: true, value: undefined })
   })
 
@@ -42,7 +42,7 @@ describe('AsyncQueue', () => {
     const it = q[Symbol.asyncIterator]()
     q.push(1)
     expect(await it.next()).toEqual({ done: false, value: 1 })
-    expect(await it.return()).toEqual({ done: true, value: undefined })
+    expect(await (it.return && it.return())).toEqual({ done: true, value: undefined })
     expect(await it.next()).toEqual({ done: true, value: undefined })
   })
 })
