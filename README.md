@@ -31,16 +31,63 @@ npm install --save @slikts/asyncqueue
 
 ## Usage
 
-```typescript
+### Implementing an async iterable iterator
+```js
 import { Balancer } from "@slikts/asyncqueue";
 
-const queue = new Balancer<number>();
+const queue = new Balancer();
 queue.push(1);
 queue.push(2);
-queue.push(2, true); // the second argument closes the queue
+queue.push(3);
+queue.push(4, true); // the second argument closes the iterator when its turn is reached
 
+// for-await-of uses the async iterable protocol to consume the queue sequentially
 for await (const n of queue) {
   console.log(n); // logs 1, 2, 3
+}
+// the loop ends after it reaches a result where the iterator is closed
+```
+### Pulling results and waiting for values to be pushed
+```js
+const queue = new Balancer();
+const result = queue.next(); // A promise of an iterator result
+result.then(({ value }) => {
+  console.log(value);
+});
+queue.push("hello"); // "hello" is logged in the next microtick
+```
+### Multicasting
+```js
+import { Multicast } from "@sikts/asyncqueue";
+
+const queue = new Multicast();
+// subscribe two iterators to receive results
+const a = queue[Symbol.asyncIterator]();
+const b = queue[Symbol.asyncIterator](); 
+queue.push(123);
+Promise.all([a.next(), b.next()]).then(results => {
+  console.log(results); // logs [{ value: 123, done: false }, { value: 123, done: false }]
+});
+```
+### Converting streams to async iterable iterators
+```js
+import { fromDom } from "@slikts/asyncqueue";
+const queue = fromDom('click', eventTarget);
+for await (const event of queue) {
+  console.log(event); // logs MouseEvent objects each time the mouse is clicked
+}
+// the event listener can be removed and stream closed like this:
+queue.return();
+```
+### Basic stream transformations
+The library also includes the basic `map()`, `filter()` and `reduce()` combinators.
+```js
+const sequence = async function*() {
+  yield* [1, 2, 3];
+}
+
+for await (const n of map(n => n * 2, sequence())) {
+  console.log(n); // logs 2, 4, 6
 }
 ```
 
