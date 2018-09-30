@@ -11,7 +11,7 @@ A library for turning push-based collections into pull-based ones that implement
 
 * Buffers pushed and pulled values
 * Well-typed with TypeScript
-* Lightweight
+* Lightweight, no dependencies
 
 ## Explanation
 

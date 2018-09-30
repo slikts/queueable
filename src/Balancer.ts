@@ -3,6 +3,9 @@ import Queue from './Queue'
 
 type Result<A> = IteratorResult<A>
 
+/**
+ * Balances a push queue with a pull queue; pushing queues a pull, and pulling queues a push.
+ */
 export default class Balancer<A> implements AsyncIterableIterator<A> {
   readonly pushOverflow = new Queue<Result<A>>()
   readonly pullOverflow = new Queue<(a: Result<A>) => void>()
@@ -19,7 +22,7 @@ export default class Balancer<A> implements AsyncIterableIterator<A> {
   }
 
   push(value: A, done = false): void {
-    const result = {
+    const result: IteratorResult<A> = {
       value,
       done,
     }
@@ -30,7 +33,10 @@ export default class Balancer<A> implements AsyncIterableIterator<A> {
     return this
   }
 
-  async *wrap(onReturn?: () => void) {
+  /**
+   * Convert the balancer to a generic async iterable iterator to hide the balancer implementation.
+   */
+  async *wrap(onReturn?: () => void): AsyncIterableIterator<A> {
     try {
       yield* this
     } finally {

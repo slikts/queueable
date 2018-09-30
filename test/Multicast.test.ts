@@ -1,12 +1,12 @@
-import AsyncQueue from '../src/AsyncQueue'
+import Multicast from '../src/Multicast'
 
-describe('AsyncQueue', () => {
+describe('Multicast', () => {
   it('constructs', () => {
-    expect(new AsyncQueue()).toBeInstanceOf(AsyncQueue)
+    expect(new Multicast()).toBeInstanceOf(Multicast)
   })
 
   it('pushes one fater pulling', async () => {
-    const q = new AsyncQueue<number>()
+    const q = new Multicast<number>()
     const it = q[Symbol.asyncIterator]()
     const z = it.next()
     q.push(1)
@@ -14,7 +14,7 @@ describe('AsyncQueue', () => {
   })
 
   it('pushes many', async () => {
-    const q = new AsyncQueue<number>()
+    const q = new Multicast<number>()
     const it = q[Symbol.asyncIterator]()
     const zs = Promise.all([it.next(), it.next(), it.next()])
     q.pushMany([1, 2, 3])
@@ -22,7 +22,7 @@ describe('AsyncQueue', () => {
   })
 
   it('pushes one before pulling', async () => {
-    const q = new AsyncQueue<number>()
+    const q = new Multicast<number>()
     const it = q[Symbol.asyncIterator]()
     q.push(1)
     const z = it.next()
@@ -31,14 +31,14 @@ describe('AsyncQueue', () => {
   })
 
   it('can be closed', async () => {
-    const q = new AsyncQueue<number>()
+    const q = new Multicast<number>()
     const it = q[Symbol.asyncIterator]()
     it.return && it.return()
     expect(await it.next()).toEqual({ done: true, value: undefined })
   })
 
   it('can be pushed and then closed', async () => {
-    const q = new AsyncQueue<number>()
+    const q = new Multicast<number>()
     const it = q[Symbol.asyncIterator]()
     q.push(1)
     expect(await it.next()).toEqual({ done: false, value: 1 })
