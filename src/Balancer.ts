@@ -34,7 +34,10 @@ export default class Balancer<A> implements AsyncIterableIterator<A> {
     try {
       yield* this
     } finally {
-      if (onReturn) onReturn()
+      /* istanbul ignore next */
+      if (onReturn) {
+        onReturn()
+      }
     }
   }
 }
