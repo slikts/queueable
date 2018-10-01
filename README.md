@@ -3,10 +3,10 @@
 
 <p align="center"><img src="https://i.imgur.com/gjLSYAr.png" width="437" height="180"></p>
 
-[![License](https://img.shields.io/github/license/slikts/asyncqueue.svg)](https://github.com/slikts/asyncqueue)
-[![Build Status](https://img.shields.io/travis/slikts/asyncqueue/master.svg)](https://travis-ci.org/slikts/asyncqueue)
-[![Coverage Status](https://coveralls.io/repos/github/slikts/asyncqueue/badge.svg?branch=master)](https://coveralls.io/github/slikts/asyncqueue?branch=master)
-[![Latest Stable Version](https://img.shields.io/npm/v/@slikts/asyncqueue.svg)](https://www.npmjs.com/package/@slikts/asyncqueue) [![Greenkeeper badge](https://badges.greenkeeper.io/slikts/asyncqueue.svg)](https://greenkeeper.io/)
+[![License](https://img.shields.io/github/license/slikts/queueable.svg)](https://github.com/slikts/queueable)
+[![Build Status](https://img.shields.io/travis/slikts/queueable/master.svg)](https://travis-ci.org/slikts/queueable)
+[![Coverage Status](https://coveralls.io/repos/github/slikts/queueable/badge.svg?branch=master)](https://coveralls.io/github/slikts/queueable?branch=master)
+[![Latest Stable Version](https://img.shields.io/npm/v/queueable.svg)](https://www.npmjs.com/package/queueable) [![Greenkeeper badge](https://badges.greenkeeper.io/queueable.svg)](https://greenkeeper.io/)
 
 A library for turning push-based collections like streams into pull-based ones that implement the [ES2018 asynchronous iteration protocols][async].
 
@@ -30,14 +30,14 @@ This library is for populating async iterators with values; the intended use cas
 ## Installation
 
 ```
-npm install --save @slikts/asyncqueue
+npm install --save queueable
 ```
 
 ## Usage
 
 ### Implementing an async iterable iterator
 ```js
-import { Balancer } from "@slikts/asyncqueue";
+import { Balancer } from "queueable";
 
 const queue = new Balancer();
 queue.push(1);
@@ -62,7 +62,7 @@ queue.push("hello"); // "hello" is logged in the next microtick
 ```
 ### Multicasting
 ```js
-import { Multicast } from "@sikts/asyncqueue";
+import { Multicast } from "queueable";
 
 const queue = new Multicast();
 // subscribe two iterators to receive results
@@ -75,7 +75,7 @@ Promise.all([a.next(), b.next()]).then(results => {
 ```
 ### Converting streams to async iterable iterators
 ```js
-import { fromDom } from "@slikts/asyncqueue";
+import { fromDom } from "queueable";
 const queue = fromDom('click', eventTarget);
 for await (const event of queue) {
   console.log(event); // logs MouseEvent objects each time the mouse is clicked
