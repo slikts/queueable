@@ -20,7 +20,7 @@
   "author": "slikts <dabas@untu.ms>",
   "repository": {
     "type": "git",
-    "url": "git://git@github.com:slikts/asyncqueue.git"
+    "url": "git+https://github.com/slikts/asyncqueue.git"
   },
   "license": "MIT",
   "engines": {
