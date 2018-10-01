@@ -5,7 +5,7 @@
 [![Test Coverage](https://img.shields.io/codecov/c/github/slikts/asyncqueue/master.svg)](https://codecov.io/github/slikts/asyncqueue?branch=master)
 [![Latest Stable Version](https://img.shields.io/npm/v/@slikts/asyncqueue.svg)](https://www.npmjs.com/package/@slikts/asyncqueue)
 
-A library for turning push-based collections into pull-based ones that implement the [ES2018 asynchronous iteration protocols][async].
+A library for turning push-based collections like streams into pull-based ones that implement the [ES2018 asynchronous iteration protocols][async].
 
 ## Features
 
@@ -99,6 +99,13 @@ To make TypeScript know about the asnyc iterable types (`AsyncIterable<T>`, `Asy
 
 * [callback-to-async-iterator]
 
+## Complementary tools
+
+* [IxJS] - supports various combinators for async iterables
+* [Symbola] - protocol extension based combinators for async iterables
+
+[Symbola]: https://github.com/slikts/symbola
+[IxJS]: https://github.com/ReactiveX/IxJS#asynciterable
 [callback-to-async-iterator]: https://github.com/withspectrum/callback-to-async-iterator
 [async]: http://2ality.com/2016/10/asynchronous-iteration.html
 [options]: https://www.typescriptlang.org/docs/handbook/compiler-options.html
