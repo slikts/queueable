@@ -7,6 +7,7 @@
 [![Build Status](https://img.shields.io/travis/slikts/queueable/master.svg)](https://travis-ci.org/slikts/queueable)
 [![Coverage Status](https://coveralls.io/repos/github/slikts/queueable/badge.svg?branch=master)](https://coveralls.io/github/slikts/queueable?branch=master)
 [![Latest Stable Version](https://img.shields.io/npm/v/queueable.svg)](https://www.npmjs.com/package/queueable) [![Greenkeeper badge](https://badges.greenkeeper.io/slikts/queueable.svg)](https://greenkeeper.io/)
+[![Code Climate](https://codeclimate.com/github/slikts/queueable.svg)](https://codeclimate.com/github/slikts/queueable)
 
 A library for turning push-based collections like streams into pull-based ones that implement the [ES2018 asynchronous iteration protocols][async].
 
