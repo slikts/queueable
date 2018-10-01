@@ -3,7 +3,7 @@
 [![License](https://img.shields.io/github/license/slikts/asyncqueue.svg)](https://github.com/slikts/asyncqueue)
 [![Build Status](https://img.shields.io/travis/slikts/asyncqueue/master.svg)](https://travis-ci.org/slikts/asyncqueue)
 [![Test Coverage](https://img.shields.io/codecov/c/github/slikts/asyncqueue/master.svg)](https://codecov.io/github/slikts/asyncqueue?branch=master)
-[![Latest Stable Version](https://img.shields.io/npm/v/@slikts/asyncqueue.svg)](https://www.npmjs.com/package/@slikts/asyncqueue)
+[![Latest Stable Version](https://img.shields.io/npm/v/@slikts/asyncqueue.svg)](https://www.npmjs.com/package/@slikts/asyncqueue) [![Greenkeeper badge](https://badges.greenkeeper.io/slikts/asyncqueue.svg)](https://greenkeeper.io/)
 
 A library for turning push-based collections into pull-based ones that implement the [ES2018 asynchronous iteration protocols][async].
 
