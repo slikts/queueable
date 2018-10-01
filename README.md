@@ -1,4 +1,7 @@
-# Async Queue
+
+# Queueable
+
+<p align="center"><img src="https://i.imgur.com/gjLSYAr.png" width="437" height="180"></p>
 
 [![License](https://img.shields.io/github/license/slikts/asyncqueue.svg)](https://github.com/slikts/asyncqueue)
 [![Build Status](https://img.shields.io/travis/slikts/asyncqueue/master.svg)](https://travis-ci.org/slikts/asyncqueue)
@@ -12,6 +15,7 @@ A library for turning push-based collections like streams into pull-based ones t
 * Buffers pushed and pulled values
 * Well-typed with TypeScript
 * Lightweight, no dependencies
+* Full test coverage
 
 ## Explanation
 
@@ -50,7 +54,7 @@ for await (const n of queue) {
 ### Pulling results and waiting for values to be pushed
 ```js
 const queue = new Balancer();
-const result = queue.next(); // A promise of an iterator result
+const result = queue.next(); // a promise of an iterator result
 result.then(({ value }) => {
   console.log(value);
 });
@@ -76,17 +80,18 @@ const queue = fromDom('click', eventTarget);
 for await (const event of queue) {
   console.log(event); // logs MouseEvent objects each time the mouse is clicked
 }
-// the event listener can be removed and stream closed like this:
+// the event listener can be removed and stream closed wih .return()
 queue.return();
 ```
 ### Basic stream transformations
 The library also includes the basic `map()`, `filter()` and `reduce()` combinators.
 ```js
+// implement an async iterable with a generator
 const sequence = async function*() {
   yield* [1, 2, 3];
 }
-
-for await (const n of map(n => n * 2, sequence())) {
+const mapped = map(n => n * 2, sequence());
+for await (const n of mapped) {
   console.log(n); // logs 2, 4, 6
 }
 ```
@@ -99,7 +104,7 @@ To make TypeScript know about the asnyc iterable types (`AsyncIterable<T>`, `Asy
 
 * [callback-to-async-iterator]
 
-## Complementary tools
+## Tools for async iteration
 
 * [IxJS] - supports various combinators for async iterables
 * [Symbola] - protocol extension based combinators for async iterables
