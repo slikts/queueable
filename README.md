@@ -79,7 +79,7 @@ const queue = fromDom('click', eventTarget);
 for await (const event of queue) {
   console.log(event); // logs MouseEvent objects each time the mouse is clicked
 }
-// the event listener can be removed and stream closed wih .return()
+// the event listener can be removed and stream closed with .return()
 queue.return();
 ```
 ### Basic stream transformations
