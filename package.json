@@ -1,5 +1,5 @@
 {
-  "name": "@slikts/asyncqueue",
+  "name": "queueable",
   "version": "2.0.0",
   "description": "",
   "keywords": [
@@ -11,16 +11,16 @@
     "esnext",
     "streams"
   ],
-  "main": "dist/asyncqueue.umd.js",
-  "module": "dist/asyncqueue.es5.js",
-  "typings": "dist/types/asyncqueue.d.ts",
+  "main": "dist/queueable.umd.js",
+  "module": "dist/queueable.es5.js",
+  "typings": "dist/types/queueable.d.ts",
   "files": [
     "dist"
   ],
   "author": "slikts <dabas@untu.ms>",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/slikts/asyncqueue.git"
+    "url": "git+https://github.com/slikts/queueable.git"
   },
   "license": "MIT",
   "engines": {
