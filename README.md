@@ -1,7 +1,5 @@
 
-# Queueable
-
-<p align="center"><img src="https://i.imgur.com/gjLSYAr.png" width="437" height="180"></p>
+<h1 align="center"><img src="https://i.imgur.com/gjLSYAr.png" width="437" height="180" alt="Queueable"></h1>
 
 [![License](https://img.shields.io/github/license/slikts/queueable.svg)](https://github.com/slikts/queueable)
 [![Build Status](https://img.shields.io/travis/slikts/queueable/master.svg)](https://travis-ci.org/slikts/queueable)
