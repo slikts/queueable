@@ -15,6 +15,7 @@ const closedResult = Object.freeze({
 interface WrappedBalancer<A> extends AsyncIterableIterator<A> {
   // TODO the result can be undefined as well
   return(value?: A): Promise<Result<A>>
+  throw?: undefined
 }
 
 /**
