@@ -8,7 +8,7 @@ export default class Queue<A> extends Array<A> {
    * @param a Item to be enqueued
    */
   enqueue(a: A) {
-    this.push(a)
+    this.push(a);
   }
 
   /**
@@ -20,8 +20,8 @@ export default class Queue<A> extends Array<A> {
    */
   dequeueDefault<B>(handle: (a: A) => B, init: () => B): B {
     if (this.length) {
-      return handle(this.shift() as A)
+      return handle(this.shift() as A);
     }
-    return init()
+    return init();
   }
 }

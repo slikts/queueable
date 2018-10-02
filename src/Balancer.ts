@@ -1,21 +1,21 @@
-import Deferred from './Deferred'
-import Queue from './Queue'
+import Deferred from './Deferred';
+import Queue from './Queue';
 
-type Result<A> = IteratorResult<A>
+type Result<A> = IteratorResult<A>;
 
 /** The result returned from closed iterators. */
 const closedResult = Object.freeze({
   value: undefined as any,
   done: true,
-})
+});
 
 /**
  * Async iterable iterator with a non-optional [[return]] method.
  */
 interface WrappedBalancer<A> extends AsyncIterableIterator<A> {
   // TODO the result can be undefined as well
-  return(value?: A): Promise<Result<A>>
-  throw?: undefined
+  return(value?: A): Promise<Result<A>>;
+  throw?: undefined;
 }
 
 /**
@@ -23,26 +23,26 @@ interface WrappedBalancer<A> extends AsyncIterableIterator<A> {
  */
 export default class Balancer<A> implements AsyncIterableIterator<A> {
   /** Pushed results waiting for pulls to resolve */
-  readonly resultQueue = new Queue<Result<A>>()
+  readonly resultQueue = new Queue<Result<A>>();
   /** Unresolved pulls waiting for results to be pushed */
-  readonly resolverQueue = new Queue<(a: Result<A>) => void>()
-  closed = false
+  readonly resolverQueue = new Queue<(a: Result<A>) => void>();
+  closed = false;
 
   /**
    * Pull a promise of the next [[Result]].
    */
   next(): Promise<Result<A>> {
     if (this.closed) {
-      return Promise.resolve(closedResult)
+      return Promise.resolve(closedResult);
     }
     return this.resultQueue.dequeueDefault(
       (result: Result<A>) => (result.done ? this.return(result.value) : Promise.resolve(result)),
       () => {
-        const { resolve, promise } = new Deferred<Result<A>>()
-        this.resolverQueue.enqueue(resolve)
-        return promise
+        const { resolve, promise } = new Deferred<Result<A>>();
+        this.resolverQueue.enqueue(resolve);
+        return promise;
       },
-    )
+    );
   }
 
   /**
@@ -54,23 +54,23 @@ export default class Balancer<A> implements AsyncIterableIterator<A> {
    */
   push(value: A, done = false): void {
     if (this.closed) {
-      throw Error('Iterator is closed')
+      throw Error('Iterator is closed');
     }
     const result: Result<A> = {
       value,
       done,
-    }
+    };
     this.resolverQueue.dequeueDefault(
       resolve => resolve(result),
       () => void this.resultQueue.push(result),
-    )
+    );
   }
 
   /**
    * Returns itself, since [[Balancer]] already implements the iterator protocol.
    */
   [Symbol.asyncIterator]() {
-    return this
+    return this;
   }
 
   /**
@@ -81,15 +81,15 @@ export default class Balancer<A> implements AsyncIterableIterator<A> {
    */
   async return(value?: A): Promise<Result<A>> {
     if (!this.closed) {
-      this.closed = true
+      this.closed = true;
       // Clear the queues
-      this.resultQueue.length = 0
-      this.resolverQueue.length = 0
+      this.resultQueue.length = 0;
+      this.resolverQueue.length = 0;
     }
     return {
       done: true,
       value: value as any, // cast as any because the TS lib types are incorrect
-    }
+    };
   }
 
   /**
@@ -100,21 +100,21 @@ export default class Balancer<A> implements AsyncIterableIterator<A> {
    */
   wrap(onReturn?: () => void): WrappedBalancer<A> {
     if (this.closed) {
-      throw Error('Balancer is closed')
+      throw Error('Balancer is closed');
     }
     return {
       [Symbol.asyncIterator]() {
-        return this
+        return this;
       },
       next: () => this.next(),
       return: async (value?: A) => {
         // TODO why is this ignore necessary? the else path is covered by tests
         // istanbul ignore next
         if (onReturn) {
-          onReturn()
+          onReturn();
         }
-        return this.return(value)
+        return this.return(value);
       },
-    }
+    };
   }
 }

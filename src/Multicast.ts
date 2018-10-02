@@ -1,4 +1,4 @@
-import Balancer from './Balancer'
+import Balancer from './Balancer';
 
 /**
  * Multicasts pushed values to a variable number of async iterable iterators
@@ -8,30 +8,30 @@ import Balancer from './Balancer'
  * values are silently discarded.
  */
 export default class Multicast<A> implements AsyncIterable<A> {
-  readonly receivers: Set<Balancer<A>> = new Set()
+  readonly receivers: Set<Balancer<A>> = new Set();
 
   /**
    * Pushes a value to all registered receivers.
    */
   push(value: A): this {
-    this.receivers.forEach(balancer => balancer.push(value))
-    return this
+    this.receivers.forEach(balancer => balancer.push(value));
+    return this;
   }
 
   /**
    * Pushes multiple values.
    */
   pushMany(values: A[]): this {
-    values.forEach(this.push, this)
-    return this
+    values.forEach(this.push, this);
+    return this;
   }
 
   /**
    * Creates and registers a receiver.
    */
   [Symbol.asyncIterator](): AsyncIterableIterator<A> {
-    const balancer = new Balancer<A>()
-    this.receivers.add(balancer)
-    return balancer.wrap(() => void this.receivers.delete(balancer))
+    const balancer = new Balancer<A>();
+    this.receivers.add(balancer);
+    return balancer.wrap(() => void this.receivers.delete(balancer));
   }
 }
