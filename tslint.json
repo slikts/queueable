@@ -2,5 +2,8 @@
   "extends": [
     "tslint-config-slikts",
     "tslint-config-prettier"
-  ]
+  ],
+  "rules": {
+    "semicolon": [true, "always"]
+  }
 }
