@@ -62,7 +62,7 @@ export default class Balancer<A> implements AsyncIterableIterator<A> {
     };
     this.resolverQueue.dequeueDefault(
       resolve => resolve(result),
-      () => void this.resultQueue.push(result),
+      () => void this.resultQueue.enqueue(result),
     );
   }
 
@@ -83,8 +83,8 @@ export default class Balancer<A> implements AsyncIterableIterator<A> {
     if (!this.closed) {
       this.closed = true;
       // Clear the queues
-      this.resultQueue.length = 0;
-      this.resolverQueue.length = 0;
+      this.resultQueue.clear();
+      this.resolverQueue.clear();
     }
     return {
       done: true,

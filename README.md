@@ -13,7 +13,7 @@ A library for turning push-based collections like streams into pull-based ones t
 
 * Buffers pushed and pulled values
 * Well-typed with TypeScript
-* Lightweight, no dependencies
+* [Lightweight], fast
 * Full test coverage
 
 ## Explanation
@@ -113,3 +113,4 @@ To make TypeScript know about the asnyc iterable types (`AsyncIterable<T>`, `Asy
 [callback-to-async-iterator]: https://github.com/withspectrum/callback-to-async-iterator
 [async]: http://2ality.com/2016/10/asynchronous-iteration.html
 [options]: https://www.typescriptlang.org/docs/handbook/compiler-options.html
+[lightweight]: https://bundlephobia.com/result?p=queueable

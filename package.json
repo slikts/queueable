@@ -122,11 +122,15 @@
     "tslint-config-slikts": "^2.0.2",
     "typedoc": "^0.12.0",
     "typescript": "^3.0.1",
-    "validate-commit-msg": "^2.12.2"
+    "validate-commit-msg": "^2.12.2",
+    "@types/fast-list": "^1.0.0"
   },
   "husky": {
     "hooks": {
       "pre-commit": "lint-staged"
     }
+  },
+  "dependencies": {
+    "fast-list": "^1.0.3"
   }
 }
