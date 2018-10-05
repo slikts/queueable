@@ -107,6 +107,7 @@ To make TypeScript know about the asnyc iterable types (`AsyncIterable<T>`, `Asy
 
 * [IxJS] - supports various combinators for async iterables
 * [Symbola] - protocol extension based combinators for async iterables
+* [Axax] - async iteration helpers
 
 [Symbola]: https://github.com/slikts/symbola
 [IxJS]: https://github.com/ReactiveX/IxJS#asynciterable
@@ -114,3 +115,4 @@ To make TypeScript know about the asnyc iterable types (`AsyncIterable<T>`, `Asy
 [async]: http://2ality.com/2016/10/asynchronous-iteration.html
 [options]: https://www.typescriptlang.org/docs/handbook/compiler-options.html
 [lightweight]: https://bundlephobia.com/result?p=queueable
+[axax]: https://github.com/jamiemccrindle/axax
