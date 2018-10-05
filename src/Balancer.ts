@@ -23,10 +23,11 @@ interface WrappedBalancer<A> extends AsyncIterableIterator<A> {
  */
 export default class Balancer<A> implements AsyncIterableIterator<A> {
   /** Pushed results waiting for pulls to resolve */
-  readonly resultQueue = new Queue<Result<A>>();
+  readonly pushBuffer = new Queue<{ result: Result<A>; defer: Deferred<Result<A>> }>();
   /** Unresolved pulls waiting for results to be pushed */
-  readonly resolverQueue = new Queue<(a: Result<A>) => void>();
-  closed = false;
+  readonly pullBuffer = new Queue<Deferred<Result<A>>>();
+  /** Determines whether new values can be pushed or pulled */
+  private closed = false;
 
   /**
    * Pull a promise of the next [[Result]].
@@ -35,12 +36,23 @@ export default class Balancer<A> implements AsyncIterableIterator<A> {
     if (this.closed) {
       return Promise.resolve(closedResult);
     }
-    return this.resultQueue.dequeueDefault(
-      (result: Result<A>) => (result.done ? this.return(result.value) : Promise.resolve(result)),
+    return this.pushBuffer.dequeueDefault(
+      // Called if there was a buffered push
+      ({ result, defer }) => {
+        // Resolve the buffered promise with the buffered value
+        defer.resolve(result);
+        if (result.done) {
+          this.close();
+        }
+        return defer.promise;
+      },
+      // Called if the push buffer was empty
       () => {
-        const { resolve, promise } = new Deferred<Result<A>>();
-        this.resolverQueue.enqueue(resolve);
-        return promise;
+        const defer = new Deferred<Result<A>>();
+        // Buffer the pull to be resolved later
+        this.pullBuffer.enqueue(defer);
+        // Return the buffered promise that will be resolved and dequeued when a value is pushed
+        return defer.promise;
       },
     );
   }
@@ -52,7 +64,7 @@ export default class Balancer<A> implements AsyncIterableIterator<A> {
    * @param done If true, closes the balancer when this result is resolved
    * @throws Throws if the balancer is already closed
    */
-  push(value: A, done = false): void {
+  push(value: A, done = false): Promise<Result<A>> {
     if (this.closed) {
       throw Error('Iterator is closed');
     }
@@ -60,9 +72,16 @@ export default class Balancer<A> implements AsyncIterableIterator<A> {
       value,
       done,
     };
-    this.resolverQueue.dequeueDefault(
-      resolve => resolve(result),
-      () => void this.resultQueue.enqueue(result),
+    return this.pullBuffer.dequeueDefault(
+      // Called if there were unresolved pulls
+      ({ resolve }) => resolve(result),
+      // Called if the pull buffer was empty
+      () => {
+        const defer = new Deferred<Result<A>>();
+        // Buffer the push to resolve future [[Balancer.next]] calls
+        this.pushBuffer.enqueue({ result, defer });
+        return defer.promise;
+      },
     );
   }
 
@@ -80,16 +99,23 @@ export default class Balancer<A> implements AsyncIterableIterator<A> {
    * @param value The result value to be returned
    */
   async return(value?: A): Promise<Result<A>> {
-    if (!this.closed) {
-      this.closed = true;
-      // Clear the queues
-      this.resultQueue.clear();
-      this.resolverQueue.clear();
-    }
+    this.close();
     return {
       done: true,
       value: value as any, // cast as any because the TS lib types are incorrect
     };
+  }
+
+  close(): void {
+    if (this.closed) {
+      return;
+    }
+    this.closed = true;
+    // Clear the queues
+    this.pushBuffer.forEach(({ defer: { reject } }) => void reject());
+    this.pushBuffer.clear();
+    this.pullBuffer.forEach(({ reject }) => void reject());
+    this.pullBuffer.clear();
   }
 
   /**

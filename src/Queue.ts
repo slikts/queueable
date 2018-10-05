@@ -16,10 +16,9 @@ export default class Queue<A> {
    *
    * @param value Item to be enqueued
    */
-  enqueue(value: A) {
+  enqueue(value: A): void {
     this.list.push(value);
   }
-
   /**
    * Either handles and returns the first item in the queue (if the queue isn't empty) or
    * makes and returns a default value.
@@ -34,7 +33,11 @@ export default class Queue<A> {
     return handle(this.list.shift() as A);
   }
 
-  clear() {
+  clear(): void {
     this.list.drop();
+  }
+
+  forEach(f: (value: A) => void): void {
+    this.list.forEach(f);
   }
 }
