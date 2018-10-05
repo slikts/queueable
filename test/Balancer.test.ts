@@ -1,5 +1,6 @@
 import Balancer from '../src/Balancer';
 
+const id = (x: any) => x;
 const take = async <A>(a: AsyncIterator<A>, n: number) =>
   (await Promise.all(Array.from(Array(n), (_, i) => a.next()))).map(({ value }) => value);
 
@@ -47,12 +48,12 @@ describe('Balancer', () => {
   it('wrapper return calls back', async () => {
     const b = new Balancer();
     const ns = [1, 2, 3];
-    ns.forEach(n => b.push(n));
+    ns.forEach(n => b.push(n).catch(id));
     let a = 0;
     const it = b.wrap(() => {
       a = 1;
     });
-    it.next();
+    it.next().catch(id);
     await (it.return && it.return());
     expect(a).toBe(1);
   });
