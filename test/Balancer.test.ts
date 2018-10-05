@@ -87,4 +87,12 @@ describe('Balancer', () => {
     b.return();
     await expect(p).rejects.toEqual(undefined);
   });
+
+  it(`push and pull are symmetrical`, async () => {
+    const b = new Balancer();
+    const p1 = b.next();
+    const p2 = b.push(1);
+    expect(p1).toBe(p2);
+    expect(await p1).toBe(await p2);
+  });
 });
