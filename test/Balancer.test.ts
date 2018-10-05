@@ -80,4 +80,11 @@ describe('Balancer', () => {
     const b = new Balancer().wrap();
     expect(b[Symbol.asyncIterator]()).toBe(b);
   });
+
+  it(`rejects unpushed`, async () => {
+    const b = new Balancer();
+    const p = b.next();
+    b.return();
+    await expect(p).rejects.toEqual(undefined);
+  });
 });
