@@ -94,6 +94,17 @@ for await (const n of mapped) {
   console.log(n); // logs 2, 4, 6
 }
 ```
+### Tracking when pushed values are pulled
+```js
+const queue = new Balancer();
+const tracking = queue.push(123);
+tracking.then(() => {
+  console.log('value was pulled');
+});
+const result = queue.next(); // pulling the next result resolves `tracking` promise
+result === tracking; // -> true
+await result === await tracking; // -> true
+```
 
 ## Types
 

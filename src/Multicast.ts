@@ -8,6 +8,9 @@ import Balancer from './Balancer';
  * values are silently discarded.
  */
 export default class Multicast<A> implements AsyncIterable<A> {
+  onStart?(): void;
+  onStop?(): void;
+
   readonly receivers: Set<Balancer<A>> = new Set();
 
   /**
@@ -19,19 +22,20 @@ export default class Multicast<A> implements AsyncIterable<A> {
   }
 
   /**
-   * Pushes multiple values.
-   */
-  pushMany(values: A[]): this {
-    values.forEach(this.push, this);
-    return this;
-  }
-
-  /**
    * Creates and registers a receiver.
    */
   [Symbol.asyncIterator](): AsyncIterableIterator<A> {
     const balancer = new Balancer<A>();
-    this.receivers.add(balancer);
-    return balancer.wrap(() => void this.receivers.delete(balancer));
+    const { receivers } = this;
+    receivers.add(balancer);
+    if (this.onStart && receivers.size === 1) {
+      this.onStart();
+    }
+    return balancer.wrap(() => {
+      receivers.delete(balancer);
+      if (this.onStop && receivers.size === 0) {
+        this.onStop();
+      }
+    });
   }
 }

@@ -1,13 +1,10 @@
-import * as FastList from 'fast-list';
-
-// prevents rollup Error: Cannot call a namespace
-const fastList = FastList;
+import fastList from 'fast-list';
 
 /**
  * First-in, first-out (FIFO) buffer (queue) with default item values.
  */
 export default class Queue<A> {
-  private list: FastList.List<A>;
+  private list: fastList.List<A>;
   constructor() {
     this.list = fastList();
   }

@@ -13,14 +13,6 @@ describe('Multicast', () => {
     expect((await z).value).toBe(1);
   });
 
-  it('pushes many', async () => {
-    const q = new Multicast<number>();
-    const it = q[Symbol.asyncIterator]();
-    const zs = Promise.all([it.next(), it.next(), it.next()]);
-    q.pushMany([1, 2, 3]);
-    expect((await zs).map(({ value }) => value)).toEqual([1, 2, 3]);
-  });
-
   it('pushes one before pulling', async () => {
     const q = new Multicast<number>();
     const it = q[Symbol.asyncIterator]();
@@ -44,5 +36,26 @@ describe('Multicast', () => {
     expect(await it.next()).toEqual({ done: false, value: 1 });
     expect(await (it.return && it.return())).toEqual({ done: true, value: undefined });
     expect(await it.next()).toEqual({ done: true, value: undefined });
+  });
+
+  it('can be set up', async () => {
+    let c = 0;
+    const q = new Multicast<number>();
+    q.onStart = () => void (c += 1);
+    q[Symbol.asyncIterator]();
+    expect(c).toBe(1);
+    q[Symbol.asyncIterator]();
+    expect(c).toBe(1);
+  });
+
+  it('can be torn down', async () => {
+    let c = 0;
+    const q = new Multicast<number>();
+    q.onStart = () => void (c += 1);
+    q.onStop = () => void (c -= 1);
+    const it = q[Symbol.asyncIterator]();
+    expect(c).toBe(1);
+    it.return && it.return();
+    expect(c).toBe(0);
   });
 });

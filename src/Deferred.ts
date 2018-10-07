@@ -1,3 +1,6 @@
+/**
+ * Exposes the promise executor callbacks (resolve, reject).
+ */
 export default class Deferred<A> {
   promise: Promise<A>;
   constructor() {
