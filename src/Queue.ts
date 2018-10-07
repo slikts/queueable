@@ -1,10 +1,12 @@
-import fastList from 'fast-list';
+import * as FastList from 'fast-list';
+
+const fastList = FastList;
 
 /**
  * First-in, first-out (FIFO) buffer (queue) with default item values.
  */
 export default class Queue<A> {
-  private list: fastList.List<A>;
+  private list: FastList.List<A>;
   constructor() {
     this.list = fastList();
   }

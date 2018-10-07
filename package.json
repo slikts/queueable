@@ -11,9 +11,9 @@
     "esnext",
     "streams"
   ],
-  "main": "dist/queueable.umd.js",
-  "module": "dist/queueable.es5.js",
-  "typings": "dist/types/queueable.d.ts",
+  "main": "dist/lib/index.js",
+  "module": "dist/module/index.js",
+  "typings": "dist/types/index.d.ts",
   "files": [
     "dist"
   ],
@@ -29,7 +29,7 @@
   "scripts": {
     "lint": "tslint -t codeFrame --project tsconfig.json 'src/**/*.ts' 'test/**/*.ts'",
     "prebuild": "rimraf dist",
-    "build": "tsc -p tsconfig.prod.json && rollup -c rollup.config.ts && npm run build:docs",
+    "build": "tsc -p tsconfig.module.json && tsc -p tsconfig.cjs.json && rollup -c rollup.config.ts && npm run build:docs",
     "build:docs": "typedoc --out docs --target esnext --theme minimal --mode file src --ignoreCompilerErrors",
     "start": "rollup -c rollup.config.ts -w",
     "test": "jest",
