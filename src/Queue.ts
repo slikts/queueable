@@ -4,35 +4,42 @@ const fastList = FastList;
 
 /**
  * First-in, first-out (FIFO) buffer (queue) with default item values.
+ * Optionally circular based on [[Queue.limit]].
  */
 export default class Queue<A> {
   private list: FastList.List<A>;
-  constructor() {
+  length = 0;
+
+  constructor(
+    /** The length after which the queue becomes circular, i.e., discards oldest items. */
+    private limit = 0,
+  ) {
     this.list = fastList();
   }
   /**
    * Add an item to the end of the queue.
-   *
-   * @param value Item to be enqueued
    */
   enqueue(value: A): void {
-    this.list.push(value);
+    const { list } = this;
+    if (this.limit > 0 && list.length === this.limit) {
+      // Discard oldest item
+      list.shift();
+    }
+    this.length += 1;
+    list.push(value);
   }
   /**
-   * Either handles and returns the first item in the queue (if the queue isn't empty) or
-   * makes and returns a default value.
-   *
-   * @param handle Callback for handling the first item in the queue
-   * @param init Callback for making the default value
+   * Return the oldest item from the queue.
    */
-  dequeueDefault<B>(handle: (a: A) => B, init: () => B): B {
-    if (!this.list.length) {
-      return init();
+  dequeue(): A | undefined {
+    if (this.length > 0) {
+      this.length -= 1;
     }
-    return handle(this.list.shift() as A);
+    return this.list.shift();
   }
 
   clear(): void {
+    this.length = 0;
     this.list.drop();
   }
 
