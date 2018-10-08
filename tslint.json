@@ -3,6 +3,7 @@
     "tslint-config-slikts",
     "tslint-config-prettier"
   ],
+  "defaultSeverity": "warning",
   "rules": {
     "semicolon": [true, "always"],
     "no-boolean-literal-compare": false
