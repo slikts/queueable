@@ -6,8 +6,8 @@ describe('Deferred', () => {
     expect(await d.resolve(123)).toBe(123);
   });
 
-  it('rejects', async () => {
+  it('rejects', () => {
     const d = new Deferred();
-    expect(await d.reject('123')).toBe('123');
+    expect(d.reject('123')).rejects.toThrowErrorMatchingSnapshot();
   });
 });
