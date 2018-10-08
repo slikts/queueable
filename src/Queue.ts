@@ -31,11 +31,12 @@ export default class Queue<A> {
   /**
    * Return the oldest item from the queue.
    */
-  dequeue(): A | undefined {
-    if (this.length > 0) {
-      this.length -= 1;
+  dequeue(): A {
+    if (this.length === 0) {
+      throw Error('Queue is empty');
     }
-    return this.list.shift();
+    this.length -= 1;
+    return this.list.shift() as A;
   }
 
   clear(): void {

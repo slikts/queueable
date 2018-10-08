@@ -17,9 +17,9 @@ describe(`Queue`, () => {
     expect(q.length).toBe(0);
   });
 
-  it('empty returns undefined', () => {
+  it('empty throws', () => {
     const q = new Queue();
-    expect(q.dequeue()).toBe(undefined);
+    expect(() => q.dequeue()).toThrow();
   });
 
   it(`doesn't circulate without a limit`, () => {
@@ -36,7 +36,7 @@ describe(`Queue`, () => {
     q.enqueue(2);
     q.clear();
     expect(q.length).toBe(0);
-    expect(q.dequeue()).toBe(undefined);
+    expect(() => q.dequeue()).toThrow();
   });
 
   it(`foreaches`, () => {
