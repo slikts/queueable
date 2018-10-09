@@ -37,7 +37,7 @@ export default class Mono<A> implements AsyncIterableIterator<A> {
   async return(value?: A): Promise<IteratorResult<A>> {
     this.closed = true;
     if (!this.resolved && this.requested) {
-      this.buffer.reject();
+      this.buffer.reject(new Error('Closing'));
     }
     return Promise.resolve({
       value,
@@ -58,7 +58,6 @@ export default class Mono<A> implements AsyncIterableIterator<A> {
         return this.return(value);
       },
     };
-    wrapped.next();
     return wrapped;
   }
 

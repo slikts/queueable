@@ -54,9 +54,9 @@ describe('Mono', () => {
     expect(a).toBe(1);
   });
 
-  // it('closes wrapped alt', async () => {
-  //   const m = new Mono();
-  //   const w = m.wrap();
-  //   expect(await w.return(123)).toEqual({ value: 123, done: true });
-  // });
+  it('closes wrapped alt', async () => {
+    const m = new Mono();
+    const w = m.wrap();
+    expect(await w.return(123)).toEqual({ value: 123, done: true });
+  });
 });

@@ -1,4 +1,4 @@
-import { fromDom, fromEmitter } from '../src/from';
+import { fromDom, fromEmitter, wrapRequest } from '../src/from';
 
 describe('fromDom', () => {
   it('handles listeners', async () => {
@@ -23,6 +23,7 @@ describe('fromDom', () => {
         a = 1;
       },
     } as any) as EventTarget);
+    // it.next().catch();
     it.return && (await it.return());
     expect(a).toBe(1);
   });
@@ -55,5 +56,17 @@ describe('fromEmitter', () => {
     } as any) as NodeJS.EventEmitter);
     it.return && (await it.return());
     expect(a).toBe(1);
+  });
+});
+
+describe('wrap', () => {
+  it('wraps', async () => {
+    let n = 0;
+    const request = (f: (a: any) => void): void => {
+      n += 1;
+      Promise.resolve().then(() => f(n));
+    };
+    const w = wrapRequest(request);
+    expect(await w.next()).toEqual({ done: false, value: 1 });
   });
 });

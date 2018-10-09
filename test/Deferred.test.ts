@@ -8,6 +8,6 @@ describe('Deferred', () => {
 
   it('rejects', () => {
     const d = new Deferred();
-    expect(d.reject('123')).rejects.toThrowErrorMatchingSnapshot();
+    expect(d.reject(new Error())).rejects.toThrowError();
   });
 });

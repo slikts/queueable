@@ -111,10 +111,10 @@ export default class Balancer<A> implements AsyncIterableIterator<A> {
     }
     this.closed = true;
     // Clear the queues
-    // TODO reject with an Error instance?
-    this.pushBuffer.forEach(({ defer: { reject } }) => void reject());
+    const error = new Error('Closing');
+    this.pushBuffer.forEach(({ defer: { reject } }) => void reject(error));
     this.pushBuffer.clear();
-    this.pullBuffer.forEach(({ reject }) => void reject());
+    this.pullBuffer.forEach(({ reject }) => void reject(error));
     this.pullBuffer.clear();
   }
 
