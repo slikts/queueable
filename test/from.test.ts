@@ -59,8 +59,8 @@ describe('fromEmitter', () => {
   });
 });
 
-describe('wrap', () => {
-  it('wraps', async () => {
+describe('wrapRequest', () => {
+  it('wraps and is iterable', async () => {
     let n = 0;
     const request = (f: (a: any) => void): void => {
       n += 1;
@@ -68,5 +68,7 @@ describe('wrap', () => {
     };
     const w = wrapRequest(request);
     expect(await w.next()).toEqual({ done: false, value: 1 });
+    expect(await w.next()).toEqual({ done: false, value: 2 });
+    expect(w[Symbol.asyncIterator]()).toBe(w);
   });
 });

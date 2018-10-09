@@ -59,4 +59,11 @@ describe('Mono', () => {
     const w = m.wrap();
     expect(await w.return(123)).toEqual({ value: 123, done: true });
   });
+
+  it('closes requested', () => {
+    const m = new Mono();
+    const p = m.next();
+    m.return();
+    expect(p).rejects.toThrowError();
+  });
 });

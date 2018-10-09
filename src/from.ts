@@ -18,7 +18,6 @@ export const fromDom = <EventType extends keyof EventMap>(
   const listener = (e: EventMap[EventType]) => void balancer.push(e);
   target.addEventListener(type, listener, options);
   return balancer.wrap(() => target.removeEventListener(type, listener, options));
-  // return balancer;
 };
 
 // TODO implement strict-event-emitter-types support
@@ -43,6 +42,7 @@ export const wrapRequest = <A>(
 ): AsyncIterableIterator<A> => {
   let defer: Deferred<IteratorResult<A>> | null = null;
   const next = () => {
+    // istanbul ignore else
     if (defer === null) {
       defer = new Deferred<IteratorResult<A>>();
       const { resolve } = defer;
