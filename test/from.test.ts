@@ -4,15 +4,13 @@ describe('fromDom', () => {
   it('handles listeners', async () => {
     const it = fromDom('click', ({
       addEventListener(type: any, listener: any) {
-        Promise.resolve().then(() => {
-          listener(1);
-          listener(2);
-        });
+        listener(1);
+        listener(2);
       },
     } as any) as EventTarget);
     const done = false;
     expect(await Promise.all([it.next(), it.next()])).toEqual([
-      { done, value: 1 },
+      { done, value: 2 },
       { done, value: 2 },
     ]);
   });

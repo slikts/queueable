@@ -1,4 +1,5 @@
 import Multicast from './Multicast';
+import Mono from './Mono';
 import Balancer from './Balancer';
 import Deferred from './Deferred';
 
@@ -13,10 +14,11 @@ export const fromDom = <EventType extends keyof EventMap>(
   target: EventTarget,
   options?: boolean | AddEventListenerOptions,
 ): AsyncIterableIterator<EventMap[EventType]> => {
-  const balancer = new Balancer<EventMap[EventType]>();
+  const balancer = new Mono<EventMap[EventType]>();
   const listener = (e: EventMap[EventType]) => void balancer.push(e);
   target.addEventListener(type, listener, options);
   return balancer.wrap(() => target.removeEventListener(type, listener, options));
+  // return balancer;
 };
 
 // TODO implement strict-event-emitter-types support
