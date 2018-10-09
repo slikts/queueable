@@ -66,6 +66,11 @@
       "tsx",
       "js"
     ],
+    "globals": {
+      "ts-jest": {
+        "diagnostics": true
+      }
+    },
     "coveragePathIgnorePatterns": [
       "/node_modules/",
       "/test/",
