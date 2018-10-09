@@ -12,7 +12,8 @@
     "emitDecoratorMetadata": true,
     "typeRoots": [
       "node_modules/@types"
-    ]
+    ],
+    "inlineSourceMap": true
   },
   "include": [
     "src", "test"

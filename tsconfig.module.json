@@ -5,7 +5,8 @@
     "module": "es2015",
     "declaration": true,
     "declarationDir": "dist/types",
-    "target": "esnext"
+    "target": "esnext",
+    "inlineSourceMap": false
   },
   "include": [ "src" ]
 }

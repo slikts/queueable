@@ -3,7 +3,8 @@
   "compilerOptions": {
     "outDir": "dist/lib",
     "module": "commonjs",
-    "target": "esnext"
+    "target": "esnext",
+    "inlineSourceMap": false
   },
   "include": [ "src" ]
 }
