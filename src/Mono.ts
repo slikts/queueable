@@ -1,14 +1,19 @@
 import Deferred from './Deferred';
+import AsyncProducer from './AsyncProducer';
+import { fromDom, fromEmitter } from './from';
 
 const doneResult = Promise.resolve({ value: undefined as any, done: true });
 
-export default class Mono<A> implements AsyncIterableIterator<A> {
+export default class Mono<A> implements AsyncProducer<A> {
   private buffer: Deferred<IteratorResult<A>> = new Deferred();
   private closed = false;
   private resolved = false;
   private requested = false;
 
-  push(value: A, done = false): void {
+  static fromDom = fromDom(() => new Mono());
+  static fromEmitter = fromEmitter(() => new Mono());
+
+  push(value: A, done = false): Promise<IteratorResult<A>> {
     if (this.closed) {
       throw Error('Iterator closed');
     }
@@ -24,6 +29,7 @@ export default class Mono<A> implements AsyncIterableIterator<A> {
     }
     this.requested = false;
     this.buffer.resolve(result);
+    return this.buffer.promise;
   }
 
   async next(): Promise<IteratorResult<A>> {
@@ -40,9 +46,9 @@ export default class Mono<A> implements AsyncIterableIterator<A> {
       this.buffer.reject(new Error('Closing'));
     }
     return Promise.resolve({
-      value,
+      value: value!,
       done: true,
-    } as IteratorResult<A>);
+    });
   }
 
   wrap(onReturn?: () => void) {

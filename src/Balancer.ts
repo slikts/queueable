@@ -1,11 +1,13 @@
 import Deferred from './Deferred';
 import Queue from './Queue';
+import AsyncProducer from './AsyncProducer';
+import { fromDom, fromEmitter } from './from';
 
 type Result<A> = IteratorResult<A>;
 
 /** The result returned from closed iterators. */
 const closedResult = Object.freeze({
-  value: undefined as any,
+  value: undefined!,
   done: true,
 });
 
@@ -26,13 +28,16 @@ interface Unpushed<A> {
 /**
  * Balances a push queue with a pull queue.
  */
-export default class Balancer<A> implements AsyncIterableIterator<A> {
+export default class Balancer<A> implements AsyncProducer<A> {
   /** Pushed results waiting for pulls to resolve */
   readonly pushBuffer: Queue<Unpushed<A>>;
   /** Unresolved pulls waiting for results to be pushed */
   readonly pullBuffer: Queue<Deferred<Result<A>>>;
   /** Determines whether new values can be pushed or pulled */
   private closed = false;
+
+  static fromDom = fromDom(() => new Balancer());
+  static fromEmitter = fromEmitter(() => new Balancer());
 
   constructor(pushLimit = 0, pullLimit = 0) {
     this.pushBuffer = new Queue(pushLimit);
@@ -101,7 +106,7 @@ export default class Balancer<A> implements AsyncIterableIterator<A> {
     this.close();
     return {
       done: true,
-      value: value as any, // cast as any because the TS lib types are incorrect
+      value: value!, // asserting as non-undefined because the TS lib types are incorrect
     };
   }
 

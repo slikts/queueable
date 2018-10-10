@@ -22,7 +22,7 @@ describe('Balancer', () => {
     b.push(1);
     b.push(2);
     b.push(3);
-    b.push(undefined as any, true);
+    b.push(undefined!, true);
     const r = [];
     for await (const x of b) {
       r.push(x);

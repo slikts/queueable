@@ -2,6 +2,7 @@ import Multicast from './Multicast';
 import Mono from './Mono';
 import Balancer from './Balancer';
 import Deferred from './Deferred';
+import AsyncProducer from './AsyncProducer';
 
 type EventMap = GlobalEventHandlersEventMap;
 
@@ -10,28 +11,30 @@ type EventMap = GlobalEventHandlersEventMap;
  * Convert DOM events to an async iterable iterator.
  */
 export const fromDom = <EventType extends keyof EventMap>(
+  init: () => AsyncProducer<EventMap[EventType]>,
+) => (
   type: EventType,
   target: EventTarget,
   options?: boolean | AddEventListenerOptions,
 ): AsyncIterableIterator<EventMap[EventType]> => {
-  const balancer = new Mono<EventMap[EventType]>();
-  const listener = (e: EventMap[EventType]) => void balancer.push(e);
+  const producer = init();
+  const listener = (e: EventMap[EventType]) => void producer.push(e);
   target.addEventListener(type, listener, options);
-  return balancer.wrap(() => target.removeEventListener(type, listener, options));
+  return producer.wrap(() => target.removeEventListener(type, listener, options));
 };
 
 // TODO implement strict-event-emitter-types support
 /**
  * Convert node EventEmitter events to an async iterable iterator.
  */
-export const fromEmitter = <Event>(
+export const fromEmitter = <Event>(init: () => AsyncProducer<Event>) => (
   type: string | symbol,
   emitter: NodeJS.EventEmitter,
 ): AsyncIterableIterator<Event> => {
-  const balancer = new Balancer<Event>();
-  const listener = (event: Event) => void balancer.push(event);
+  const producer = init();
+  const listener = (event: Event) => void producer.push(event);
   emitter.addListener(type, listener);
-  return balancer.wrap(() => void emitter.removeListener(type, listener));
+  return producer.wrap(() => void emitter.removeListener(type, listener));
 };
 
 /**
