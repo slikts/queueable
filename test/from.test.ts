@@ -1,6 +1,6 @@
 import { wrapRequest } from '../src/from';
-import Mono from '../src/Mono';
-import Balancer from '../src/Balancer';
+import Mono from '../src/producers/Mono';
+import Balancer from '../src/producers/Balancer';
 
 describe('Mono.fromDom', () => {
   it('handles listeners', async () => {

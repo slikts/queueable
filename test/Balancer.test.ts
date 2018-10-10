@@ -1,4 +1,4 @@
-import Balancer from '../src/Balancer';
+import Balancer from '../src/producers/Balancer';
 
 const id = (x: any) => x;
 const take = async <A>(a: AsyncIterator<A>, n: number) =>

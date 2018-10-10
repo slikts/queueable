@@ -1,7 +1,7 @@
-import Deferred from './Deferred';
-import Queue from './Queue';
-import AsyncProducer from './AsyncProducer';
-import { fromDom, fromEmitter } from './from';
+import Deferred from '../Deferred';
+import Queue from '../Queue';
+import AsyncProducer from '../AsyncProducer';
+import { fromDom, fromEmitter } from '../from';
 
 type Result<A> = IteratorResult<A>;
 

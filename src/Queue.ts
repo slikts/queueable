@@ -36,7 +36,7 @@ export default class Queue<A> {
       throw Error('Queue is empty');
     }
     this.length -= 1;
-    return this.list.shift() as A;
+    return this.list.shift()!;
   }
 
   clear(): void {

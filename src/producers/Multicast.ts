@@ -1,4 +1,5 @@
 import Balancer from './Balancer';
+import AsyncProducer from '../AsyncProducer';
 
 /**
  * Multicasts pushed values to a variable number of async iterable iterators
@@ -11,7 +12,9 @@ export default class Multicast<A> implements AsyncIterable<A> {
   onStart?(): void;
   onStop?(): void;
 
-  readonly receivers: Set<Balancer<A>> = new Set();
+  readonly receivers: Set<AsyncProducer<A>> = new Set();
+
+  constructor(private readonly init: () => AsyncProducer<A> = () => new Balancer()) {}
 
   /**
    * Pushes a value to all registered receivers.
@@ -25,14 +28,14 @@ export default class Multicast<A> implements AsyncIterable<A> {
    * Creates and registers a receiver.
    */
   [Symbol.asyncIterator](): AsyncIterableIterator<A> {
-    const balancer = new Balancer<A>();
+    const producer = this.init();
     const { receivers } = this;
-    receivers.add(balancer);
+    receivers.add(producer);
     if (this.onStart && receivers.size === 1) {
       this.onStart();
     }
-    return balancer.wrap(() => {
-      receivers.delete(balancer);
+    return producer.wrap(() => {
+      receivers.delete(producer);
       if (this.onStop && receivers.size === 0) {
         this.onStop();
       }

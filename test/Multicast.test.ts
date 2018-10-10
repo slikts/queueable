@@ -1,4 +1,4 @@
-import Multicast from '../src/Multicast';
+import Multicast from '../src/producers/Multicast';
 
 describe('Multicast', () => {
   it('constructs', () => {

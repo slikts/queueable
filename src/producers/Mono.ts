@@ -1,6 +1,6 @@
-import Deferred from './Deferred';
-import AsyncProducer from './AsyncProducer';
-import { fromDom, fromEmitter } from './from';
+import Deferred from '../Deferred';
+import AsyncProducer from '../AsyncProducer';
+import { fromDom, fromEmitter } from '../from';
 
 const doneResult = Promise.resolve({ value: undefined as any, done: true });
 

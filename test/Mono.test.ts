@@ -1,4 +1,4 @@
-import Mono from '../src/Mono';
+import Mono from '../src/producers/Mono';
 
 const value = (value: any) => ({ value, done: false });
 
