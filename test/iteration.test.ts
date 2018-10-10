@@ -1,9 +1,7 @@
 import { map, filter, reduce } from '../src/iteration';
 
 const numbers = async function*() {
-  for (let i = 1; i < 5; i += 1) {
-    yield i;
-  }
+  yield* [1, 2, 3, 4];
 };
 
 it('maps', async () => {
