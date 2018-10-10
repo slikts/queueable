@@ -1,4 +1,4 @@
-import Balancer from "../src/Balancer";
+import Balancer from "../src/adapters/Balancer";
 
 const iterations = 1e5;
 const now = () => (process.hrtime as any).bigint();

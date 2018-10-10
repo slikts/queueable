@@ -1,13 +1,13 @@
-import Queue from '../src/Queue';
+import LinkedQueue from '../src/LinkedQueue';
 
 describe(`Queue`, () => {
   it('constructs', () => {
-    const q = new Queue();
-    expect(q).toBeInstanceOf(Queue);
+    const q = new LinkedQueue();
+    expect(q).toBeInstanceOf(LinkedQueue);
   });
 
   it('circulates with a limit', () => {
-    const q = new Queue(2);
+    const q = new LinkedQueue(2);
     q.enqueue(1);
     q.enqueue(2);
     q.enqueue(3);
@@ -18,12 +18,12 @@ describe(`Queue`, () => {
   });
 
   it('empty throws', () => {
-    const q = new Queue();
+    const q = new LinkedQueue();
     expect(() => q.dequeue()).toThrow();
   });
 
   it(`doesn't circulate without a limit`, () => {
-    const q = new Queue();
+    const q = new LinkedQueue();
     q.enqueue(1);
     q.enqueue(2);
     q.enqueue(3);
@@ -31,7 +31,7 @@ describe(`Queue`, () => {
   });
 
   it(`clears`, () => {
-    const q = new Queue();
+    const q = new LinkedQueue();
     q.enqueue(1);
     q.enqueue(2);
     q.clear();
@@ -40,7 +40,7 @@ describe(`Queue`, () => {
   });
 
   it(`foreaches`, () => {
-    const q = new Queue();
+    const q = new LinkedQueue();
     q.enqueue(1);
     q.enqueue(2);
     let n = 0;

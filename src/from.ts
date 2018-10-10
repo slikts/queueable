@@ -1,6 +1,6 @@
-import Multicast from './producers/Multicast';
-import Mono from './producers/Mono';
-import Balancer from './producers/Balancer';
+import Multicast from './adapters/Multicast';
+import LastResult from './adapters/LastResult';
+import Balancer from './adapters/Balancer';
 import Deferred from './Deferred';
 import AsyncProducer from './AsyncProducer';
 

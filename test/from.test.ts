@@ -1,10 +1,10 @@
 import { wrapRequest } from '../src/from';
-import Mono from '../src/producers/Mono';
-import Balancer from '../src/producers/Balancer';
+import LastResult from '../src/adapters/LastResult';
+import Balancer from '../src/adapters/Balancer';
 
 describe('Mono.fromDom', () => {
   it('handles listeners', async () => {
-    const it = Mono.fromDom('click', ({
+    const it = LastResult.fromDom('click', ({
       addEventListener(type: any, listener: any) {
         listener(1);
         listener(2);
@@ -19,7 +19,7 @@ describe('Mono.fromDom', () => {
 
   it('unregisters listeners', async () => {
     let a = 0;
-    const it = Mono.fromDom('click', ({
+    const it = LastResult.fromDom('click', ({
       addEventListener() {},
       removeEventListener() {
         a = 1;
@@ -65,7 +65,7 @@ describe('Balancer', () => {
 
 describe('Mono.fromEmitter', () => {
   it('handles emitters', async () => {
-    const it = Mono.fromEmitter('click', ({
+    const it = LastResult.fromEmitter('click', ({
       addListener(type: any, listener: any) {
         Promise.resolve().then(() => {
           listener(1);
@@ -82,7 +82,7 @@ describe('Mono.fromEmitter', () => {
 
   it('unregisters listeners', async () => {
     let a = 0;
-    const it = Mono.fromEmitter('click', ({
+    const it = LastResult.fromEmitter('click', ({
       addListener() {},
       removeListener() {
         a = 1;
