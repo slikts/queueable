@@ -1,17 +1,17 @@
 import Deferred from '../Deferred';
-import AsyncProducer from '../AsyncProducer';
+import PushAdapter from '../PushAdapter';
 import { fromDom, fromEmitter } from '../from';
 
 const doneResult = Promise.resolve({ value: undefined as any, done: true });
 
-export default class Mono<A> implements AsyncProducer<A> {
+export default class LastResult<A> implements PushAdapter<A> {
   private buffer: Deferred<IteratorResult<A>> = new Deferred();
   private closed = false;
   private resolved = false;
   private requested = false;
 
-  static fromDom = fromDom(() => new Mono());
-  static fromEmitter = fromEmitter(() => new Mono());
+  static fromDom = fromDom(() => new LastResult());
+  static fromEmitter = fromEmitter(() => new LastResult());
 
   push(value: A, done = false): Promise<IteratorResult<A>> {
     if (this.closed) {

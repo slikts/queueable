@@ -1,4 +1,4 @@
-export default interface AsyncProducer<A> extends AsyncIterableIterator<A> {
+export default interface PushAdapter<A> extends AsyncIterableIterator<A> {
   push(value: A): Promise<IteratorResult<A>>;
   wrap(onReturn?: () => void): AsyncIterableIterator<A>;
 }

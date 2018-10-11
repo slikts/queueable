@@ -1,5 +1,5 @@
 import Balancer from './Balancer';
-import AsyncProducer from '../AsyncProducer';
+import PushAdapter from '../PushAdapter';
 
 /**
  * Multicasts pushed values to a variable number of async iterable iterators
@@ -12,9 +12,9 @@ export default class Multicast<A> implements AsyncIterable<A> {
   onStart?(): void;
   onStop?(): void;
 
-  readonly receivers: Set<AsyncProducer<A>> = new Set();
+  readonly receivers: Set<PushAdapter<A>> = new Set();
 
-  constructor(private readonly init: () => AsyncProducer<A> = () => new Balancer()) {}
+  constructor(private readonly init: () => PushAdapter<A> = () => new Balancer()) {}
 
   /**
    * Pushes a value to all registered receivers.

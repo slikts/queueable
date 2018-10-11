@@ -1,6 +1,6 @@
 import Deferred from '../Deferred';
 import LinkedQueue from '../LinkedQueue';
-import AsyncProducer from '../AsyncProducer';
+import PushAdapter from '../PushAdapter';
 import { fromDom, fromEmitter } from '../from';
 
 type Result<A> = IteratorResult<A>;
@@ -28,7 +28,7 @@ interface Unpushed<A> {
 /**
  * Balances a push queue with a pull queue.
  */
-export default class Balancer<A> implements AsyncProducer<A> {
+export default class Balancer<A> implements PushAdapter<A> {
   /** Pushed results waiting for pulls to resolve */
   readonly pushBuffer: LinkedQueue<Unpushed<A>>;
   /** Unresolved pulls waiting for results to be pushed */
