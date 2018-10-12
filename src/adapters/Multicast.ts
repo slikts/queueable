@@ -1,5 +1,5 @@
 import Balancer from './Balancer';
-import PushAdapter from '../PushAdapter';
+import { PushAdapter } from '../common';
 
 /**
  * Multicasts pushed values to a variable number of async iterable iterators
