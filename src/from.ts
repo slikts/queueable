@@ -13,10 +13,10 @@ export const fromDom = <EventType extends keyof EventMap>(
   target: EventTarget,
   options?: boolean | AddEventListenerOptions,
 ): AsyncIterableIterator<EventMap[EventType]> => {
-  const producer = init();
-  const listener = (e: EventMap[EventType]) => void producer.push(e);
+  const adapter = init();
+  const listener = (event: EventMap[EventType]) => void adapter.push(event);
   target.addEventListener(type, listener, options);
-  return producer.wrap(() => target.removeEventListener(type, listener, options));
+  return adapter.wrap(() => target.removeEventListener(type, listener, options));
 };
 
 // TODO implement strict-event-emitter-types support
@@ -27,10 +27,10 @@ export const fromEmitter = <Event>(init: () => PushAdapter<Event>) => (
   type: string | symbol,
   emitter: NodeJS.EventEmitter,
 ): AsyncIterableIterator<Event> => {
-  const producer = init();
-  const listener = (event: Event) => void producer.push(event);
+  const adapter = init();
+  const listener = (event: Event) => void adapter.push(event);
   emitter.addListener(type, listener);
-  return producer.wrap(() => void emitter.removeListener(type, listener));
+  return adapter.wrap(() => void emitter.removeListener(type, listener));
 };
 
 /**
@@ -42,14 +42,15 @@ export const fromEmitter = <Event>(init: () => PushAdapter<Event>) => (
  * ```
  *
  */
-export const wrapRequest = <A>(
-  request: (callback: (value: A) => void) => void,
-  onReturn?: () => void,
+export const wrapRequest = <A, B>(
+  request: (callback: (value: A) => void) => B,
+  onReturn?: (request?: B) => void,
 ): Returnable<A> => {
   const done = false;
   let promise: Promise<IteratorResult<A>> | null = null;
   let cancel: ((reason?: any) => void) | null = null;
   let closed = false;
+  let result: B;
   return {
     next() {
       if (closed) {
@@ -58,7 +59,7 @@ export const wrapRequest = <A>(
       // istanbul ignore else
       if (promise === null) {
         promise = new Promise((resolve, reject) => {
-          request((value: A) => {
+          result = request((value: A) => {
             resolve({ value, done });
             promise = null;
           });
@@ -74,7 +75,7 @@ export const wrapRequest = <A>(
         cancel = null;
       }
       if (onReturn) {
-        onReturn();
+        onReturn(result);
       }
       return { value: value!, done: true };
     },
