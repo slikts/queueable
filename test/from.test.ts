@@ -94,15 +94,45 @@ describe('Mono.fromEmitter', () => {
 });
 
 describe('wrapRequest', () => {
-  it('wraps and is iterable', async () => {
+  const counter = () => {
     let n = 0;
-    const request = (f: (a: any) => void): void => {
+    return (f: (a: any) => void): void => {
       n += 1;
       Promise.resolve().then(() => f(n));
     };
-    const w = wrapRequest(request);
-    expect(await w.next()).toEqual({ done: false, value: 1 });
-    expect(await w.next()).toEqual({ done: false, value: 2 });
+  };
+  const result = (value: any, done = false) => ({ value, done });
+
+  it('wraps and is iterable', async () => {
+    const w = wrapRequest(counter());
+    expect(await w.next()).toEqual(result(1));
+    expect(await w.next()).toEqual(result(2));
     expect(w[Symbol.asyncIterator]()).toBe(w);
+    expect(await Promise.all([w.next(), w.next()])).toEqual([result(3), result(3)]);
+  });
+
+  it('is cancelable', () => {
+    const w = wrapRequest(counter());
+    expect(w.return(123)).resolves.toEqual(result(123, true));
+  });
+
+  it('is cancelable', () => {
+    let a = 0;
+    const w = wrapRequest(counter(), () => {
+      a += 1;
+    });
+    w.return();
+    expect(a).toBe(1);
+    expect(w.next()).resolves.toEqual({ value: undefined, done: true });
+  });
+
+  it('rejects on cancel', () => {
+    let a = 0;
+    const w = wrapRequest(counter(), () => {
+      a += 1;
+    });
+    const r = w.next();
+    w.return();
+    expect(r).rejects.toThrowError();
   });
 });

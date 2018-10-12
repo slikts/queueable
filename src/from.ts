@@ -1,8 +1,4 @@
-import Multicast from './adapters/Multicast';
-import LastResult from './adapters/LastResult';
-import Balancer from './adapters/Balancer';
-import Deferred from './Deferred';
-import AsyncProducer from './AsyncProducer';
+import { PushAdapter, Returnable, donePromise } from './common';
 
 type EventMap = GlobalEventHandlersEventMap;
 
@@ -11,7 +7,7 @@ type EventMap = GlobalEventHandlersEventMap;
  * Convert DOM events to an async iterable iterator.
  */
 export const fromDom = <EventType extends keyof EventMap>(
-  init: () => AsyncProducer<EventMap[EventType]>,
+  init: () => PushAdapter<EventMap[EventType]>,
 ) => (
   type: EventType,
   target: EventTarget,
@@ -27,7 +23,7 @@ export const fromDom = <EventType extends keyof EventMap>(
 /**
  * Convert node EventEmitter events to an async iterable iterator.
  */
-export const fromEmitter = <Event>(init: () => AsyncProducer<Event>) => (
+export const fromEmitter = <Event>(init: () => PushAdapter<Event>) => (
   type: string | symbol,
   emitter: NodeJS.EventEmitter,
 ): AsyncIterableIterator<Event> => {
@@ -38,33 +34,52 @@ export const fromEmitter = <Event>(init: () => AsyncProducer<Event>) => (
 };
 
 /**
- * Convert frame repaints
+ * Convert a simple callback-taking function to an async stream.
+ *
+ * Example:
+ * ```js
+ * const animationFrames = wrapRequest(window.requestAnimationFrame);
+ * ```
+ *
  */
 export const wrapRequest = <A>(
   request: (callback: (value: A) => void) => void,
-): AsyncIterableIterator<A> => {
-  let defer: Deferred<IteratorResult<A>> | null = null;
-  const next = () => {
-    // istanbul ignore else
-    if (defer === null) {
-      defer = new Deferred<IteratorResult<A>>();
-      const { resolve } = defer;
-      request((value: A) => {
-        resolve({
-          value,
-          done: false,
-        });
-        defer = null;
-      });
-    }
-    return defer.promise;
-  };
+  onReturn?: () => void,
+): Returnable<A> => {
+  const done = false;
+  let promise: Promise<IteratorResult<A>> | null = null;
+  let cancel: ((reason?: any) => void) | null = null;
+  let closed = false;
   return {
-    next,
+    next() {
+      if (closed) {
+        return donePromise;
+      }
+      // istanbul ignore else
+      if (promise === null) {
+        promise = new Promise((resolve, reject) => {
+          request((value: A) => {
+            resolve({ value, done });
+            promise = null;
+          });
+          cancel = reject;
+        });
+      }
+      return promise;
+    },
+    async return(value?: A) {
+      closed = true;
+      if (cancel) {
+        cancel(new Error('Canceled'));
+        cancel = null;
+      }
+      if (onReturn) {
+        onReturn();
+      }
+      return { value: value!, done: true };
+    },
     [Symbol.asyncIterator]() {
       return this;
     },
   };
 };
-
-// export const animationFrames = wrapRequest(window.requestAnimationFrame);

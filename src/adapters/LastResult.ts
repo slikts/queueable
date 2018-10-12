@@ -1,8 +1,6 @@
 import Deferred from '../Deferred';
-import PushAdapter from '../PushAdapter';
+import { PushAdapter, doneResult } from '../common';
 import { fromDom, fromEmitter } from '../from';
-
-const doneResult = Promise.resolve({ value: undefined as any, done: true });
 
 export default class LastResult<A> implements PushAdapter<A> {
   private buffer: Deferred<IteratorResult<A>> = new Deferred();

@@ -1,5 +1,5 @@
-import Multicast from './producers/Multicast';
-import Balancer from './producers/Balancer';
+import Multicast from './adapters/Multicast';
+import Balancer from './adapters/Balancer';
 import Deferred from './Deferred';
 
 export { Multicast, Balancer, Deferred };
