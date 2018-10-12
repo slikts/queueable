@@ -1,15 +1,9 @@
 import Deferred from '../Deferred';
 import LinkedQueue from '../LinkedQueue';
-import PushAdapter from '../PushAdapter';
+import { PushAdapter, doneResult } from '../common';
 import { fromDom, fromEmitter } from '../from';
 
 type Result<A> = IteratorResult<A>;
-
-/** The result returned from closed iterators. */
-const closedResult = Object.freeze({
-  value: undefined!,
-  done: true,
-});
 
 /**
  * Async iterable iterator with a non-optional [[return]] method.
@@ -49,7 +43,7 @@ export default class Balancer<A> implements PushAdapter<A> {
    */
   next(): Promise<Result<A>> {
     if (this.closed) {
-      return Promise.resolve(closedResult);
+      return Promise.resolve(doneResult);
     }
     if (this.pushBuffer.length === 0) {
       const defer = new Deferred<Result<A>>();
