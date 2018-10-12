@@ -19,6 +19,8 @@ Queueable is intended both for library authors and consumers. Library authors ca
 
 Asynchronous iteration together with this library could be seen as a simplified and more general version of the [Streams API][streams].
 
+See slides about [Why Async Iterators Matter][slides] for a more general introduction to the topic.
+
 ## Installation
 
 ### npm
@@ -214,3 +216,4 @@ To make TypeScript know about the asnyc iterable types (`AsyncIterable<T>`, `Asy
 [balancer]: https://slikts.github.io/queueable/classes/balancer.html
 [multicast]: https://slikts.github.io/queueable/classes/multicast.html
 [lastvalue]: https://slikts.github.io/queueable/classes/lastvalue.html
+[slides]: https://docs.google.com/presentation/d/1r2V1sLG8JSSk8txiLh4wfTkom-BoOsk52FgPBy8o3RM
