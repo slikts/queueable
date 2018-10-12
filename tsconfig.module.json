@@ -6,6 +6,7 @@
     "declaration": true,
     "declarationDir": "dist/types",
     "target": "esnext",
+    "sourceMap": true,
     "inlineSourceMap": false
   },
   "include": [ "src" ]

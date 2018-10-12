@@ -5,7 +5,6 @@
     "module": "es2015",
     "lib": ["esnext", "dom"],
     "strict": true,
-    "sourceMap": true,
     "declaration": false,
     "allowSyntheticDefaultImports": true,
     "experimentalDecorators": true,
@@ -13,6 +12,7 @@
     "typeRoots": [
       "node_modules/@types"
     ],
+    "sourceMap": false,
     "inlineSourceMap": true
   },
   "include": [

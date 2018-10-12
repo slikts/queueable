@@ -4,6 +4,7 @@
     "outDir": "dist/lib",
     "module": "commonjs",
     "target": "esnext",
+    "sourceMap": true,
     "inlineSourceMap": false
   },
   "include": [ "src" ]
