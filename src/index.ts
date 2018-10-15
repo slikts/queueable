@@ -1,7 +1,7 @@
 import Multicast from './adapters/Multicast';
-import Balancer from './adapters/Balancer';
+import Channel from './adapters/Channel';
 import Deferred from './Deferred';
 
-export { Multicast, Balancer, Deferred };
+export { Multicast, Channel, Deferred };
 export * from './from';
 export * from './iteration';
