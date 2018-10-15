@@ -22,7 +22,7 @@ interface Unpushed<A> {
 /**
  * Balances a push queue with a pull queue.
  */
-export default class Balancer<A> implements PushAdapter<A> {
+export default class Channel<A> implements PushAdapter<A> {
   /** Pushed results waiting for pulls to resolve */
   readonly pushBuffer: LinkedQueue<Unpushed<A>>;
   /** Unresolved pulls waiting for results to be pushed */
@@ -30,8 +30,8 @@ export default class Balancer<A> implements PushAdapter<A> {
   /** Determines whether new values can be pushed or pulled */
   private closed = false;
 
-  static fromDom = fromDom(() => new Balancer());
-  static fromEmitter = fromEmitter(() => new Balancer());
+  static fromDom = fromDom(() => new Channel());
+  static fromEmitter = fromEmitter(() => new Channel());
 
   constructor(pushLimit = 0, pullLimit = 0) {
     this.pushBuffer = new LinkedQueue(pushLimit);

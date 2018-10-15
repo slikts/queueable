@@ -1,4 +1,4 @@
-import Balancer from '../src/adapters/Balancer';
+import Channel from '../src/adapters/Channel';
 
 const id = (x: any) => x;
 const take = async <A>(a: AsyncIterator<A>, n: number) =>
@@ -6,11 +6,11 @@ const take = async <A>(a: AsyncIterator<A>, n: number) =>
 
 describe('Balancer', () => {
   it('constructs', () => {
-    expect(new Balancer()).toBeInstanceOf(Balancer);
+    expect(new Channel()).toBeInstanceOf(Channel);
   });
 
   it('can balance pull after push', async () => {
-    const b = new Balancer<number>();
+    const b = new Channel<number>();
     const ns = [1, 2, 3];
     ns.forEach(n => b.push(n));
     const ps = ns.map(() => b.next());
@@ -18,7 +18,7 @@ describe('Balancer', () => {
   });
 
   it('works with for-await-of', async () => {
-    const b = new Balancer<number>();
+    const b = new Channel<number>();
     b.push(1);
     b.push(2);
     b.push(3);
@@ -31,7 +31,7 @@ describe('Balancer', () => {
   });
 
   it('can balance push after pull', async () => {
-    const b = new Balancer<number>();
+    const b = new Channel<number>();
     const ns = [1, 2, 3];
     const ps = ns.map(() => b.next());
     ns.forEach(n => b.push(n));
@@ -39,14 +39,14 @@ describe('Balancer', () => {
   });
 
   it('can be wrapped', async () => {
-    const b = new Balancer();
+    const b = new Channel();
     const ns = [1, 2, 3];
     ns.forEach(n => b.push(n));
     expect(await take(b.wrap(), 3)).toEqual(ns);
   });
 
   it('wrapper return calls back', async () => {
-    const b = new Balancer();
+    const b = new Channel();
     const ns = [1, 2, 3];
     ns.forEach(n => b.push(n).catch(id));
     let a = 0;
@@ -59,37 +59,37 @@ describe('Balancer', () => {
   });
 
   it('throws if pushed when closed', () => {
-    const b = new Balancer();
+    const b = new Channel();
     b.return();
     expect(() => void b.push(123)).toThrow();
   });
 
   it('can be closed', async () => {
-    const b = new Balancer();
+    const b = new Channel();
     expect(await b.return()).toEqual({ value: undefined, done: true });
     expect(await b.return(123)).toEqual({ value: 123, done: true });
   });
 
   it(`can't be wrapped if closed`, async () => {
-    const b = new Balancer();
+    const b = new Channel();
     b.return();
     expect(() => b.wrap()).toThrow();
   });
 
   it(`wrapped balancer returns itself`, async () => {
-    const b = new Balancer().wrap();
+    const b = new Channel().wrap();
     expect(b[Symbol.asyncIterator]()).toBe(b);
   });
 
   it(`rejects unpushed`, async () => {
-    const b = new Balancer();
+    const b = new Channel();
     const p = b.next();
     b.return();
     await expect(p).rejects.toThrowError();
   });
 
   it(`push and pull are symmetrical`, async () => {
-    const b = new Balancer();
+    const b = new Channel();
     const p1 = b.next();
     const p2 = b.push(1);
     expect(p1).toBe(p2);

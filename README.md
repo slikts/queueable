@@ -33,12 +33,9 @@ npm install --save queueable
 
 https://unpkg.com/queueable/dist/queueable.umd.js
 
-
-
-
 ## Adapters
 
-### [`Balancer`][balancer]
+### [`Channel`][Channel]
 
 Push-pull adapter backed by unbounded linked list queues (to avoid array reindexing) with optional circular buffering. 
 
@@ -58,16 +55,16 @@ Circular buffering works like a safety valve by discarding the oldest item in th
 
 ##### Implementing an asynchronous iterable iterator, pushing values to it and then consuming with `for-await-of`
 ```js
-import { Balancer } from "queueable";
+import { Channel } from "queueable";
 
-const queue = new Balancer();
-queue.push(1);
-queue.push(2);
-queue.push(3);
-queue.push(4, true); // the second argument closes the iterator when its turn is reached
+const channel = new Channel();
+channel.push(1);
+channel.push(2);
+channel.push(3);
+channel.push(4, true); // the second argument closes the iterator when its turn is reached
 
 // for-await-of uses the async iterable protocol to consume the queue sequentially
-for await (const n of queue) {
+for await (const n of channel) {
   console.log(n); // logs 1, 2, 3
   // doesn't log 4, because for-await-of ignores the value of a closing result
 }
@@ -75,10 +72,10 @@ for await (const n of queue) {
 ```
 ##### Pulling results and waiting for values to be pushed
 ```js
-const queue = new Balancer();
-const result = queue.next(); // a promise of an iterator result
+const channel = new Channel();
+const result = channel.next(); // a promise of an iterator result
 result.then(({ value }) => { console.log(value); });
-queue.push("hello"); // "hello" is logged in the next microtick
+channel.push("hello"); // "hello" is logged in the next microtick
 ```
 ##### Hiding the adapter methods from consumers with `wrap()`
 
@@ -87,10 +84,10 @@ The iterables should be one-way for end-users, meaning that the consumer should 
 This example adapts an EventTarget in the same way as the `fromDom()` method.
 
 ```js
-const adapter = new Balancer();
+const channel = new Channel();
 const listener = event => void producer.push(event);
 eventTarget.addEventListener('click', listener);
-const clickIterable = adapter.wrap(() => eventTarget.removeEventListener(type, listener));
+const clickIterable = channel.wrap(() => eventTarget.removeEventListener(type, listener));
 clickIterable.next(); // -> a promise of the next click event
 clickIterable.return(); // closes the iterable
 ```
@@ -99,17 +96,17 @@ clickIterable.return(); // closes the iterable
 
 The `push()` methods for the adapters return the same promise as the `next()` methods for the iterators, so it's possible for the provider to track when the pushed value is used to resolve a pull.
 ```js
-const queue = new Balancer();
-const tracking = queue.push(123);
+const channel = new Channel();
+const tracking = channel.push(123);
 tracking.then(() => { console.log('value was pulled'); });
-const result = queue.next(); // pulling the next result resolves `tracking` promise
+const result = channel.next(); // pulling the next result resolves `tracking` promise
 result === tracking; // -> true
 await result === await tracking; // -> true
 ```
 
 ### [`LastValue`][lastvalue]
 
-An adapter that only buffers the last value pushed and returns the same promise of the last pushed value for each request. It's suitable for use cases where the stream should be processed close to real-time and it's not important to process every event, like with animation frames or mouse move events. Always returning the last value also makes it efficient for multicasting.
+An adapter that only buffers the last value pushed and caches and broadcasts it (pulling it doesn't dequeue). It's suitable for use cases where skipping results is acceptable.
 
 #### Methods
 
@@ -161,7 +158,7 @@ for await (const _ of interval) {
 ```
 
 ### [`Multicast`][multicast]
-The same concept as `Subject` in observables; allows having zero or more subscribers that each receive the pushed values. The pushed values are discarded if there are no subscribers. Uses the `Balancer` adapters internally.
+The same concept as `Subject` in observables; allows having zero or more subscribers that each receive the pushed values. The pushed values are discarded if there are no subscribers. Uses the `Channel` adapters internally.
 
 ```js
 import { Multicast } from "queueable";
@@ -213,7 +210,7 @@ To make TypeScript know about the asnyc iterable types (`AsyncIterable<T>`, `Asy
 [iterall]: https://github.com/leebyron/iterall
 [iter-tools]: https://github.com/sithmel/iter-tools
 [streams]: https://developer.mozilla.org/en-US/docs/Web/API/Streams_API
-[balancer]: https://slikts.github.io/queueable/classes/balancer.html
+[Channel]: https://slikts.github.io/queueable/classes/Channel.html
 [multicast]: https://slikts.github.io/queueable/classes/multicast.html
 [lastvalue]: https://slikts.github.io/queueable/classes/lastvalue.html
 [slides]: https://docs.google.com/presentation/d/1r2V1sLG8JSSk8txiLh4wfTkom-BoOsk52FgPBy8o3RM
