@@ -99,33 +99,48 @@ describe('Channel', () => {
 
 describe('CSP', async () => {
   const Delay = (ms: number) => new Promise(resolve => setTimeout(resolve, ms));
+  const makeLog = <A>() => {
+    const logged: A[] = [];
+    const log = (x: A) => void logged.push(x);
+    return { logged, log };
+  };
 
   interface Ball {
     hits: number;
   }
 
   it('supports the ping-pong example', async () => {
+    const { logged, log } = makeLog();
     const player = async (name: string, table: Channel<Ball>) => {
-      while (true) {
-        const { value: ball, done } = await table.next();
-        if (done === true) {
-          console.log(`${name}: table's gone`);
-          return;
-        }
+      for await (const ball of table) {
         ball.hits += 1;
-        console.log(`${name} ${ball.hits}`);
+        log(`${name} ${ball.hits}`);
         await Delay(100);
         await table.push(ball);
       }
+      log(`${name}: table's gone`);
     };
 
     const table = new Channel<Ball>();
 
-    player('ping', table).catch(console.error);
-    player('pong', table).catch(console.error);
+    player('ping', table);
+    player('pong', table);
 
     await table.push({ hits: 0 });
     await Delay(1000);
-    table.return();
+    await table.return();
+    expect(logged).toEqual([
+      'ping 1',
+      'pong 2',
+      'ping 3',
+      'pong 4',
+      'ping 5',
+      'pong 6',
+      'ping 7',
+      'pong 8',
+      'ping 9',
+      'pong 10',
+      "ping: table's gone",
+    ]);
   });
 });
