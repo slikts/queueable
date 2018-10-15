@@ -58,10 +58,10 @@ describe('Channel', () => {
     expect(a).toBe(1);
   });
 
-  it('throws if pushed when closed', () => {
+  it('retrurns closed if pushed when closed', () => {
     const b = new Channel();
     b.return();
-    expect(() => void b.push(123)).toThrow();
+    expect(b.push(123)).resolves.toEqual({ done: true, value: undefined });
   });
 
   it('can be closed', async () => {
@@ -127,19 +127,14 @@ describe('CSP', async () => {
     player('pong', table);
 
     await table.push({ hits: 0 });
-    await Delay(1000);
+    await Delay(300);
     await table.return();
+    await Delay(0);
     expect(logged).toEqual([
       'ping 1',
       'pong 2',
       'ping 3',
-      'pong 4',
-      'ping 5',
-      'pong 6',
-      'ping 7',
-      'pong 8',
-      'ping 9',
-      'pong 10',
+      "pong: table's gone",
       "ping: table's gone",
     ]);
   });

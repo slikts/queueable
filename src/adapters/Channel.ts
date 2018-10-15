@@ -69,7 +69,7 @@ export default class Channel<A> implements PushAdapter<A> {
    */
   push(value: A, done = false): Promise<Result<A>> {
     if (this.closed) {
-      throw Error('Iterator is closed');
+      return Promise.resolve(doneResult);
     }
     const result = {
       value,
@@ -110,8 +110,7 @@ export default class Channel<A> implements PushAdapter<A> {
     }
     this.closed = true;
     // Clear the queues
-    const error = new Error('Closing');
-    this.pushBuffer.forEach(({ defer: { reject } }) => void reject(error));
+    this.pushBuffer.forEach(({ defer: { resolve } }) => void resolve(doneResult));
     this.pushBuffer.clear();
     this.pullBuffer.forEach(({ resolve }) => void resolve(doneResult));
     this.pullBuffer.clear();
