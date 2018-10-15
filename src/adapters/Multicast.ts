@@ -1,4 +1,4 @@
-import Balancer from './Balancer';
+import Channel from './Channel';
 import { PushAdapter } from '../common';
 
 /**
@@ -14,7 +14,7 @@ export default class Multicast<A> implements AsyncIterable<A> {
 
   readonly receivers: Set<PushAdapter<A>> = new Set();
 
-  constructor(private readonly init: () => PushAdapter<A> = () => new Balancer()) {}
+  constructor(private readonly init: () => PushAdapter<A> = () => new Channel()) {}
 
   /**
    * Pushes a value to all registered receivers.

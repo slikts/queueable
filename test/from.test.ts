@@ -1,6 +1,6 @@
 import { wrapRequest } from '../src/from';
 import LastResult from '../src/adapters/LastResult';
-import Balancer from '../src/adapters/Balancer';
+import Channel from '../src/adapters/Channel';
 
 describe('Mono.fromDom', () => {
   it('handles listeners', async () => {
@@ -33,7 +33,7 @@ describe('Mono.fromDom', () => {
 
 describe('Balancer', () => {
   it('fromDom', async () => {
-    const it = Balancer.fromDom('click', ({
+    const it = Channel.fromDom('click', ({
       addEventListener(type: any, listener: any) {
         listener(1);
         listener(2);
@@ -47,7 +47,7 @@ describe('Balancer', () => {
   });
 
   it('fromEmitter', async () => {
-    const it = Balancer.fromEmitter('click', ({
+    const it = Channel.fromEmitter('click', ({
       addListener(type: any, listener: any) {
         Promise.resolve().then(() => {
           listener(1);

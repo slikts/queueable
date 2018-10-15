@@ -113,7 +113,7 @@ export default class Channel<A> implements PushAdapter<A> {
     const error = new Error('Closing');
     this.pushBuffer.forEach(({ defer: { reject } }) => void reject(error));
     this.pushBuffer.clear();
-    this.pullBuffer.forEach(({ reject }) => void reject(error));
+    this.pullBuffer.forEach(({ resolve }) => void resolve(doneResult));
     this.pullBuffer.clear();
   }
 

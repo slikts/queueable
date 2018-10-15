@@ -4,7 +4,7 @@ const id = (x: any) => x;
 const take = async <A>(a: AsyncIterator<A>, n: number) =>
   (await Promise.all(Array.from(Array(n), (_, i) => a.next()))).map(({ value }) => value);
 
-describe('Balancer', () => {
+describe('Channel', () => {
   it('constructs', () => {
     expect(new Channel()).toBeInstanceOf(Channel);
   });
@@ -81,11 +81,11 @@ describe('Balancer', () => {
     expect(b[Symbol.asyncIterator]()).toBe(b);
   });
 
-  it(`rejects unpushed`, async () => {
+  it(`resolves unpushed to done`, async () => {
     const b = new Channel();
     const p = b.next();
     b.return();
-    await expect(p).rejects.toThrowError();
+    await expect(p).resolves.toEqual({ done: true, value: undefined });
   });
 
   it(`push and pull are symmetrical`, async () => {
@@ -94,5 +94,38 @@ describe('Balancer', () => {
     const p2 = b.push(1);
     expect(p1).toBe(p2);
     expect(await p1).toBe(await p2);
+  });
+});
+
+describe('CSP', async () => {
+  const Delay = (ms: number) => new Promise(resolve => setTimeout(resolve, ms));
+
+  interface Ball {
+    hits: number;
+  }
+
+  it('supports the ping-pong example', async () => {
+    const player = async (name: string, table: Channel<Ball>) => {
+      while (true) {
+        const { value: ball, done } = await table.next();
+        if (done === true) {
+          console.log(`${name}: table's gone`);
+          return;
+        }
+        ball.hits += 1;
+        console.log(`${name} ${ball.hits}`);
+        await Delay(100);
+        await table.push(ball);
+      }
+    };
+
+    const table = new Channel<Ball>();
+
+    player('ping', table).catch(console.error);
+    player('pong', table).catch(console.error);
+
+    await table.push({ hits: 0 });
+    await Delay(1000);
+    table.return();
   });
 });
