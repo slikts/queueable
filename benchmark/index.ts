@@ -1,4 +1,4 @@
-import Balancer from "../src/adapters/Balancer";
+import Channel from "../src/adapters/Channel";
 
 const iterations = 1e5;
 const now = () => (process.hrtime as any).bigint();
@@ -13,7 +13,7 @@ const test = (q: any, f: any, n: any, label: any) => {
   return delta;
 };
 
-const t1 = test(new Balancer(), (n: any, q: any) => {
+const t1 = test(new Channel(), (n: any, q: any) => {
   q.push(n);
   if (n % 10 === 0) q.next();
 }, iterations, `Balancer`);

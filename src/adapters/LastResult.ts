@@ -41,7 +41,7 @@ export default class LastResult<A> implements PushAdapter<A> {
   async return(value?: A): Promise<IteratorResult<A>> {
     this.closed = true;
     if (!this.resolved && this.requested) {
-      this.buffer.reject(new Error('Closing'));
+      this.buffer.resolve(doneResult);
     }
     return Promise.resolve({
       value: value!,

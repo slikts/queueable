@@ -64,6 +64,6 @@ describe('Mono', () => {
     const m = new LastResult();
     const p = m.next();
     m.return();
-    expect(p).rejects.toThrowError();
+    expect(p).resolves.toEqual({ done: true, value: undefined });
   });
 });
