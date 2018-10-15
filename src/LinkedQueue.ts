@@ -1,6 +1,6 @@
 import * as FastList from 'fast-list';
 
-const fastList = FastList;
+const { default: fastList } = FastList;
 
 /**
  * First-in, first-out (FIFO) buffer (queue) with default item values.

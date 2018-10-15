@@ -7,13 +7,12 @@
     "strict": true,
     "declaration": false,
     "allowSyntheticDefaultImports": true,
-    "experimentalDecorators": true,
-    "emitDecoratorMetadata": true,
     "typeRoots": [
       "node_modules/@types"
     ],
     "sourceMap": false,
-    "inlineSourceMap": true
+    "inlineSourceMap": true,
+    "esModuleInterop": true
   },
   "include": [
     "src", "test"

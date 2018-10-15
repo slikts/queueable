@@ -17,7 +17,7 @@ Asynchronous iteration is a new native feature of JavaScript for modeling stream
 
 Queueable is intended both for library authors and consumers. Library authors can implement a standard streaming interface for interoperability, and consumers can adapt not-yet interoperable sources to leverage tools like [IxJS] and a declarative approach to streams. 
 
-Asynchronous iteration together with this library could be seen as a simplified and more general version of the [Streams API][streams].
+Asynchronous iteration together with this library could be seen as a very simplified and more general version of the [Streams API][streams].
 
 See slides about [Why Async Iterators Matter][slides] for a more general introduction to the topic.
 
