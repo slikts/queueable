@@ -4,4 +4,3 @@ import Deferred from './Deferred';
 
 export { Multicast, Channel, Deferred };
 export * from './from';
-export * from './iteration';

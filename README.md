@@ -33,11 +33,13 @@ Channels are a concurrency model used in Go goroutines and Clojure's core.async,
 
 Sources of asynchronous data that are pull-based (are backpressurable; allow the consumer to control the rate at which it receives data) are trivial to adapt to asynchronous iterators using asynchronous generator functions. Such sources include event emitters that can be paused and resumed, and callback functions that are fired a single time, and functions that return promises.
 
-Converting pull-based sources to asynchronous iterables is still made easier by the wrapRequest helper method provided by this library. For a demonstration, see requestAnimationFrame example (also showing IxJS usage) and implementing an example interval.
+Converting pull-based sources to asynchronous iterables is still made easier by the `wrapRequest` helper method provided by this library. For a demonstration, see `requestAnimationFrame` example (also showing IxJS usage) and implementing an example interval.
 
 Sources that are not backpressurable can only be sampled by subscribing to them or unsubscribing, and examples of such sources are user events like mouse clicks. Users can't be paused, so this library takes care of buffering the events they generate until requested by the consumer. See mouse events demonstration.
 
-<!--### How it works-->
+<!--### How it works
+
+generate-->
 ### Asynchronous iteration
 
 See slides about [Why Asynchronous Iterators Matter][slides] for a more general introduction to the topic.
@@ -127,7 +129,7 @@ await result === await tracking; // -> true
 
 ### [`LastValue`][lastvalue]
 
-An adapter that only buffers the last value pushed and caches and broadcasts it (pulling it doesn't dequeue). It's suitable for use cases where skipping results is acceptable.
+An adapter that only buffers the last value pushed and caches and broadcasts it (pulling a value doesn't dequeue it). It's suitable for use cases where skipping results is allowed.
 
 #### Methods
 
@@ -192,18 +194,6 @@ queue.push(123);
 const results = Promise.all([subscriberA.next(), subscriberB.next()]);
 console.log(await results); // logs [{ value: 123, done: false }, { value: 123, done: false }]
 ```
-### Basic stream transformations
-The library also includes the basic `map()`, `filter()` and `reduce()` combinators.
-```js
-// implement an async iterable with a generator
-const sequence = async function*() {
-  yield* [1, 2, 3];
-}
-const mapped = map(n => n * 2, sequence());
-for await (const n of mapped) {
-  console.log(n); // logs 2, 4, 6
-}
-```
 
 ## Types
 
@@ -240,3 +230,5 @@ To make TypeScript know about the asnyc iterable types (`AsyncIterable<T>`, `Asy
 [node-streams]: https://nodejs.org/api/stream.html#stream_readable_symbol_asynciterator
 [js-csp]: https://github.com/ubolonton/js-csp
 [ping-pong]: https://codepen.io/slikts/pen/yRPgQE?editors=0012
+[animation]: https://codepen.io/slikts/pen/mzqKvo?editors=0010
+[async-csp]: https://github.com/dvlsg/async-csp
