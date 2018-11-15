@@ -1,20 +1,18 @@
-import * as FastList from 'fast-list';
-
-const { default: fastList } = FastList;
+import fastList from 'fast-list';
 
 /**
  * First-in, first-out (FIFO) buffer (queue) with default item values.
  * Optionally circular based on [[Queue.limit]].
  */
 export default class Queue<A> {
-  private list: FastList.List<A>;
+  private list: fastList.List<A>;
   length = 0;
 
   constructor(
     /** The length after which the queue becomes circular, i.e., discards oldest items. */
     private limit = 0,
   ) {
-    this.list = fastList();
+    this.list = new fastList();
   }
   /**
    * Add an item to the end of the queue.
