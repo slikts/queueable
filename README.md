@@ -1,11 +1,12 @@
 <h1 align="center"><img src="https://raw.githubusercontent.com/slikts/queueable/master/logo.png?sanitize=true" width="450" height="190" alt="Queueable"></h1>
 
-[![License](https://img.shields.io/github/license/slikts/queueable.svg)](https://github.com/slikts/queueable)
-[![Build Status](https://img.shields.io/travis/slikts/queueable/master.svg)](https://travis-ci.org/slikts/queueable)
-[![Coverage Status](https://coveralls.io/repos/github/slikts/queueable/badge.svg?branch=master)](https://coveralls.io/github/slikts/queueable?branch=master)
-[![Latest Stable Version](https://img.shields.io/npm/v/queueable.svg)](https://www.npmjs.com/package/queueable) [![Greenkeeper badge](https://badges.greenkeeper.io/slikts/queueable.svg)](https://greenkeeper.io/)
-[![Code Climate](https://codeclimate.com/github/slikts/queueable.svg)](https://codeclimate.com/github/slikts/queueable)
-[![Dependency Status](https://david-dm.org/slikts/queueable.svg)](https://david-dm.org/slikts/queueable)
+<p align="center"><a href="https://github.com/slikts/queueable"><img src="https://img.shields.io/github/license/slikts/queueable.svg" alt="License"></a>
+<a href="https://travis-ci.org/slikts/queueable"><img src="https://img.shields.io/travis/slikts/queueable/master.svg" alt="Build Status"></a>
+<a href="https://coveralls.io/github/slikts/queueable?branch=master"><img src="https://coveralls.io/repos/github/slikts/queueable/badge.svg?branch=master" alt="Coverage Status"></a>
+<a href="https://www.npmjs.com/package/queueable"><img src="https://img.shields.io/npm/v/queueable.svg" alt="Latest Stable Version"></a>
+<a href="https://greenkeeper.io/"><img src="https://badges.greenkeeper.io/slikts/queueable.svg" alt="Greenkeeper badge"></a>
+<a href="https://codeclimate.com/github/slikts/queueable"><img src="https://codeclimate.com/github/slikts/queueable.svg" alt="Code Climate"></a>
+<a href="https://david-dm.org/slikts/queueable"><img src="https://david-dm.org/slikts/queueable.svg" alt="Dependency Status"></a></p>
 
 A library for converting push-based asynchronous streams like node streams or EventTarget to pull-based streams implementing the [ES2018 asynchronous iteration protocols][async].
 
