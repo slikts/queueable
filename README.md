@@ -128,7 +128,7 @@ result === tracking; // -> true
 await result === await tracking; // -> true
 ```
 
-### [`LastValue`][lastvalue]
+### [`LastResult`][LastResult]
 
 An adapter that only buffers the last value pushed and caches and broadcasts it (pulling a value doesn't dequeue it). It's suitable for use cases where skipping results is allowed.
 
@@ -146,8 +146,8 @@ An adapter that only buffers the last value pushed and caches and broadcasts it 
 
 ##### Converting mouse move events into a stream
 ```js
-import { LastValue } from "queueable";
-const moveIterable = LastValue.fromDom('click', eventTarget);
+import { LastResult } from "queueable";
+const moveIterable = LastResult.fromDom('click', eventTarget);
 for await (const moveEvent of moveIterable) {
   console.log(moveEvent); // logs MouseEvent objects each time the mouse is clicked
 }
@@ -224,7 +224,7 @@ To make TypeScript know about the asnyc iterable types (`AsyncIterable<T>`, `Asy
 [streams]: https://developer.mozilla.org/en-US/docs/Web/API/Streams_API
 [Channel]: https://slikts.github.io/queueable/classes/Channel.html
 [multicast]: https://slikts.github.io/queueable/classes/multicast.html
-[lastvalue]: https://slikts.github.io/queueable/classes/lastvalue.html
+[LastResult]: https://slikts.github.io/queueable/classes/LastResult.html
 [slides]: https://docs.google.com/presentation/d/1r2V1sLG8JSSk8txiLh4wfTkom-BoOsk52FgPBy8o3RM
 [id]: https://streams.spec.whatwg.org/#ts
 [streams-reader]: https://github.com/whatwg/streams/issues/778
