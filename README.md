@@ -1,4 +1,4 @@
-<h1 align="center"><img src="https://raw.githubusercontent.com/slikts/queueable/master/logo.svg?sanitize=true" width="450" height="190" alt="Queueable"></h1>
+<h1 align="center"><a href="https://github.com/slikts/queueable"><img src="https://raw.githubusercontent.com/slikts/queueable/master/logo.svg?sanitize=true" width="450" height="190" alt="Queueable"></a></h1>
 
 <p align="center"><a href="https://github.com/slikts/queueable"><img src="https://img.shields.io/github/license/slikts/queueable.svg" alt="License"></a>
 <a href="https://travis-ci.org/slikts/queueable"><img src="https://img.shields.io/travis/slikts/queueable/master.svg" alt="Build Status"></a>
