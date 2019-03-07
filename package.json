@@ -125,7 +125,7 @@
     "rollup-plugin-typescript2": "^0.19.0",
     "semantic-release": "^15.12.3",
     "ts-jest": "^24.0.0",
-    "ts-node": "^7.0.1",
+    "ts-node": "^8.0.3",
     "tslint": "^5.11.0",
     "tslint-config-airbnb": "^5.11.0",
     "tslint-config-prettier": "^1.14.0",
