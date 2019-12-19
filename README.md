@@ -19,7 +19,7 @@ Queueable is intended both for library authors and consumers. Library authors ca
 
 ### Similarity to Streams API and node streams
 
-Asynchronous iteration together with this library could be seen as a lightweight version of the WHATWG [Streams API][streams]. Specifically, the adapters work like [identity transform streams][id]. Asynchronous iteration is currently [in the process of being added][streams-reader] to Streams API `ReadableStream`.
+Asynchronous iteration together with this library could be seen as a lightweight version of the WHATWG [Streams API][streams]. Specifically, the adapters work like [identity transform streams][id]. Asynchronous iteration [has been added][streams-reader] to Streams API `ReadableStream`.
 
 Node streams have [already implemented][node-streams] asynchronous iteration for reading.
 
@@ -219,6 +219,7 @@ To make TypeScript know about the asnyc iterable types (`AsyncIterable<T>`, `Asy
 ## Alternatives
 
 - [callback-to-async-iterator]
+- [event-iterator]
 
 ## Tools for async iteration
 
@@ -227,7 +228,6 @@ To make TypeScript know about the asnyc iterable types (`AsyncIterable<T>`, `Asy
 - [Axax] – async iteration helpers
 - [iterall] – iteration utilities
 - [iter-tools] – iteration helpers
-- [event-iterator] – convert event emitters to async iterables
 
 [symbola]: https://github.com/slikts/symbola
 [ixjs]: https://github.com/ReactiveX/IxJS#asynciterable
