@@ -4,7 +4,6 @@
 <a href="https://travis-ci.org/slikts/queueable"><img src="https://img.shields.io/travis/slikts/queueable/master.svg" alt="Build Status"></a>
 <a href="https://coveralls.io/github/slikts/queueable?branch=master"><img src="https://coveralls.io/repos/github/slikts/queueable/badge.svg?branch=master" alt="Coverage Status"></a>
 <a href="https://www.npmjs.com/package/queueable"><img src="https://img.shields.io/npm/v/queueable.svg" alt="Latest Stable Version"></a>
-<a href="https://greenkeeper.io/"><img src="https://badges.greenkeeper.io/slikts/queueable.svg" alt="Greenkeeper badge"></a>
 <a href="https://codeclimate.com/github/slikts/queueable"><img src="https://codeclimate.com/github/slikts/queueable.svg" alt="Code Climate"></a>
 <a href="https://david-dm.org/slikts/queueable"><img src="https://david-dm.org/slikts/queueable.svg" alt="Dependency Status"></a></p>
 
@@ -41,6 +40,7 @@ Sources that are not backpressurable can only be sampled by subscribing to them 
 <!--### How it works
 
 generate-->
+
 ### Asynchronous iteration
 
 See slides about [Why Asynchronous Iterators Matter][slides] for a more general introduction to the topic.
@@ -59,27 +59,28 @@ https://unpkg.com/queueable/dist/queueable.umd.js
 
 ## Adapters
 
-### [`Channel`][Channel]
+### [`Channel`][channel]
 
-Push-pull adapter backed by unbounded linked list queues (to avoid array reindexing) with optional circular buffering. 
+Push-pull adapter backed by unbounded linked list queues (to avoid array reindexing) with optional circular buffering.
 
 Circular buffering works like a safety valve by discarding the oldest item in the queue when the limit is reached.
 
 #### Methods
 
-* `static constructor(pushLimit = 0, pullLimit = 0)`
-* `static fromDom(eventType, target[, options])`
-* `static fromEmitter(eventType, emitter)`
-* `push(value)`
+- `static constructor(pushLimit = 0, pullLimit = 0)`
+- `static fromDom(eventType, target[, options])`
+- `static fromEmitter(eventType, emitter)`
+- `push(value)`
   Push a value to the queue; returns a promise that resolves when the value is pulled.
-* `wrap([onReturn])`
+- `wrap([onReturn])`
   Return an iterable iterator with only the standard methods.
 
 #### Examples
 
 ##### Implementing an asynchronous iterable iterator, pushing values to it and then consuming with `for-await-of`
+
 ```js
-import { Channel } from "queueable";
+import { Channel } from 'queueable';
 
 const channel = new Channel();
 channel.push(1);
@@ -94,13 +95,18 @@ for await (const n of channel) {
 }
 // the loop ends after it reaches a result where the iterator is closed
 ```
+
 ##### Pulling results and waiting for values to be pushed
+
 ```js
 const channel = new Channel();
 const result = channel.next(); // a promise of an iterator result
-result.then(({ value }) => { console.log(value); });
-channel.push("hello"); // "hello" is logged in the next microtick
+result.then(({ value }) => {
+  console.log(value);
+});
+channel.push('hello'); // "hello" is logged in the next microtick
 ```
+
 ##### Hiding the adapter methods from consumers with `wrap()`
 
 The iterables should be one-way for end-users, meaning that the consumer should only be able to request values, not push them, because the iterables could be shared. The `wrap([onReturn])` method returns an object with only the standard iterable methods.
@@ -119,34 +125,38 @@ clickIterable.return(); // closes the iterable
 ##### Tracking when pushed values are pulled
 
 The `push()` methods for the adapters return the same promise as the `next()` methods for the iterators, so it's possible for the provider to track when the pushed value is used to resolve a pull.
+
 ```js
 const channel = new Channel();
 const tracking = channel.push(123);
-tracking.then(() => { console.log('value was pulled'); });
+tracking.then(() => {
+  console.log('value was pulled');
+});
 const result = channel.next(); // pulling the next result resolves `tracking` promise
 result === tracking; // -> true
-await result === await tracking; // -> true
+(await result) === (await tracking); // -> true
 ```
 
-### [`LastResult`][LastResult]
+### [`LastResult`][lastresult]
 
 An adapter that only buffers the last value pushed and caches and broadcasts it (pulling a value doesn't dequeue it). It's suitable for use cases where skipping results is allowed.
 
 #### Methods
 
-* `static constructor()`
-* `static fromDom(eventType, target[, options])`
-* `static fromEmitter(eventType, emitter)`
-* `push(value)`
+- `static constructor()`
+- `static fromDom(eventType, target[, options])`
+- `static fromEmitter(eventType, emitter)`
+- `push(value)`
   Overwrite the previously pushed value.
-* `wrap([onReturn])`
+- `wrap([onReturn])`
   Return an iterable iterator with only the standard methods.
 
 #### Examples
 
 ##### Converting mouse move events into a stream
+
 ```js
-import { LastResult } from "queueable";
+import { LastResult } from 'queueable';
 const moveIterable = LastResult.fromDom('click', eventTarget);
 for await (const moveEvent of moveIterable) {
   console.log(moveEvent); // logs MouseEvent objects each time the mouse is clicked
@@ -154,6 +164,7 @@ for await (const moveEvent of moveIterable) {
 // the event listener can be removed and stream closed with .return()
 moveIterable.return();
 ```
+
 ### `wrapRequest(request[, onReturn])`
 
 The `wrapRequest()` method converts singular callbacks to an asynchronous iterable and provides an optional hook for cleanup when the `return()` is called.
@@ -161,16 +172,20 @@ The `wrapRequest()` method converts singular callbacks to an asynchronous iterab
 #### Examples
 
 ##### Adapting `requestAnimationFrame()`
+
 ```js
-const { wrapRequest } = "queueable";
+const { wrapRequest } = 'queueable';
 const frames = wrapRequest(window.requestAnimationFrame, window.cancelAnimationFrame);
 for await (const timestamp of frames) {
   console.log(timestamp); // logs frame timestamps sequentially
 }
 ```
+
 ##### Creating an iterable interval with `setTimeout()`
+
 ```js
-const makeInterval = delay => wrapRequest(callback => window.setTimeout(callback, delay), window.clearTimeout);
+const makeInterval = delay =>
+  wrapRequest(callback => window.setTimeout(callback, delay), window.clearTimeout);
 const interval = makeInterval(100); // creates the interval but does nothing until .next() is invoked
 let i = 0;
 for await (const _ of interval) {
@@ -182,15 +197,16 @@ for await (const _ of interval) {
 ```
 
 ### [`Multicast`][multicast]
+
 The same concept as `Subject` in observables; allows having zero or more subscribers that each receive the pushed values. The pushed values are discarded if there are no subscribers. Uses the `Channel` adapters internally.
 
 ```js
-import { Multicast } from "queueable";
+import { Multicast } from 'queueable';
 
 const queue = new Multicast();
 // subscribe two iterators to receive results
 const subscriberA = queue[Symbol.asyncIterator]();
-const subscriberB = queue[Symbol.asyncIterator](); 
+const subscriberB = queue[Symbol.asyncIterator]();
 queue.push(123);
 const results = Promise.all([subscriberA.next(), subscriberB.next()]);
 console.log(await results); // logs [{ value: 123, done: false }, { value: 123, done: false }]
@@ -202,18 +218,19 @@ To make TypeScript know about the asnyc iterable types (`AsyncIterable<T>`, `Asy
 
 ## Alternatives
 
-* [callback-to-async-iterator]
+- [callback-to-async-iterator]
 
 ## Tools for async iteration
 
-* [IxJS] – supports various combinators for async iterables
-* [Symbola] – protocol extension based combinators for async iterables
-* [Axax] – async iteration helpers
-* [iterall] – iteration utilities
-* [iter-tools] – iteration helpers
+- [IxJS] – supports various combinators for async iterables
+- [Symbola] – protocol extension based combinators for async iterables
+- [Axax] – async iteration helpers
+- [iterall] – iteration utilities
+- [iter-tools] – iteration helpers
+- [event-iterator] – convert event emitters to async iterables
 
-[Symbola]: https://github.com/slikts/symbola
-[IxJS]: https://github.com/ReactiveX/IxJS#asynciterable
+[symbola]: https://github.com/slikts/symbola
+[ixjs]: https://github.com/ReactiveX/IxJS#asynciterable
 [callback-to-async-iterator]: https://github.com/withspectrum/callback-to-async-iterator
 [async]: http://2ality.com/2016/10/asynchronous-iteration.html
 [options]: https://www.typescriptlang.org/docs/handbook/compiler-options.html
@@ -222,9 +239,9 @@ To make TypeScript know about the asnyc iterable types (`AsyncIterable<T>`, `Asy
 [iterall]: https://github.com/leebyron/iterall
 [iter-tools]: https://github.com/sithmel/iter-tools
 [streams]: https://developer.mozilla.org/en-US/docs/Web/API/Streams_API
-[Channel]: https://slikts.github.io/queueable/classes/Channel.html
+[channel]: https://slikts.github.io/queueable/classes/Channel.html
 [multicast]: https://slikts.github.io/queueable/classes/multicast.html
-[LastResult]: https://slikts.github.io/queueable/classes/LastResult.html
+[lastresult]: https://slikts.github.io/queueable/classes/LastResult.html
 [slides]: https://docs.google.com/presentation/d/1r2V1sLG8JSSk8txiLh4wfTkom-BoOsk52FgPBy8o3RM
 [id]: https://streams.spec.whatwg.org/#ts
 [streams-reader]: https://github.com/whatwg/streams/issues/778
@@ -233,3 +250,4 @@ To make TypeScript know about the asnyc iterable types (`AsyncIterable<T>`, `Asy
 [ping-pong]: https://codepen.io/slikts/pen/yRPgQE?editors=0012
 [animation]: https://codepen.io/slikts/pen/mzqKvo?editors=0010
 [async-csp]: https://github.com/dvlsg/async-csp
+[event-iterator]: https://github.com/rolftimmermans/event-iterator
