@@ -6,17 +6,26 @@ type EventMap = GlobalEventHandlersEventMap;
 /**
  * Convert DOM events to an async iterable iterator.
  */
-const fromDom = <EventType extends keyof EventMap>(
-  init: () => PushAdapter<EventMap[EventType]>,
-) => (
-  type: EventType,
-  target: EventTarget,
+const fromDom = <T extends keyof EventMap>(init: () => PushAdapter<EventMap[T]>) => (
+  type: T,
+  target: Target<T>,
   options?: boolean | AddEventListenerOptions,
-): AsyncIterableIterator<EventMap[EventType]> => {
+): AsyncIterableIterator<EventMap[T]> => {
   const adapter = init();
-  const listener = (event: EventMap[EventType]) => void adapter.push(event);
+  const listener = (event: EventMap[T]) => void adapter.push(event);
   target.addEventListener(type, listener, options);
   return adapter.wrap(() => target.removeEventListener(type, listener, options));
+};
+
+type Listener<T extends keyof EventMap> = (e: EventMap[T]) => void;
+
+type Target<
+  T extends keyof EventMap,
+  L = Listener<T>,
+  O = boolean | AddEventListenerOptions
+> = EventTarget & {
+  addEventListener(type: T, listener: L, options?: O): void;
+  removeEventListener(type: T, listener: L, options?: O): void;
 };
 
 export default fromDom;
