@@ -97,7 +97,7 @@ describe('Channel', () => {
   });
 });
 
-describe('CSP', async () => {
+describe('CSP', () => {
   const Delay = (ms: number) => new Promise(resolve => setTimeout(resolve, ms));
   const makeLog = <A>() => {
     const logged: A[] = [];
