@@ -1,6 +1,7 @@
 import Deferred from '../Deferred';
 import { PushAdapter, doneResult } from '../common';
-import { fromDom, fromEmitter } from '../from';
+import fromDom from '../fromDom';
+import fromEmitter from '../fromEmitter';
 
 export default class LastResult<A> implements PushAdapter<A> {
   private buffer: Deferred<IteratorResult<A>> = new Deferred();

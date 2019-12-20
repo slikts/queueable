@@ -1,7 +1,8 @@
 import Deferred from '../Deferred';
 import LinkedQueue from '../LinkedQueue';
 import { PushAdapter, doneResult } from '../common';
-import { fromDom, fromEmitter } from '../from';
+import fromDom from '../fromDom';
+import fromEmitter from '../fromEmitter';
 
 type Result<A> = IteratorResult<A>;
 
