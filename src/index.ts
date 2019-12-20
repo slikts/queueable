@@ -4,4 +4,5 @@ import LastResult from './adapters/LastResult';
 import Deferred from './Deferred';
 
 export { Multicast, Channel, Deferred, LastResult };
-export * from './from';
+export { default as fromDom } from './fromDom';
+export { default as fromEmitter } from './fromEmitter';
