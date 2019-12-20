@@ -1,4 +1,5 @@
-import { wrapRequest } from '../src/from';
+import fromDom from '../src/fromDom';
+import wrapRequest from '../src/wrapRequest';
 import LastResult from '../src/adapters/LastResult';
 import Channel from '../src/adapters/Channel';
 
