@@ -220,6 +220,7 @@ To make TypeScript know about the asnyc iterable types (`AsyncIterable<T>`, `Asy
 
 - [callback-to-async-iterator]
 - [event-iterator]
+- [Repeater.js]
 
 ## Tools for async iteration
 
@@ -251,3 +252,4 @@ To make TypeScript know about the asnyc iterable types (`AsyncIterable<T>`, `Asy
 [animation]: https://codepen.io/slikts/pen/mzqKvo?editors=0010
 [async-csp]: https://github.com/dvlsg/async-csp
 [event-iterator]: https://github.com/rolftimmermans/event-iterator
+[repeater.js]: https://repeater.js.org/
