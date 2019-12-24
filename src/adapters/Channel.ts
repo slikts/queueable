@@ -133,8 +133,6 @@ export default class Channel<A> implements PushAdapter<A> {
       },
       next: () => this.next(),
       return: async (value?: A) => {
-        // TODO why is this ignore necessary? the else path is covered by tests
-        // istanbul ignore next
         if (onReturn) {
           onReturn();
         }

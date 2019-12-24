@@ -49,13 +49,11 @@ describe('Channel', () => {
     const b = new Channel();
     const ns = [1, 2, 3];
     ns.forEach(n => b.push(n).catch(id));
-    let a = 0;
-    const it = b.wrap(() => {
-      a = 1;
-    });
+    const fn = jest.fn();
+    const it = b.wrap(fn);
     it.next().catch(id);
     await (it.return && it.return());
-    expect(a).toBe(1);
+    expect(fn.mock.calls.length).toBe(1);
   });
 
   it('retrurns closed if pushed when closed', () => {
@@ -79,6 +77,12 @@ describe('Channel', () => {
   it(`wrapped balancer returns itself`, async () => {
     const b = new Channel().wrap();
     expect(b[Symbol.asyncIterator]()).toBe(b);
+  });
+
+  it('wrapper can be closed', async () => {
+    const b = new Channel().wrap();
+    expect(await b.return()).toEqual({ value: undefined, done: true });
+    expect(await b.return(123)).toEqual({ value: 123, done: true });
   });
 
   it(`resolves unpushed to done`, async () => {
