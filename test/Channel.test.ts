@@ -123,13 +123,12 @@ describe('CSP', () => {
 
     const table = new Channel<Ball>();
 
-    player('ping', table);
-    player('pong', table);
+    const players = Promise.all([player('ping', table), player('pong', table)]);
 
     await table.push({ hits: 0 });
     await Delay(300);
     await table.return();
-    await Delay(0);
+    await players;
     expect(logged).toEqual([
       'ping 1',
       'pong 2',
