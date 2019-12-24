@@ -23,8 +23,6 @@ const wrapRequest = <A, B>(
       if (closed) {
         return donePromise;
       }
-      // TODO: ?
-      // istanbul ignore else
       if (promise === null) {
         promise = new Promise((resolve, reject) => {
           result = request((value: A) => {
