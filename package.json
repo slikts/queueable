@@ -131,7 +131,7 @@
     "tslint-config-prettier": "^1.14.0",
     "tslint-config-slikts": "^2.0.2",
     "typedoc": "^0.16.2",
-    "typescript": "^3.7.3",
+    "typescript": "^3.8.3",
     "validate-commit-msg": "^2.12.2"
   },
   "husky": {
@@ -140,7 +140,7 @@
     }
   },
   "dependencies": {
-    "@wessberg/rollup-plugin-ts": "^1.2.3",
+    "@wessberg/rollup-plugin-ts": "^1.2.19",
     "fast-list": "^1.0.3"
   }
 }
