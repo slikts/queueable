@@ -130,7 +130,7 @@
     "tslint-config-airbnb": "^5.11.0",
     "tslint-config-prettier": "^1.14.0",
     "tslint-config-slikts": "^2.0.2",
-    "typedoc": "^0.19.1",
+    "typedoc": "^0.20.35",
     "typescript": "^3.8.3",
     "validate-commit-msg": "^2.12.2"
   },
