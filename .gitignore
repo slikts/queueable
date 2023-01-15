@@ -11,3 +11,10 @@ compiled
 .rpt2_cache
 docs
 __snapshots__
+.yarn/*
+!.yarn/cache
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/sdks
+!.yarn/versions

@@ -7,14 +7,12 @@
     "strict": true,
     "declaration": false,
     "allowSyntheticDefaultImports": true,
-    "typeRoots": [
-      "node_modules/@types"
-    ],
+    "typeRoots": ["node_modules/@types"],
     "sourceMap": false,
     "inlineSourceMap": true,
-    "esModuleInterop": true
+    "esModuleInterop": true,
+    "types": ["node", "jest"],
+    "noEmit": true
   },
-  "include": [
-    "src", "test"
-  ]
+  "include": ["src", "test"]
 }
