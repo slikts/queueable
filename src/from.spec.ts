@@ -4,12 +4,12 @@ import Channel from './adapters/Channel';
 
 describe('Mono.fromDom', () => {
   it('handles listeners', async () => {
-    const it = LastResult.fromDom('click', ({
+    const it = LastResult.fromDom('click', {
       addEventListener(type: any, listener: any) {
         listener(1);
         listener(2);
       },
-    } as any) as EventTarget);
+    } as any as EventTarget);
     const done = false;
     expect(await Promise.all([it.next(), it.next()])).toEqual([
       { done, value: 2 },
@@ -32,12 +32,12 @@ describe('Mono.fromDom', () => {
 
 describe('Balancer', () => {
   it('fromDom', async () => {
-    const it = Channel.fromDom('click', ({
+    const it = Channel.fromDom('click', {
       addEventListener(type: any, listener: any) {
         listener(1);
         listener(2);
       },
-    } as any) as EventTarget);
+    } as any as EventTarget);
     const done = false;
     expect(await Promise.all([it.next(), it.next()])).toEqual([
       { done, value: 1 },
@@ -46,14 +46,14 @@ describe('Balancer', () => {
   });
 
   it('fromEmitter', async () => {
-    const it = Channel.fromEmitter('click', ({
+    const it = Channel.fromEmitter('click', {
       addListener(type: any, listener: any) {
         Promise.resolve().then(() => {
           listener(1);
           listener(2);
         });
       },
-    } as any) as NodeJS.EventEmitter);
+    } as any as NodeJS.EventEmitter);
     const done = false;
     expect(await Promise.all([it.next(), it.next()])).toEqual([
       { done, value: 1 },
@@ -64,14 +64,14 @@ describe('Balancer', () => {
 
 describe('Mono.fromEmitter', () => {
   it('handles emitters', async () => {
-    const it = LastResult.fromEmitter('click', ({
+    const it = LastResult.fromEmitter('click', {
       addListener(type: any, listener: any) {
         Promise.resolve().then(() => {
           listener(1);
           listener(2);
         });
       },
-    } as any) as NodeJS.EventEmitter);
+    } as any as NodeJS.EventEmitter);
     const done = false;
     expect(await Promise.all([it.next(), it.next()])).toEqual([
       { done, value: 1 },
@@ -81,12 +81,12 @@ describe('Mono.fromEmitter', () => {
 
   it('unregisters listeners', async () => {
     let a = 0;
-    const it = LastResult.fromEmitter('click', ({
+    const it = LastResult.fromEmitter('click', {
       addListener() {},
       removeListener() {
         a = 1;
       },
-    } as any) as NodeJS.EventEmitter);
+    } as any as NodeJS.EventEmitter);
     it.return && (await it.return());
     expect(a).toBe(1);
   });

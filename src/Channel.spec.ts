@@ -12,7 +12,7 @@ describe('Channel', () => {
   it('can balance pull after push', async () => {
     const b = new Channel<number>();
     const ns = [1, 2, 3];
-    ns.forEach(n => b.push(n));
+    ns.forEach((n) => b.push(n));
     const ps = ns.map(() => b.next());
     expect((await Promise.all(ps)).map(({ value }) => value)).toEqual(ns);
   });
@@ -34,21 +34,21 @@ describe('Channel', () => {
     const b = new Channel<number>();
     const ns = [1, 2, 3];
     const ps = ns.map(() => b.next());
-    ns.forEach(n => b.push(n));
+    ns.forEach((n) => b.push(n));
     expect((await Promise.all(ps)).map(({ value }) => value)).toEqual(ns);
   });
 
   it('can be wrapped', async () => {
     const b = new Channel();
     const ns = [1, 2, 3];
-    ns.forEach(n => b.push(n));
+    ns.forEach((n) => b.push(n));
     expect(await take(b.wrap(), 3)).toEqual(ns);
   });
 
   it('wrapper return calls back', async () => {
     const b = new Channel();
     const ns = [1, 2, 3];
-    ns.forEach(n => b.push(n).catch(id));
+    ns.forEach((n) => b.push(n).catch(id));
     const fn = jest.fn();
     const it = b.wrap(fn);
     it.next().catch(id);
@@ -102,7 +102,7 @@ describe('Channel', () => {
 });
 
 describe('CSP', () => {
-  const Delay = (ms: number) => new Promise(resolve => setTimeout(resolve, ms));
+  const Delay = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
   const makeLog = <A>() => {
     const logged: A[] = [];
     const log = (x: A) => void logged.push(x);
