@@ -45,6 +45,7 @@ export default class LastResult<A> implements PushAdapter<A> {
       this.buffer.resolve(doneResult);
     }
     return Promise.resolve({
+      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
       value: value!,
       done: true,
     });

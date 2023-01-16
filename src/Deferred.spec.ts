@@ -1,4 +1,4 @@
-import Deferred from '../src/Deferred';
+import Deferred from './Deferred';
 
 describe('Deferred', () => {
   it('resolves', async () => {
@@ -6,8 +6,8 @@ describe('Deferred', () => {
     expect(await d.resolve(123)).toBe(123);
   });
 
-  it('rejects', () => {
+  it('rejects', async () => {
     const d = new Deferred();
-    expect(d.reject(new Error())).rejects.toThrowError();
+    await expect(d.reject(new Error())).rejects.toThrow();
   });
 });

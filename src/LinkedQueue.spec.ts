@@ -1,4 +1,4 @@
-import LinkedQueue from '../src/LinkedQueue';
+import LinkedQueue from './LinkedQueue';
 
 describe(`Queue`, () => {
   it('constructs', () => {

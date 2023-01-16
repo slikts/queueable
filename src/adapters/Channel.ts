@@ -101,6 +101,7 @@ export default class Channel<A> implements PushAdapter<A> {
     this.close();
     return {
       done: true,
+      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
       value: value!, // asserting as non-undefined because the TS lib types are incorrect
     };
   }

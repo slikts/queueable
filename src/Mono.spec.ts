@@ -1,4 +1,4 @@
-import LastResult from '../src/adapters/LastResult';
+import LastResult from './adapters/LastResult';
 
 const value = (value: any) => ({ value, done: false });
 
@@ -60,10 +60,10 @@ describe('Mono', () => {
     expect(await w.return(123)).toEqual({ value: 123, done: true });
   });
 
-  it('closes requested', () => {
+  it('closes requested', async () => {
     const m = new LastResult();
     const p = m.next();
     m.return();
-    expect(p).resolves.toEqual({ done: true, value: undefined });
+    await expect(p).resolves.toEqual({ done: true, value: undefined });
   });
 });

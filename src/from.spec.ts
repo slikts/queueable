@@ -1,7 +1,6 @@
-import fromDom from '../src/fromDom';
-import wrapRequest from '../src/wrapRequest';
-import LastResult from '../src/adapters/LastResult';
-import Channel from '../src/adapters/Channel';
+import wrapRequest from './wrapRequest';
+import LastResult from './adapters/LastResult';
+import Channel from './adapters/Channel';
 
 describe('Mono.fromDom', () => {
   it('handles listeners', async () => {
@@ -20,13 +19,12 @@ describe('Mono.fromDom', () => {
 
   it('unregisters listeners', async () => {
     let a = 0;
-    const it = LastResult.fromDom('click', ({
+    const it = LastResult.fromDom('click', {
       addEventListener() {},
       removeEventListener() {
         a = 1;
       },
-    } as any) as EventTarget);
-    // it.next().catch();
+    } as any as EventTarget);
     it.return && (await it.return());
     expect(a).toBe(1);
   });
@@ -112,28 +110,25 @@ describe('wrapRequest', () => {
     expect(await Promise.all([w.next(), w.next()])).toEqual([result(3), result(3)]);
   });
 
-  it('is cancelable', () => {
+  it('is cancelable', async () => {
     const w = wrapRequest(counter());
-    expect(w.return(123)).resolves.toEqual(result(123, true));
+    await expect(w.return(123)).resolves.toEqual(result(123, true));
   });
 
-  it('is cancelable', () => {
+  it('is cancelable 2', async () => {
     let a = 0;
     const w = wrapRequest(counter(), () => {
       a += 1;
     });
     w.return();
     expect(a).toBe(1);
-    expect(w.next()).resolves.toEqual({ value: undefined, done: true });
+    await expect(w.next()).resolves.toEqual({ value: undefined, done: true });
   });
 
-  it('rejects on cancel', () => {
-    let a = 0;
-    const w = wrapRequest(counter(), () => {
-      a += 1;
-    });
+  it('rejects on cancel', async () => {
+    const w = wrapRequest(counter(), () => {});
     const r = w.next();
     w.return();
-    expect(r).rejects.toThrowError();
+    await expect(r).rejects.toThrow();
   });
 });

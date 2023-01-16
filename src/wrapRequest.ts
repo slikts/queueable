@@ -15,7 +15,7 @@ const wrapRequest = <A, B>(
 ): Returnable<A> => {
   const done = false;
   let promise: Promise<IteratorResult<A>> | null = null;
-  let cancel: ((reason?: any) => void) | null = null;
+  let cancel: ((reason?: unknown) => void) | null = null;
   let closed = false;
   let result: B;
   return {
@@ -43,6 +43,7 @@ const wrapRequest = <A, B>(
       if (onReturn) {
         onReturn(result);
       }
+      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
       return { value: value!, done: true };
     },
     [Symbol.asyncIterator]() {

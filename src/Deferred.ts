@@ -14,7 +14,7 @@ export default class Deferred<A> {
         return this.promise;
       };
     });
-  }
+}
 }
 
 export default interface Deferred<A> {

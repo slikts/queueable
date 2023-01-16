@@ -1,8 +1,8 @@
-import Channel from '../src/adapters/Channel';
+import Channel from './adapters/Channel';
 
 const id = (x: any) => x;
 const take = async <A>(a: AsyncIterator<A>, n: number) =>
-  (await Promise.all(Array.from(Array(n), (_, i) => a.next()))).map(({ value }) => value);
+  (await Promise.all(Array.from(Array(n), () => a.next()))).map(({ value }) => value);
 
 describe('Channel', () => {
   it('constructs', () => {
@@ -56,10 +56,10 @@ describe('Channel', () => {
     expect(fn.mock.calls.length).toBe(1);
   });
 
-  it('retrurns closed if pushed when closed', () => {
+  it('retrurns closed if pushed when closed', async () => {
     const b = new Channel();
     b.return();
-    expect(b.push(123)).resolves.toEqual({ done: true, value: undefined });
+    await expect(b.push(123)).resolves.toEqual({ done: true, value: undefined });
   });
 
   it('can be closed', async () => {
