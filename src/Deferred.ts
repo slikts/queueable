@@ -18,6 +18,6 @@ export default class Deferred<A> {
 }
 
 export default interface Deferred<A> {
-  resolve(value?: A | PromiseLike<A>): Promise<A>;
+  resolve(value: A | PromiseLike<A>): Promise<A>;
   reject(reason?: string | Error): Promise<A>;
 }
