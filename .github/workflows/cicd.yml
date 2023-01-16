@@ -1,0 +1,51 @@
+name: CI/CD
+on:
+  push:
+    branches:
+      - master
+      - next
+
+jobs:
+  test:
+    name: Test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - run: yarn install --immutable
+
+      - run: yarn test
+
+  lint:
+    name: Lint
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - run: yarn install --immutable
+
+      - name: ESLint
+        run: yarn lint:eslint
+
+      - name: Prettier
+        run: yarn lint:prettier
+
+      - name: Types
+        run: yarn tsc
+
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    needs: [test, lint]
+    steps:
+      - uses: actions/checkout@v3
+
+      - run: yarn install --immutable
+
+      - name: Build
+        run: yarn build
+
+      - uses: codfish/semantic-release-action@master
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}

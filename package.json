@@ -34,7 +34,8 @@
     "node": ">=6.0.0"
   },
   "scripts": {
-    "lint": "eslint .",
+    "lint:eslint": "eslint .",
+    "lint:prettier": "prettier --check .",
     "prebuild": "rimraf dist",
     "build": "microbundle --external none",
     "dev": "microbundle watch",
