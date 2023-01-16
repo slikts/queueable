@@ -41,21 +41,9 @@
     "test": "jest",
     "test:watch": "jest --watch --runInBand --verbose false",
     "report-coverage": "cat ./coverage/lcov.info | coveralls",
-    "commit": "git-cz",
-    "semantic-release": "semantic-release",
-    "semantic-release-prepare": "ts-node tools/semantic-release-prepare",
     "postinstall": "husky install",
     "prepack": "pinst --disable",
     "postpack": "pinst --enable"
-  },
-  "config": {
-    "commitizen": {
-      "path": "node_modules/cz-conventional-changelog"
-    },
-    "validate-commit-msg": {
-      "types": "conventional-commit-types",
-      "helpMessage": "Use \"yarn commit\" instead, we use conventional-changelog format :) (https://github.com/commitizen/cz-cli)"
-    }
   },
   "prettier": {
     "semi": true,
@@ -75,10 +63,8 @@
     "@typescript-eslint/eslint-plugin": "^5.48.2",
     "@typescript-eslint/parser": "^5.48.2",
     "babel-jest": "^29.3.1",
-    "commitizen": "^4.2.6",
     "coveralls": "^3.0.2",
     "cross-env": "^7.0.3",
-    "cz-conventional-changelog": "^3.3.0",
     "eslint": "^8.32.0",
     "eslint-plugin-jest": "^27.2.1",
     "husky": "^8.0.3",
@@ -88,10 +74,8 @@
     "pinst": "^3.0.0",
     "prettier": "^2.8.3",
     "rimraf": "^4.0.7",
-    "ts-node": "^10.1.0",
     "typedoc": "^0.23.24",
-    "typescript": "^4.9.4",
-    "validate-commit-msg": "^2.12.2"
+    "typescript": "^4.9.4"
   },
   "husky": {
     "hooks": {
