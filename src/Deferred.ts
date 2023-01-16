@@ -14,10 +14,10 @@ export default class Deferred<A> {
         return this.promise;
       };
     });
-  }
+}
 }
 
 export default interface Deferred<A> {
-  resolve(value?: A | PromiseLike<A>): Promise<A>;
+  resolve(value: A | PromiseLike<A>): Promise<A>;
   reject(reason?: string | Error): Promise<A>;
 }

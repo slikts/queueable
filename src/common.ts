@@ -9,6 +9,7 @@ export interface PushAdapter<A> extends AsyncIterableIterator<A> {
 
 /** The result returned from closed iterators. */
 export const doneResult = Object.freeze({
+  // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
   value: undefined!,
   done: true,
 });

@@ -34,6 +34,7 @@ export default class Queue<A> {
       throw Error('Queue is empty');
     }
     this.length -= 1;
+    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
     return this.list.shift()!;
   }
 

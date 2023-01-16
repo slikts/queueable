@@ -1,20 +1,14 @@
 {
   "compilerOptions": {
-    "moduleResolution": "node",
-    "target": "es6",
-    "module": "es2015",
-    "lib": ["esnext", "dom"],
+    "target": "ESNext",
+    "module": "ESNext",
+    "types": ["node", "jest"],
+    "noEmit": true,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
     "strict": true,
-    "declaration": false,
-    "allowSyntheticDefaultImports": true,
-    "typeRoots": [
-      "node_modules/@types"
-    ],
-    "sourceMap": false,
-    "inlineSourceMap": true,
-    "esModuleInterop": true
+    "skipLibCheck": true,
+    "moduleResolution": "node"
   },
-  "include": [
-    "src", "test"
-  ]
+  "include": ["src/**/*"]
 }
