@@ -4,8 +4,7 @@
 <a href="https://travis-ci.org/slikts/queueable"><img src="https://img.shields.io/travis/slikts/queueable/master.svg" alt="Build Status"></a>
 <a href="https://coveralls.io/github/slikts/queueable?branch=master"><img src="https://coveralls.io/repos/github/slikts/queueable/badge.svg?branch=master" alt="Coverage Status"></a>
 <a href="https://www.npmjs.com/package/queueable"><img src="https://img.shields.io/npm/v/queueable.svg" alt="Latest Stable Version"></a>
-<a href="https://codeclimate.com/github/slikts/queueable"><img src="https://codeclimate.com/github/slikts/queueable.svg" alt="Code Climate"></a>
-<a href="https://david-dm.org/slikts/queueable"><img src="https://david-dm.org/slikts/queueable.svg" alt="Dependency Status"></a></p>
+<a href="https://codeclimate.com/github/slikts/queueable"><img src="https://codeclimate.com/github/slikts/queueable.svg" alt="Code Climate"></a></p>
 
 A library for converting push-based asynchronous streams like node streams or EventTarget to pull-based streams implementing the [ES2018 asynchronous iteration protocols][async].
 
@@ -115,7 +114,7 @@ This example adapts an EventTarget in the same way as the `fromDom()` method.
 
 ```js
 const channel = new Channel();
-const listener = event => void producer.push(event);
+const listener = (event) => void producer.push(event);
 eventTarget.addEventListener('click', listener);
 const clickIterable = channel.wrap(() => eventTarget.removeEventListener(type, listener));
 clickIterable.next(); // -> a promise of the next click event
@@ -184,8 +183,8 @@ for await (const timestamp of frames) {
 ##### Creating an iterable interval with `setTimeout()`
 
 ```js
-const makeInterval = delay =>
-  wrapRequest(callback => window.setTimeout(callback, delay), window.clearTimeout);
+const makeInterval = (delay) =>
+  wrapRequest((callback) => window.setTimeout(callback, delay), window.clearTimeout);
 const interval = makeInterval(100); // creates the interval but does nothing until .next() is invoked
 let i = 0;
 for await (const _ of interval) {

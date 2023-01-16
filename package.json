@@ -48,12 +48,6 @@
     "prepack": "pinst --disable",
     "postpack": "pinst --enable"
   },
-  "lint-staged": {
-    "{src,test}/**/*.ts": [
-      "prettier --write",
-      "git add"
-    ]
-  },
   "config": {
     "commitizen": {
       "path": "node_modules/cz-conventional-changelog"

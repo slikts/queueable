@@ -10,6 +10,7 @@ compiled
 .rpt2_cache
 docs
 __snapshots__
+.eslintcache
 .yarn/*
 !.yarn/cache
 !.yarn/patches
