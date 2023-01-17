@@ -96,5 +96,8 @@
   "dependencies": {
     "fast-list": "^1.0.3"
   },
-  "packageManager": "yarn@3.3.1"
+  "packageManager": "yarn@3.3.1",
+  "volta": {
+    "node": "18.13.0"
+  }
 }
