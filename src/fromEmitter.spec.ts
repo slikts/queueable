@@ -17,7 +17,7 @@ describe('Channel.fromEmitter', () => {
       { done, value: 2 },
     ]);
   });
-})
+});
 
 describe('LastResult.fromEmitter', () => {
   it('handles emitters', async () => {

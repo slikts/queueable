@@ -102,19 +102,19 @@ describe('Channel', () => {
 
   describe('bounds', () => {
     it('sets bounds', async () => {
-      const c = new Channel(1)
-      c.push(1)
-      c.push(2)
-      await expect(c.next()).resolves.toMatchObject({ value: 2 })
-    })
+      const c = new Channel(1);
+      c.push(1);
+      c.push(2);
+      await expect(c.next()).resolves.toMatchObject({ value: 2 });
+    });
 
     it('is unbounded by default', async () => {
       const c = new Channel();
       c.push(1);
       c.push(2);
       await expect(c.next()).resolves.toMatchObject({ value: 1 });
-    })
-  })
+    });
+  });
 });
 
 describe('CSP', () => {
