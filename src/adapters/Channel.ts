@@ -66,8 +66,8 @@ export default class Channel<A> implements PushAdapter<A> {
   /**
    * Push the next result value.
    *
-   * @param value
-   * @param done If true, closes the balancer when this result is resolved
+   * @param value - Result
+   * @param done - If true, closes the balancer when this result is resolved
    * @throws Throws if the balancer is already closed
    */
   push(value: A, done = false): Promise<IteratorResult<A>> {
@@ -97,7 +97,7 @@ export default class Channel<A> implements PushAdapter<A> {
    * Closes the balancer; clears the queues and makes {@link Channel#next} only
    * return `doneResult`.
    *
-   * @param value The result value to be returned
+   * @param value - The result value to be returned
    */
   async return(value?: A): Promise<IteratorResult<A>> {
     this.close();
@@ -124,7 +124,7 @@ export default class Channel<A> implements PushAdapter<A> {
   /**
    * Convert {@link Channel} to a generic async iterable iterator to hide implementation details.
    *
-   * @param onReturn Optional callback for when the iterator is closed with {@link Channel#return}
+   * @param onReturn - Optional callback for when the iterator is closed with {@link Channel#return}
    * @throws Throws if called when closed
    */
   wrap(onReturn?: () => void): WrappedBalancer<A> {
