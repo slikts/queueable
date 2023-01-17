@@ -2,9 +2,9 @@ name: CI/CD
 
 on:
   push:
-    branches:
-      - main
+    branches: [main, next]
   pull_request:
+    branches: [main, next]
 
 jobs:
   test:
@@ -21,6 +21,7 @@ jobs:
         uses: coverallsapp/github-action@master
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
+          path-to-lcov: coverage/lcov.info
 
   lint:
     name: Lint
@@ -51,7 +52,8 @@ jobs:
       - name: Build
         run: yarn build
 
-      - uses: codfish/semantic-release-action@master
+      - name: Release
+        run: yarn semantic-release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
