@@ -11,7 +11,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - run: yarn install --immutable
+      - uses: ./.github/actions/setup
 
       - run: yarn test --coverage
 
@@ -27,7 +27,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - run: yarn install --immutable
+      - uses: ./.github/actions/setup
 
       - name: ESLint
         run: yarn lint:eslint
@@ -45,7 +45,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - run: yarn install --immutable
+      - uses: ./.github/actions/setup
 
       - name: Build
         run: yarn build
@@ -63,7 +63,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - run: yarn install --immutable
+      - uses: ./.github/actions/setup
 
       - name: Generate
         run: yarn docs
