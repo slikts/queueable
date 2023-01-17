@@ -1,4 +1,4 @@
-import Channel from './adapters/Channel';
+import Channel from './Channel';
 
 const id = (x: any) => x;
 const take = async <A>(a: AsyncIterator<A>, n: number) =>

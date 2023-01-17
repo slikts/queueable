@@ -7,7 +7,7 @@ import fromEmitter from '../fromEmitter';
 type Result<A> = IteratorResult<A>;
 
 /**
- * Async iterable iterator with a non-optional [[return]] method.
+ * Async iterable iterator with a non-optional @return method.
  */
 interface WrappedBalancer<A> extends AsyncIterableIterator<A> {
   // TODO the result can be undefined as well
@@ -40,7 +40,7 @@ export default class Channel<A> implements PushAdapter<A> {
   }
 
   /**
-   * Pull a promise of the next [[Result]].
+   * Pull a promise of the next @Result.
    */
   next(): Promise<Result<A>> {
     if (this.closed) {
@@ -62,7 +62,7 @@ export default class Channel<A> implements PushAdapter<A> {
   }
 
   /**
-   * Push the next [[Result]] value.
+   * Push the next @Result value.
    *
    * @param value
    * @param done If true, closes the balancer when this result is resolved
@@ -85,15 +85,15 @@ export default class Channel<A> implements PushAdapter<A> {
   }
 
   /**
-   * Returns itself, since [[Balancer]] already implements the iterator protocol.
+   * Returns itself, since @Balancer already implements the iterator protocol.
    */
   [Symbol.asyncIterator]() {
     return this;
   }
 
   /**
-   * Closes the balancer; clears the queues and makes [[Balancer.next]] only
-   * return [[closedResult]].
+   * Closes the balancer; clears the queues and makes @Balancer.next only
+   * return @closedResult.
    *
    * @param value The result value to be returned
    */
@@ -119,9 +119,9 @@ export default class Channel<A> implements PushAdapter<A> {
   }
 
   /**
-   * Convert [[Balancer]] to a generic async iterable iterator to hide implementation details.
+   * Convert @Balancer to a generic async iterable iterator to hide implementation details.
    *
-   * @param onReturn Optional callback for when the iterator is closed with [[Balancer.return]]
+   * @param onReturn Optional callback for when the iterator is closed with @Balancer.return
    * @throws Throws if called when closed
    */
   wrap(onReturn?: () => void): WrappedBalancer<A> {
