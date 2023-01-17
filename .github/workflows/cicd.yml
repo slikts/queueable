@@ -1,10 +1,8 @@
 name: CI/CD
 
 on:
-  push:
-    branches:
-      - main
   pull_request:
+    branches: [main, next]
 
 jobs:
   test:
@@ -13,7 +11,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - run: yarn install --immutable
+      - uses: ./.github/actions/setup
 
       - run: yarn test --coverage
 
@@ -21,6 +19,7 @@ jobs:
         uses: coverallsapp/github-action@master
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
+          path-to-lcov: coverage/lcov.info
 
   lint:
     name: Lint
@@ -28,7 +27,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - run: yarn install --immutable
+      - uses: ./.github/actions/setup
 
       - name: ESLint
         run: yarn lint:eslint
@@ -46,12 +45,13 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - run: yarn install --immutable
+      - uses: ./.github/actions/setup
 
       - name: Build
         run: yarn build
 
-      - uses: codfish/semantic-release-action@master
+      - name: Release
+        run: yarn semantic-release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
@@ -63,7 +63,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - run: yarn install --immutable
+      - uses: ./.github/actions/setup
 
       - name: Generate
         run: yarn docs

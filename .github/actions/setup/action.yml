@@ -1,0 +1,12 @@
+runs:
+  using: composite
+  steps:
+    - uses: actions/setup-node@v3
+      with:
+        node-version: 18
+    - run: node --version
+      shell: bash
+    - run: yarn --version
+      shell: bash
+    - run: yarn install --immutable
+      shell: bash
