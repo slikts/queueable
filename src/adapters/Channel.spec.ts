@@ -10,95 +10,111 @@ describe('Channel', () => {
   });
 
   it('can balance pull after push', async () => {
-    const b = new Channel<number>();
+    const c = new Channel<number>();
     const ns = [1, 2, 3];
-    ns.forEach((n) => b.push(n));
-    const ps = ns.map(() => b.next());
+    ns.forEach((n) => c.push(n));
+    const ps = ns.map(() => c.next());
     expect((await Promise.all(ps)).map(({ value }) => value)).toEqual(ns);
   });
 
   it('works with for-await-of', async () => {
-    const b = new Channel<number>();
-    b.push(1);
-    b.push(2);
-    b.push(3);
-    b.push(undefined!, true);
+    const c = new Channel<number>();
+    c.push(1);
+    c.push(2);
+    c.push(3);
+    c.push(undefined!, true);
     const r = [];
-    for await (const x of b) {
+    for await (const x of c) {
       r.push(x);
     }
     expect(r).toEqual([1, 2, 3]);
   });
 
   it('can balance push after pull', async () => {
-    const b = new Channel<number>();
+    const c = new Channel<number>();
     const ns = [1, 2, 3];
-    const ps = ns.map(() => b.next());
-    ns.forEach((n) => b.push(n));
+    const ps = ns.map(() => c.next());
+    ns.forEach((n) => c.push(n));
     expect((await Promise.all(ps)).map(({ value }) => value)).toEqual(ns);
   });
 
   it('can be wrapped', async () => {
-    const b = new Channel();
+    const c = new Channel();
     const ns = [1, 2, 3];
-    ns.forEach((n) => b.push(n));
-    expect(await take(b.wrap(), 3)).toEqual(ns);
+    ns.forEach((n) => c.push(n));
+    expect(await take(c.wrap(), 3)).toEqual(ns);
   });
 
   it('wrapper return calls back', async () => {
-    const b = new Channel();
+    const c = new Channel();
     const ns = [1, 2, 3];
-    ns.forEach((n) => b.push(n).catch(id));
+    ns.forEach((n) => c.push(n).catch(id));
     const fn = jest.fn();
-    const it = b.wrap(fn);
+    const it = c.wrap(fn);
     it.next().catch(id);
     await (it.return && it.return());
     expect(fn.mock.calls.length).toBe(1);
   });
 
   it('retrurns closed if pushed when closed', async () => {
-    const b = new Channel();
-    b.return();
-    await expect(b.push(123)).resolves.toEqual({ done: true, value: undefined });
+    const c = new Channel();
+    c.return();
+    await expect(c.push(123)).resolves.toEqual({ done: true, value: undefined });
   });
 
   it('can be closed', async () => {
-    const b = new Channel();
-    expect(await b.return()).toEqual({ value: undefined, done: true });
-    expect(await b.return(123)).toEqual({ value: 123, done: true });
+    const c = new Channel();
+    expect(await c.return()).toEqual({ value: undefined, done: true });
+    expect(await c.return(123)).toEqual({ value: 123, done: true });
   });
 
   it(`can't be wrapped if closed`, async () => {
-    const b = new Channel();
-    b.return();
-    expect(() => b.wrap()).toThrow();
+    const c = new Channel();
+    c.return();
+    expect(() => c.wrap()).toThrow();
   });
 
   it(`wrapped balancer returns itself`, async () => {
-    const b = new Channel().wrap();
-    expect(b[Symbol.asyncIterator]()).toBe(b);
+    const c = new Channel().wrap();
+    expect(c[Symbol.asyncIterator]()).toBe(c);
   });
 
   it('wrapper can be closed', async () => {
-    const b = new Channel().wrap();
-    expect(await b.return()).toEqual({ value: undefined, done: true });
-    expect(await b.return(123)).toEqual({ value: 123, done: true });
+    const c = new Channel().wrap();
+    expect(await c.return()).toEqual({ value: undefined, done: true });
+    expect(await c.return(123)).toEqual({ value: 123, done: true });
   });
 
   it(`resolves unpushed to done`, async () => {
-    const b = new Channel();
-    const p = b.next();
-    b.return();
+    const c = new Channel();
+    const p = c.next();
+    c.return();
     await expect(p).resolves.toEqual({ done: true, value: undefined });
   });
 
   it(`push and pull are symmetrical`, async () => {
-    const b = new Channel();
-    const p1 = b.next();
-    const p2 = b.push(1);
+    const c = new Channel();
+    const p1 = c.next();
+    const p2 = c.push(1);
     expect(p1).toBe(p2);
     expect(await p1).toBe(await p2);
   });
+
+  describe('bounds', () => {
+    it('sets bounds', async () => {
+      const c = new Channel(1)
+      c.push(1)
+      c.push(2)
+      await expect(c.next()).resolves.toMatchObject({ value: 2 })
+    })
+
+    it('is unbounded by default', async () => {
+      const c = new Channel();
+      c.push(1);
+      c.push(2);
+      await expect(c.next()).resolves.toMatchObject({ value: 1 });
+    })
+  })
 });
 
 describe('CSP', () => {

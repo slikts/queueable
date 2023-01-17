@@ -17,7 +17,6 @@ export interface Unpushed<A> {
   result: IteratorResult<A>;
   defer: Deferred<IteratorResult<A>>;
 }
-
 /**
  * Balances a push queue with a pull queue, also known as a
  * dropping-buffer channel, since the queues are FIFO and
@@ -36,9 +35,12 @@ export default class Channel<A> implements PushAdapter<A> {
   static fromDom = fromDom(() => new Channel());
   static fromEmitter = fromEmitter(() => new Channel());
 
-  constructor(pushLimit = 0, pullLimit = 0) {
-    this.pushBuffer = new LinkedQueue(pushLimit);
-    this.pullBuffer = new LinkedQueue(pullLimit);
+  constructor(
+    /** Limit (bounds) after which the oldest buffered value is dropped. */
+    limit = 0,
+  ) {
+    this.pushBuffer = new LinkedQueue(limit);
+    this.pullBuffer = new LinkedQueue(limit);
   }
 
   /**
