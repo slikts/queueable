@@ -1,6 +1,6 @@
 import { PushAdapter } from './common';
 
-type EventMap = GlobalEventHandlersEventMap;
+export type EventMap = GlobalEventHandlersEventMap;
 
 // TODO add overloads for special event targets (Window, Document)
 /**
@@ -19,9 +19,9 @@ const fromDom =
     return adapter.wrap(() => target.removeEventListener(type, listener, options));
   };
 
-type Listener<T extends keyof EventMap> = (e: EventMap[T]) => void;
+export type Listener<T extends keyof EventMap> = (e: EventMap[T]) => void;
 
-type Target<
+export type Target<
   T extends keyof EventMap,
   L = Listener<T>,
   O = boolean | AddEventListenerOptions,

@@ -2,7 +2,7 @@ import wrapRequest from './wrapRequest';
 import LastResult from './adapters/LastResult';
 import Channel from './adapters/Channel';
 
-describe('Mono.fromDom', () => {
+describe('LastResult.fromDom', () => {
   it('handles listeners', async () => {
     const it = LastResult.fromDom('click', {
       addEventListener(type: any, listener: any) {
@@ -62,7 +62,7 @@ describe('Balancer', () => {
   });
 });
 
-describe('Mono.fromEmitter', () => {
+describe('LastResult.fromEmitter', () => {
   it('handles emitters', async () => {
     const it = LastResult.fromEmitter('click', {
       addListener(type: any, listener: any) {

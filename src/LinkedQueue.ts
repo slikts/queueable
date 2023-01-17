@@ -2,15 +2,15 @@ import fastList from 'fast-list';
 
 /**
  * First-in, first-out (FIFO) buffer (queue) with default item values.
- * Optionally circular based on [[Queue.limit]].
+ * Optionally circular based on {@link LinkedQueue.limit}.
  */
-export default class Queue<A> {
+export default class LinkedQueue<A> {
   private list: fastList.List<A>;
   length = 0;
 
   constructor(
     /** The length after which the queue becomes circular, i.e., discards oldest items. */
-    private limit = 0,
+    readonly limit = 0,
   ) {
     this.list = new fastList();
   }
