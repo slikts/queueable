@@ -26,7 +26,9 @@ The use-case for this library, given that there are more standard alternatives, 
 
 ### Similarity to CSP channels
 
-Channels are a concurrency model used in Go goroutines and Clojure's core.async, and it's been possible to express them in JavaScript with ES6 generators, as shown by [js-csp]. Asynchronous iteration brings JavaScript closer to having first-class syntactical support of channels, as can be seen in this [demonstration of ping-pong][ping-pong] adapted from Go and js-csp using Queuable.
+[Communicating sequential processes][csp] (CSP) is a concurrency model used in Go goroutines and Clojure's core.async that is based on message passing via channels, and it's been possible to express this model in JavaScript with ES6 generators, as shown by [js-csp]. Asynchronous iteration brings JavaScript closer to having first-class syntactical support of channels, as can be seen in this [demonstration of ping-pong][ping-pong] adapted from Go and js-csp using Queuable.
+
+[csp]: https://en.wikipedia.org/wiki/Communicating_sequential_processes
 
 ### Use cases
 
@@ -46,10 +48,12 @@ See slides about [Why Asynchronous Iterators Matter][slides] for a more general 
 
 ## Installation
 
-### npm
-
-```
+```sh
 npm install --save queueable
+```
+
+```sh
+yarn add queueable
 ```
 
 ### CDN
@@ -69,7 +73,7 @@ Circular buffering works like a safety valve by discarding the oldest item in th
 - `static constructor(pushLimit = 0, pullLimit = 0)`
 - `static fromDom(eventType, target[, options])`
 - `static fromEmitter(eventType, emitter)`
-- `push(value)`
+- `push(value, [done])`
   Push a value to the queue; returns a promise that resolves when the value is pulled.
 - `wrap([onReturn])`
   Return an iterable iterator with only the standard methods.
@@ -114,7 +118,7 @@ This example adapts an EventTarget in the same way as the `fromDom()` method.
 
 ```js
 const channel = new Channel();
-const listener = (event) => void producer.push(event);
+const listener = (event) => void channel.push(event);
 eventTarget.addEventListener('click', listener);
 const clickIterable = channel.wrap(() => eventTarget.removeEventListener(type, listener));
 clickIterable.next(); // -> a promise of the next click event
