@@ -13,7 +13,7 @@ jobs:
 
       - run: yarn install --immutable
 
-      - run: yarn test
+      - run: yarn test --coverage
 
   lint:
     name: Lint
