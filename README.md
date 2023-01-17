@@ -26,9 +26,10 @@ The use-case for this library, given that there are more standard alternatives, 
 
 ### Similarity to CSP channels
 
-[Communicating sequential processes][csp] (CSP) is a concurrency model used in Go goroutines and Clojure's core.async that is based on message passing via channels, and it's been possible to express this model in JavaScript with ES6 generators, as shown by [js-csp]. Asynchronous iteration brings JavaScript closer to having first-class syntactical support of channels, as can be seen in this [demonstration of ping-pong][ping-pong] adapted from Go and js-csp using Queuable.
+[Communicating sequential processes][csp] (CSP) is a concurrency model used in Go goroutines and [Clojure's core.async][core.async] that is based on message passing via channels, and it's been possible to express this model in JavaScript with ES6 generators, as shown by [js-csp]. Asynchronous iteration brings JavaScript closer to having first-class syntactical support of channels, as can be seen in this [demonstration of ping-pong][ping-pong] adapted from Go and js-csp using Queuable.
 
 [csp]: https://en.wikipedia.org/wiki/Communicating_sequential_processes
+[core.async]: https://clojure.org/news/2013/06/28/clojure-clore-async-channels
 
 ### Use cases
 

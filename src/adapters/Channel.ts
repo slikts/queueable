@@ -19,7 +19,11 @@ export interface Unpushed<A> {
 }
 
 /**
- * Balances a push queue with a pull queue.
+ * Balances a push queue with a pull queue, also known as a
+ * dropping-buffer channel, since the queues are FIFO and
+ * can be set to be bounded, i.e., to drop the oldest enqueued
+ * values if the limit is exceeded. The channel is unbounded
+ * by default.
  */
 export default class Channel<A> implements PushAdapter<A> {
   /** Pushed results waiting for pulls to resolve */
@@ -99,6 +103,7 @@ export default class Channel<A> implements PushAdapter<A> {
     this.close();
     return {
       done: true,
+      // TODO: fix assertion
       // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
       value: value!, // asserting as non-undefined because the TS lib types are incorrect
     };
