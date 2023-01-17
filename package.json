@@ -31,13 +31,14 @@
   },
   "license": "MIT",
   "engines": {
-    "node": ">=6.0.0"
+    "node": ">=16"
   },
   "scripts": {
     "lint:eslint": "eslint .",
     "lint:prettier": "prettier --check .",
     "prebuild": "rimraf dist",
     "build": "microbundle --external none",
+    "docs": "typedoc src/index.ts",
     "dev": "microbundle watch",
     "test": "jest",
     "test:watch": "jest --watch --runInBand --verbose false",
