@@ -5,16 +5,16 @@ export default class Deferred<A> {
   promise: Promise<A>;
   constructor() {
     this.promise = new Promise((resolve, reject) => {
-      this.resolve = value => {
+      this.resolve = (value) => {
         resolve(value);
         return this.promise;
       };
-      this.reject = reason => {
+      this.reject = (reason) => {
         reject(reason);
         return this.promise;
       };
     });
-}
+  }
 }
 
 export default interface Deferred<A> {

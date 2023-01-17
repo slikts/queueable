@@ -1,6 +1,6 @@
 import LinkedQueue from './LinkedQueue';
 
-describe(`Queue`, () => {
+describe('LinkedQueue', () => {
   it('constructs', () => {
     const q = new LinkedQueue();
     expect(q).toBeInstanceOf(LinkedQueue);

@@ -1,8 +1,8 @@
-import LastResult from './adapters/LastResult';
+import LastResult from './LastResult';
 
 const value = (value: any) => ({ value, done: false });
 
-describe('Mono', () => {
+describe('LastResult', () => {
   it('constructs', () => {
     expect(new LastResult()).toBeInstanceOf(LastResult);
   });

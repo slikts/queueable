@@ -4,50 +4,54 @@ import { PushAdapter, doneResult } from '../common';
 import fromDom from '../fromDom';
 import fromEmitter from '../fromEmitter';
 
-type Result<A> = IteratorResult<A>;
-
 /**
- * Async iterable iterator with a non-optional [[return]] method.
+ * Async iterable iterator with a non-optional return method.
  */
-interface WrappedBalancer<A> extends AsyncIterableIterator<A> {
+export interface WrappedBalancer<A> extends AsyncIterableIterator<A> {
   // TODO the result can be undefined as well
-  return(value?: A): Promise<Result<A>>;
+  return(value?: A): Promise<IteratorResult<A>>;
   throw?: undefined;
 }
 
-interface Unpushed<A> {
-  result: Result<A>;
-  defer: Deferred<Result<A>>;
+export interface Unpushed<A> {
+  result: IteratorResult<A>;
+  defer: Deferred<IteratorResult<A>>;
 }
-
 /**
- * Balances a push queue with a pull queue.
+ * Balances a push queue with a pull queue, also known as a
+ * dropping-buffer channel, since the queues are FIFO and
+ * can be set to be bounded, i.e., to drop the oldest enqueued
+ * values if the limit is exceeded. The channel is unbounded
+ * by default.
  */
 export default class Channel<A> implements PushAdapter<A> {
   /** Pushed results waiting for pulls to resolve */
   readonly pushBuffer: LinkedQueue<Unpushed<A>>;
   /** Unresolved pulls waiting for results to be pushed */
-  readonly pullBuffer: LinkedQueue<Deferred<Result<A>>>;
+  readonly pullBuffer: LinkedQueue<Deferred<IteratorResult<A>>>;
   /** Determines whether new values can be pushed or pulled */
   private closed = false;
 
   static fromDom = fromDom(() => new Channel());
   static fromEmitter = fromEmitter(() => new Channel());
 
-  constructor(pushLimit = 0, pullLimit = 0) {
-    this.pushBuffer = new LinkedQueue(pushLimit);
-    this.pullBuffer = new LinkedQueue(pullLimit);
+  constructor(
+    /** Limit (bounds) after which the oldest buffered value is dropped. */
+    limit = 0,
+  ) {
+    this.pushBuffer = new LinkedQueue(limit);
+    this.pullBuffer = new LinkedQueue(limit);
   }
 
   /**
-   * Pull a promise of the next [[Result]].
+   * Pull a promise of the next result.
    */
-  next(): Promise<Result<A>> {
+  next(): Promise<IteratorResult<A>> {
     if (this.closed) {
       return Promise.resolve(doneResult);
     }
     if (this.pushBuffer.length === 0) {
-      const defer = new Deferred<Result<A>>();
+      const defer = new Deferred<IteratorResult<A>>();
       // Buffer the pull to be resolved later
       this.pullBuffer.enqueue(defer);
       // Return the buffered promise that will be resolved and dequeued when a value is pushed
@@ -62,13 +66,13 @@ export default class Channel<A> implements PushAdapter<A> {
   }
 
   /**
-   * Push the next [[Result]] value.
+   * Push the next result value.
    *
-   * @param value
-   * @param done If true, closes the balancer when this result is resolved
+   * @param value - Result
+   * @param done - If true, closes the balancer when this result is resolved
    * @throws Throws if the balancer is already closed
    */
-  push(value: A, done = false): Promise<Result<A>> {
+  push(value: A, done = false): Promise<IteratorResult<A>> {
     if (this.closed) {
       return Promise.resolve(doneResult);
     }
@@ -79,28 +83,29 @@ export default class Channel<A> implements PushAdapter<A> {
     if (this.pullBuffer.length > 0) {
       return this.pullBuffer.dequeue().resolve(result);
     }
-    const defer = new Deferred<Result<A>>();
+    const defer = new Deferred<IteratorResult<A>>();
     this.pushBuffer.enqueue({ result, defer });
     return defer.promise;
   }
 
   /**
-   * Returns itself, since [[Balancer]] already implements the iterator protocol.
+   * Returns itself, since {@link Channel} already implements the iterator protocol.
    */
   [Symbol.asyncIterator]() {
     return this;
   }
 
   /**
-   * Closes the balancer; clears the queues and makes [[Balancer.next]] only
-   * return [[closedResult]].
+   * Closes the balancer; clears the queues and makes {@link Channel#next} only
+   * return `doneResult`.
    *
-   * @param value The result value to be returned
+   * @param value - The result value to be returned
    */
-  async return(value?: A): Promise<Result<A>> {
+  async return(value?: A): Promise<IteratorResult<A>> {
     this.close();
     return {
       done: true,
+      // TODO: fix assertion
       // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
       value: value!, // asserting as non-undefined because the TS lib types are incorrect
     };
@@ -119,9 +124,9 @@ export default class Channel<A> implements PushAdapter<A> {
   }
 
   /**
-   * Convert [[Balancer]] to a generic async iterable iterator to hide implementation details.
+   * Convert {@link Channel} to a generic async iterable iterator to hide implementation details.
    *
-   * @param onReturn Optional callback for when the iterator is closed with [[Balancer.return]]
+   * @param onReturn - Optional callback for when the iterator is closed with {@link Channel#return}
    * @throws Throws if called when closed
    */
   wrap(onReturn?: () => void): WrappedBalancer<A> {

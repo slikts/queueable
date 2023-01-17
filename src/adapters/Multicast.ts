@@ -20,7 +20,7 @@ export default class Multicast<A> implements AsyncIterable<A> {
    * Pushes a value to all registered receivers.
    */
   push(value: A): this {
-    this.receivers.forEach(balancer => balancer.push(value));
+    this.receivers.forEach((balancer) => balancer.push(value));
     return this;
   }
 

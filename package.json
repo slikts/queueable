@@ -31,13 +31,14 @@
   },
   "license": "MIT",
   "engines": {
-    "node": ">=6.0.0"
+    "node": ">=16"
   },
   "scripts": {
     "lint:eslint": "eslint .",
     "lint:prettier": "prettier --check .",
     "prebuild": "rimraf dist",
     "build": "microbundle --external none",
+    "docs": "typedoc src/index.ts",
     "dev": "microbundle watch",
     "test": "jest",
     "test:watch": "jest --watch --runInBand --verbose false",
@@ -70,6 +71,7 @@
     "cross-env": "^7.0.3",
     "eslint": "^8.32.0",
     "eslint-plugin-jest": "^27.2.1",
+    "eslint-plugin-tsdoc": "^0.2.17",
     "husky": "^8.0.3",
     "jest": "^29.3.1",
     "lint-staged": "^13.1.0",

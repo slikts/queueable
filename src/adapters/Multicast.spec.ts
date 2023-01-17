@@ -1,4 +1,4 @@
-import Multicast from '../src/adapters/Multicast';
+import Multicast from './Multicast';
 
 describe('Multicast', () => {
   it('constructs', () => {

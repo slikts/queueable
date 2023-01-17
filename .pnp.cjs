@@ -46,6 +46,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["cross-env", "npm:7.0.3"],\
             ["eslint", "npm:8.32.0"],\
             ["eslint-plugin-jest", "virtual:051cb104c22b8a4e0fc1217ab67eb4294be6d1dbe0b9454983ac4f4e7296fc05a95620cedb4ff05520a1326bf702fd18789c1361837686e80807f22a213844f2#npm:27.2.1"],\
+            ["eslint-plugin-tsdoc", "npm:0.2.17"],\
             ["fast-list", "npm:1.0.3"],\
             ["husky", "npm:8.0.3"],\
             ["jest", "virtual:051cb104c22b8a4e0fc1217ab67eb4294be6d1dbe0b9454983ac4f4e7296fc05a95620cedb4ff05520a1326bf702fd18789c1361837686e80807f22a213844f2#npm:29.3.1"],\
@@ -4400,6 +4401,28 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD"\
         }]\
       ]],\
+      ["@microsoft/tsdoc", [\
+        ["npm:0.14.2", {\
+          "packageLocation": "./.yarn/cache/@microsoft-tsdoc-npm-0.14.2-9988282153-b167c89e91.zip/node_modules/@microsoft/tsdoc/",\
+          "packageDependencies": [\
+            ["@microsoft/tsdoc", "npm:0.14.2"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["@microsoft/tsdoc-config", [\
+        ["npm:0.16.2", {\
+          "packageLocation": "./.yarn/cache/@microsoft-tsdoc-config-npm-0.16.2-30fd115d09-12b0d70315.zip/node_modules/@microsoft/tsdoc-config/",\
+          "packageDependencies": [\
+            ["@microsoft/tsdoc-config", "npm:0.16.2"],\
+            ["@microsoft/tsdoc", "npm:0.14.2"],\
+            ["ajv", "npm:6.12.6"],\
+            ["jju", "npm:1.4.0"],\
+            ["resolve", "patch:resolve@npm%3A1.19.0#~builtin<compat/resolve>::version=1.19.0&hash=c3c19d"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
       ["@nodelib/fs.scandir", [\
         ["npm:2.1.5", {\
           "packageLocation": "./.yarn/cache/@nodelib-fs.scandir-npm-2.1.5-89c67370dd-a970d595bd.zip/node_modules/@nodelib/fs.scandir/",\
@@ -7308,6 +7331,17 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD"\
         }]\
       ]],\
+      ["eslint-plugin-tsdoc", [\
+        ["npm:0.2.17", {\
+          "packageLocation": "./.yarn/cache/eslint-plugin-tsdoc-npm-0.2.17-a48e3f007d-d143a5f1c5.zip/node_modules/eslint-plugin-tsdoc/",\
+          "packageDependencies": [\
+            ["eslint-plugin-tsdoc", "npm:0.2.17"],\
+            ["@microsoft/tsdoc", "npm:0.14.2"],\
+            ["@microsoft/tsdoc-config", "npm:0.16.2"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
       ["eslint-scope", [\
         ["npm:5.1.1", {\
           "packageLocation": "./.yarn/cache/eslint-scope-npm-5.1.1-71fe59b18a-47e4b6a3f0.zip/node_modules/eslint-scope/",\
@@ -9465,6 +9499,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["jest-util", "npm:29.3.1"],\
             ["merge-stream", "npm:2.0.0"],\
             ["supports-color", "npm:8.1.1"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["jju", [\
+        ["npm:1.4.0", {\
+          "packageLocation": "./.yarn/cache/jju-npm-1.4.0-670678eaa3-3790481bd2.zip/node_modules/jju/",\
+          "packageDependencies": [\
+            ["jju", "npm:1.4.0"]\
           ],\
           "linkType": "HARD"\
         }]\
@@ -11874,6 +11917,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["cross-env", "npm:7.0.3"],\
             ["eslint", "npm:8.32.0"],\
             ["eslint-plugin-jest", "virtual:051cb104c22b8a4e0fc1217ab67eb4294be6d1dbe0b9454983ac4f4e7296fc05a95620cedb4ff05520a1326bf702fd18789c1361837686e80807f22a213844f2#npm:27.2.1"],\
+            ["eslint-plugin-tsdoc", "npm:0.2.17"],\
             ["fast-list", "npm:1.0.3"],\
             ["husky", "npm:8.0.3"],\
             ["jest", "virtual:051cb104c22b8a4e0fc1217ab67eb4294be6d1dbe0b9454983ac4f4e7296fc05a95620cedb4ff05520a1326bf702fd18789c1361837686e80807f22a213844f2#npm:29.3.1"],\
@@ -12105,6 +12149,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         }]\
       ]],\
       ["resolve", [\
+        ["patch:resolve@npm%3A1.19.0#~builtin<compat/resolve>::version=1.19.0&hash=c3c19d", {\
+          "packageLocation": "./.yarn/cache/resolve-patch-b488a667f9-2443b94d34.zip/node_modules/resolve/",\
+          "packageDependencies": [\
+            ["resolve", "patch:resolve@npm%3A1.19.0#~builtin<compat/resolve>::version=1.19.0&hash=c3c19d"],\
+            ["is-core-module", "npm:2.11.0"],\
+            ["path-parse", "npm:1.0.7"]\
+          ],\
+          "linkType": "HARD"\
+        }],\
         ["patch:resolve@npm%3A1.22.1#~builtin<compat/resolve>::version=1.22.1&hash=c3c19d", {\
           "packageLocation": "./.yarn/cache/resolve-patch-0c52e0e4f7-5656f4d0be.zip/node_modules/resolve/",\
           "packageDependencies": [\

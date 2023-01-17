@@ -4,6 +4,10 @@ module.exports = {
     {
       files: ['src/**/*.ts'],
       extends: ['eslint:recommended', 'plugin:@typescript-eslint/recommended'],
+      plugins: ['eslint-plugin-tsdoc'],
+      rules: {
+        'tsdoc/syntax': 'warn',
+      },
     },
     {
       files: ['src/**/*.spec.ts'],
