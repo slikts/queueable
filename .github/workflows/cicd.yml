@@ -1,8 +1,5 @@
 name: CI/CD
-on:
-  pull_request:
-    branches:
-      - master
+on: [pull_request]
 
 jobs:
   test:
@@ -14,6 +11,11 @@ jobs:
       - run: yarn install --immutable
 
       - run: yarn test --coverage
+
+      - name: Coveralls
+        uses: coverallsapp/github-action@master
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
 
   lint:
     name: Lint
