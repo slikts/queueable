@@ -5,4 +5,4 @@ export { default as Deferred } from './Deferred';
 export { default as LinkedQueue } from './LinkedQueue';
 export { default as fromDom, Target, Listener, EventMap } from './fromDom';
 export { default as fromEmitter } from './fromEmitter';
-export { PushAdapter } from './common'
+export { PushAdapter } from './common';
