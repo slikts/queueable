@@ -59,7 +59,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["microbundle", "npm:0.15.1"],\
             ["pinst", "npm:3.0.0"],\
             ["prettier", "npm:2.8.3"],\
-            ["rimraf", "npm:4.1.0"],\
+            ["rimraf", "npm:4.1.1"],\
             ["semantic-release", "npm:20.0.2"],\
             ["typedoc", "virtual:051cb104c22b8a4e0fc1217ab67eb4294be6d1dbe0b9454983ac4f4e7296fc05a95620cedb4ff05520a1326bf702fd18789c1361837686e80807f22a213844f2#npm:0.23.24"],\
             ["typescript", "patch:typescript@npm%3A4.9.4#~builtin<compat/typescript>::version=4.9.4&hash=ad5954"]\
@@ -14110,7 +14110,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["microbundle", "npm:0.15.1"],\
             ["pinst", "npm:3.0.0"],\
             ["prettier", "npm:2.8.3"],\
-            ["rimraf", "npm:4.1.0"],\
+            ["rimraf", "npm:4.1.1"],\
             ["semantic-release", "npm:20.0.2"],\
             ["typedoc", "virtual:051cb104c22b8a4e0fc1217ab67eb4294be6d1dbe0b9454983ac4f4e7296fc05a95620cedb4ff05520a1326bf702fd18789c1361837686e80807f22a213844f2#npm:0.23.24"],\
             ["typescript", "patch:typescript@npm%3A4.9.4#~builtin<compat/typescript>::version=4.9.4&hash=ad5954"]\
@@ -14578,10 +14578,10 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           ],\
           "linkType": "HARD"\
         }],\
-        ["npm:4.1.0", {\
-          "packageLocation": "./.yarn/cache/rimraf-npm-4.1.0-6bb59b8975-da48498027.zip/node_modules/rimraf/",\
+        ["npm:4.1.1", {\
+          "packageLocation": "./.yarn/cache/rimraf-npm-4.1.1-dd8c4d8514-f52d46f59c.zip/node_modules/rimraf/",\
           "packageDependencies": [\
-            ["rimraf", "npm:4.1.0"]\
+            ["rimraf", "npm:4.1.1"]\
           ],\
           "linkType": "HARD"\
         }]\
