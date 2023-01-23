@@ -41,7 +41,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@types/babel__preset-env", "npm:7.9.2"],\
             ["@types/eslint", "npm:8.4.10"],\
             ["@types/fast-list", "npm:1.0.0"],\
-            ["@types/jest", "npm:29.2.5"],\
+            ["@types/jest", "npm:29.2.6"],\
             ["@types/node", "npm:18.11.18"],\
             ["@types/semantic-release", "npm:20.0.0"],\
             ["@typescript-eslint/eslint-plugin", "virtual:051cb104c22b8a4e0fc1217ab67eb4294be6d1dbe0b9454983ac4f4e7296fc05a95620cedb4ff05520a1326bf702fd18789c1361837686e80807f22a213844f2#npm:5.48.2"],\
@@ -5532,10 +5532,10 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         }]\
       ]],\
       ["@types/jest", [\
-        ["npm:29.2.5", {\
-          "packageLocation": "./.yarn/cache/@types-jest-npm-29.2.5-d5d1737a1f-d668470f00.zip/node_modules/@types/jest/",\
+        ["npm:29.2.6", {\
+          "packageLocation": "./.yarn/cache/@types-jest-npm-29.2.6-6feedd29f5-90190ac830.zip/node_modules/@types/jest/",\
           "packageDependencies": [\
-            ["@types/jest", "npm:29.2.5"],\
+            ["@types/jest", "npm:29.2.6"],\
             ["expect", "npm:29.3.1"],\
             ["pretty-format", "npm:29.3.1"]\
           ],\
@@ -8364,7 +8364,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageDependencies": [\
             ["eslint-plugin-jest", "virtual:051cb104c22b8a4e0fc1217ab67eb4294be6d1dbe0b9454983ac4f4e7296fc05a95620cedb4ff05520a1326bf702fd18789c1361837686e80807f22a213844f2#npm:27.2.1"],\
             ["@types/eslint", "npm:8.4.10"],\
-            ["@types/jest", "npm:29.2.5"],\
+            ["@types/jest", "npm:29.2.6"],\
             ["@types/typescript-eslint__eslint-plugin", null],\
             ["@typescript-eslint/eslint-plugin", "virtual:051cb104c22b8a4e0fc1217ab67eb4294be6d1dbe0b9454983ac4f4e7296fc05a95620cedb4ff05520a1326bf702fd18789c1361837686e80807f22a213844f2#npm:5.48.2"],\
             ["@typescript-eslint/utils", "virtual:787ec5759b7b336fce76603f3874af2bb1dcd9b3fcdea7526af72abe73692681c6e02a961e6e01ed3ae7fd9274ff3c1eabbe1c0026adfe2b30fc34c2b6b2b9bc#npm:5.48.1"],\
@@ -14092,7 +14092,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@types/babel__preset-env", "npm:7.9.2"],\
             ["@types/eslint", "npm:8.4.10"],\
             ["@types/fast-list", "npm:1.0.0"],\
-            ["@types/jest", "npm:29.2.5"],\
+            ["@types/jest", "npm:29.2.6"],\
             ["@types/node", "npm:18.11.18"],\
             ["@types/semantic-release", "npm:20.0.0"],\
             ["@typescript-eslint/eslint-plugin", "virtual:051cb104c22b8a4e0fc1217ab67eb4294be6d1dbe0b9454983ac4f4e7296fc05a95620cedb4ff05520a1326bf702fd18789c1361837686e80807f22a213844f2#npm:5.48.2"],\
