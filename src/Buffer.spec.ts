@@ -1,13 +1,13 @@
-import LinkedQueue from './LinkedQueue';
+import Buffer from './Buffer';
 
-describe('LinkedQueue', () => {
+describe('Buffer', () => {
   it('constructs', () => {
-    const q = new LinkedQueue();
-    expect(q).toBeInstanceOf(LinkedQueue);
+    const q = new Buffer();
+    expect(q).toBeInstanceOf(Buffer);
   });
 
   it('circulates with a limit of one', () => {
-    const q = new LinkedQueue(1);
+    const q = new Buffer(1);
     q.enqueue(1);
     q.enqueue(2);
     q.enqueue(3);
@@ -18,7 +18,7 @@ describe('LinkedQueue', () => {
   });
 
   it('circulates with a limit of two', () => {
-    const q = new LinkedQueue(2);
+    const q = new Buffer(2);
     q.enqueue(1);
     q.enqueue(2);
     q.enqueue(3);
@@ -32,12 +32,12 @@ describe('LinkedQueue', () => {
   });
 
   it('empty throws', () => {
-    const q = new LinkedQueue();
+    const q = new Buffer();
     expect(() => q.dequeue()).toThrow();
   });
 
   it(`doesn't circulate without a limit`, () => {
-    const q = new LinkedQueue();
+    const q = new Buffer();
     q.enqueue(1);
     q.enqueue(2);
     q.enqueue(3);
@@ -48,7 +48,7 @@ describe('LinkedQueue', () => {
   });
 
   it(`clears`, () => {
-    const q = new LinkedQueue();
+    const q = new Buffer();
     q.enqueue(1);
     q.enqueue(2);
     q.clear();
@@ -57,7 +57,7 @@ describe('LinkedQueue', () => {
   });
 
   it(`foreaches`, () => {
-    const q = new LinkedQueue();
+    const q = new Buffer();
     q.enqueue(1);
     q.enqueue(2);
     let n = 0;
@@ -66,7 +66,7 @@ describe('LinkedQueue', () => {
   });
 
   it('iterates', () => {
-    const q = new LinkedQueue();
+    const q = new Buffer();
     q.enqueue(1);
     q.enqueue(2);
     expect([...q]).toEqual([1, 2]);

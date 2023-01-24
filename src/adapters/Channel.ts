@@ -1,5 +1,5 @@
 import Deferred from '../Deferred';
-import LinkedQueue from '../LinkedQueue';
+import Buffer from '../Buffer';
 import { PushAdapter, doneResult } from '../common';
 import fromDom from '../fromDom';
 import fromEmitter from '../fromEmitter';
@@ -26,9 +26,9 @@ export interface Unpushed<A> {
  */
 export default class Channel<A> implements PushAdapter<A> {
   /** Pushed results waiting for pulls to resolve */
-  readonly pushBuffer: LinkedQueue<Unpushed<A>>;
+  readonly pushBuffer: Buffer<Unpushed<A>>;
   /** Unresolved pulls waiting for results to be pushed */
-  readonly pullBuffer: LinkedQueue<Deferred<IteratorResult<A>>>;
+  readonly pullBuffer: Buffer<Deferred<IteratorResult<A>>>;
   /** Determines whether new values can be pushed or pulled */
   private closed = false;
 
@@ -39,8 +39,8 @@ export default class Channel<A> implements PushAdapter<A> {
     /** Limit (bounds) after which the oldest buffered value is dropped. */
     limit = Infinity,
   ) {
-    this.pushBuffer = new LinkedQueue(limit);
-    this.pullBuffer = new LinkedQueue(limit);
+    this.pushBuffer = new Buffer(limit);
+    this.pullBuffer = new Buffer(limit);
   }
 
   /**

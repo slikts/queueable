@@ -2,9 +2,9 @@ import fastList from 'fast-list';
 
 /**
  * First-in, first-out (FIFO) buffer (queue) with default item values.
- * Optionally circular based on {@link LinkedQueue.limit}.
+ * Optionally circular based on {@link Buffer.limit}.
  */
-export default class LinkedQueue<A> {
+export default class Buffer<A> {
   #list: fastList.List<A>;
   length = 0;
 
