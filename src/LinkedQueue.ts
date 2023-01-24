@@ -5,20 +5,20 @@ import fastList from 'fast-list';
  * Optionally circular based on {@link LinkedQueue.limit}.
  */
 export default class LinkedQueue<A> {
-  private list: fastList.List<A>;
+  #list: fastList.List<A>;
   length = 0;
 
   constructor(
     /** The length after which the queue becomes circular, i.e., discards oldest items. */
-    readonly limit = 0,
+    readonly limit = Infinity,
   ) {
-    this.list = new fastList();
+    this.#list = new fastList();
   }
   /**
    * Add an item to the end of the queue.
    */
   enqueue(value: A): void {
-    const { list } = this;
+    const list = this.#list;
     if (list.length === this.limit) {
       // Discard oldest item
       list.shift();
@@ -36,15 +36,15 @@ export default class LinkedQueue<A> {
     }
     this.length -= 1;
     // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-    return this.list.shift()!;
+    return this.#list.shift()!;
   }
 
   clear(): void {
     this.length = 0;
-    this.list.drop();
+    this.#list.drop();
   }
 
   forEach(f: (value: A) => void): void {
-    this.list.forEach(f);
+    this.#list.forEach(f);
   }
 }

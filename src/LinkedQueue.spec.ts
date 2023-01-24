@@ -14,6 +14,7 @@ describe('LinkedQueue', () => {
     expect(q.length).toBe(1);
     expect(q.dequeue()).toBe(3);
     expect(q.length).toBe(0);
+    expect(() => q.dequeue()).toThrow();
   });
 
   it('circulates with a limit of two', () => {
@@ -27,6 +28,7 @@ describe('LinkedQueue', () => {
     expect(q.length).toBe(1);
     expect(q.dequeue()).toBe(4);
     expect(q.length).toBe(0);
+    expect(() => q.dequeue()).toThrow();
   });
 
   it('empty throws', () => {
@@ -40,6 +42,9 @@ describe('LinkedQueue', () => {
     q.enqueue(2);
     q.enqueue(3);
     expect(q.dequeue()).toBe(1);
+    expect(q.dequeue()).toBe(2);
+    expect(q.dequeue()).toBe(3);
+    expect(() => q.dequeue()).toThrow();
   });
 
   it(`clears`, () => {
