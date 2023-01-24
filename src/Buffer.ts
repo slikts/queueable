@@ -65,4 +65,12 @@ export default class Buffer<A> {
       },
     };
   }
+
+  static from<A>(iterable: Iterable<A>, limit: number) {
+    const buffer = new Buffer<A>(limit);
+    for (const value of iterable) {
+      buffer.enqueue(value);
+    }
+    return buffer;
+  }
 }
