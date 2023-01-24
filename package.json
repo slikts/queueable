@@ -47,11 +47,6 @@
     "prepack": "pinst --disable",
     "postpack": "pinst --enable"
   },
-  "prettier": {
-    "semi": true,
-    "singleQuote": true,
-    "trailingComma": "all"
-  },
   "devDependencies": {
     "@babel/core": "^7.20.12",
     "@babel/preset-env": "^7.20.2",

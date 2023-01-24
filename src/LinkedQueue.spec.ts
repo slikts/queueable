@@ -6,14 +6,26 @@ describe('LinkedQueue', () => {
     expect(q).toBeInstanceOf(LinkedQueue);
   });
 
-  it('circulates with a limit', () => {
+  it('circulates with a limit of one', () => {
+    const q = new LinkedQueue(1);
+    q.enqueue(1);
+    q.enqueue(2);
+    q.enqueue(3);
+    expect(q.length).toBe(1);
+    expect(q.dequeue()).toBe(3);
+    expect(q.length).toBe(0);
+  });
+
+  it('circulates with a limit of two', () => {
     const q = new LinkedQueue(2);
     q.enqueue(1);
     q.enqueue(2);
     q.enqueue(3);
-    expect(q.dequeue()).toBe(2);
+    q.enqueue(4);
+    expect(q.length).toBe(2);
     expect(q.dequeue()).toBe(3);
-    expect(q.dequeue()).toBe(undefined);
+    expect(q.length).toBe(1);
+    expect(q.dequeue()).toBe(4);
     expect(q.length).toBe(0);
   });
 

@@ -19,11 +19,12 @@ export default class LinkedQueue<A> {
    */
   enqueue(value: A): void {
     const { list } = this;
-    if (this.limit > 0 && list.length === this.limit) {
+    if (list.length === this.limit) {
       // Discard oldest item
       list.shift();
+    } else {
+      this.length += 1;
     }
-    this.length += 1;
     list.push(value);
   }
   /**
