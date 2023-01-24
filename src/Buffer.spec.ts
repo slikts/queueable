@@ -69,6 +69,8 @@ describe('Buffer', () => {
     const q = new Buffer();
     q.enqueue(1);
     q.enqueue(2);
+    const it = q[Symbol.iterator]();
+    expect(it[Symbol.iterator]()).toBe(it[Symbol.iterator]());
     expect([...q]).toEqual([1, 2]);
   });
 });
