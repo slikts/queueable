@@ -9,6 +9,19 @@ describe('Channel', () => {
     expect(new Channel()).toBeInstanceOf(Channel);
   });
 
+  it('pushes', async () => {
+    const c = new Channel<number>();
+    c.push(1);
+    expect(await c.next()).toEqual({ done: false, value: 1 });
+  });
+
+  it('pulls', async () => {
+    const c = new Channel<number>();
+    const p = c.next();
+    c.push(1);
+    expect(await p).toEqual({ done: false, value: 1 });
+  });
+
   it('can balance pull after push', async () => {
     const c = new Channel<number>();
     const ns = [1, 2, 3];

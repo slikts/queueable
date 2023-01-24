@@ -37,7 +37,7 @@ export default class Channel<A> implements PushAdapter<A> {
 
   constructor(
     /** Limit (bounds) after which the oldest buffered value is dropped. */
-    limit = 0,
+    limit = Infinity,
   ) {
     this.pushBuffer = new LinkedQueue(limit);
     this.pullBuffer = new LinkedQueue(limit);
