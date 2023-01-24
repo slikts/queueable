@@ -47,4 +47,22 @@ export default class LinkedQueue<A> {
   forEach(f: (value: A) => void): void {
     this.#list.forEach(f);
   }
+
+  [Symbol.iterator]() {
+    return {
+      next: () => {
+        return this.length > 0
+          ? {
+              value: this.dequeue(),
+              done: false,
+            }
+          : {
+              done: true,
+            };
+      },
+      [Symbol.iterator]() {
+        return this;
+      },
+    };
+  }
 }

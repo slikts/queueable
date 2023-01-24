@@ -64,4 +64,11 @@ describe('LinkedQueue', () => {
     q.forEach(() => void (n += 1));
     expect(n).toBe(2);
   });
+
+  it('iterates', () => {
+    const q = new LinkedQueue();
+    q.enqueue(1);
+    q.enqueue(2);
+    expect([...q]).toEqual([1, 2]);
+  });
 });
