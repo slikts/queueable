@@ -75,7 +75,7 @@ describe('Buffer', () => {
   });
 
   it('constructs from an iterable', () => {
-    const q = Buffer.from([1, 2, 3], 2);
+    const q: Iterable<number> = Buffer.from([1, 2, 3], 2);
     expect([...q]).toEqual([2, 3]);
   });
 

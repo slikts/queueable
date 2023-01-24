@@ -61,10 +61,11 @@ export default class Buffer<A> {
         return this.length > 0
           ? {
               value: this.dequeue(),
-              done: false,
+              done: false as const,
             }
           : {
-              done: true,
+              done: true as const,
+              value: undefined,
             };
       },
       [Symbol.iterator]() {
