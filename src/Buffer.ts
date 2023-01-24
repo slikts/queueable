@@ -52,6 +52,7 @@ export default class Buffer<A> {
 
   reverse() {
     this.#reversed = true;
+    return this;
   }
 
   [Symbol.iterator]() {

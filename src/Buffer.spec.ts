@@ -78,4 +78,12 @@ describe('Buffer', () => {
     const q = Buffer.from([1, 2, 3], 2);
     expect([...q]).toEqual([2, 3]);
   });
+
+  it('reverses', () => {
+    const q = new Buffer();
+    q.enqueue(1);
+    q.enqueue(2);
+    q.enqueue(3);
+    expect([...q.reverse()]).toEqual([3, 2, 1]);
+  });
 });
