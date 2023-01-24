@@ -3,19 +3,21 @@ import fastList from 'fast-list';
 /**
  * First-in, first-out (FIFO) buffer (queue) with default item values.
  * Optionally circular based on {@link Buffer.limit}.
+ * Can be switched to LIFO with {@link Buffer#reverse}.
  */
 export default class Buffer<A> {
   #list: fastList.List<A>;
+  #reversed = false;
   length = 0;
 
   constructor(
-    /** The length after which the queue becomes circular, i.e., discards oldest items. */
+    /** The length after which the buffer becomes circular, i.e., discards oldest items. */
     readonly limit = Infinity,
   ) {
     this.#list = new fastList();
   }
   /**
-   * Add an item to the end of the queue.
+   * Add an item to the end of the buffer.
    */
   enqueue(value: A): void {
     const list = this.#list;
@@ -28,15 +30,15 @@ export default class Buffer<A> {
     list.push(value);
   }
   /**
-   * Return the oldest item from the queue.
+   * Return the oldest item from the buffer.
    */
   dequeue(): A {
     if (this.length === 0) {
-      throw Error('Queue is empty');
+      throw Error('Buffer is empty');
     }
     this.length -= 1;
     // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-    return this.#list.shift()!;
+    return this.#reversed ? this.#list.pop()! : this.#list.shift()!;
   }
 
   clear(): void {
@@ -46,6 +48,10 @@ export default class Buffer<A> {
 
   forEach(f: (value: A) => void): void {
     this.#list.forEach(f);
+  }
+
+  reverse() {
+    this.#reversed = true;
   }
 
   [Symbol.iterator]() {
