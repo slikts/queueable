@@ -59,7 +59,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["microbundle", "npm:0.15.1"],\
             ["pinst", "npm:3.0.0"],\
             ["prettier", "npm:2.8.3"],\
-            ["rimraf", "npm:4.1.0"],\
+            ["rimraf", "npm:4.4.0"],\
             ["semantic-release", "npm:20.0.2"],\
             ["typedoc", "virtual:051cb104c22b8a4e0fc1217ab67eb4294be6d1dbe0b9454983ac4f4e7296fc05a95620cedb4ff05520a1326bf702fd18789c1361837686e80807f22a213844f2#npm:0.23.24"],\
             ["typescript", "patch:typescript@npm%3A4.9.4#~builtin<compat/typescript>::version=4.9.4&hash=ad5954"]\
@@ -9154,6 +9154,17 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["once", "npm:1.4.0"]\
           ],\
           "linkType": "HARD"\
+        }],\
+        ["npm:9.2.1", {\
+          "packageLocation": "./.yarn/cache/glob-npm-9.2.1-2a4c4d66e0-ef9b1c3249.zip/node_modules/glob/",\
+          "packageDependencies": [\
+            ["glob", "npm:9.2.1"],\
+            ["fs.realpath", "npm:1.0.0"],\
+            ["minimatch", "npm:7.4.2"],\
+            ["minipass", "npm:4.2.5"],\
+            ["path-scurry", "npm:1.6.1"]\
+          ],\
+          "linkType": "HARD"\
         }]\
       ]],\
       ["glob-parent", [\
@@ -11561,6 +11572,13 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["lru-cache", "npm:7.14.1"]\
           ],\
           "linkType": "HARD"\
+        }],\
+        ["npm:7.18.3", {\
+          "packageLocation": "./.yarn/cache/lru-cache-npm-7.18.3-e68be5b11c-e550d77238.zip/node_modules/lru-cache/",\
+          "packageDependencies": [\
+            ["lru-cache", "npm:7.18.3"]\
+          ],\
+          "linkType": "HARD"\
         }]\
       ]],\
       ["lunr", [\
@@ -11888,6 +11906,14 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["brace-expansion", "npm:2.0.1"]\
           ],\
           "linkType": "HARD"\
+        }],\
+        ["npm:7.4.2", {\
+          "packageLocation": "./.yarn/cache/minimatch-npm-7.4.2-da654284bf-9e341b04e6.zip/node_modules/minimatch/",\
+          "packageDependencies": [\
+            ["minimatch", "npm:7.4.2"],\
+            ["brace-expansion", "npm:2.0.1"]\
+          ],\
+          "linkType": "HARD"\
         }]\
       ]],\
       ["minimist", [\
@@ -11925,6 +11951,13 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageDependencies": [\
             ["minipass", "npm:4.0.0"],\
             ["yallist", "npm:4.0.0"]\
+          ],\
+          "linkType": "HARD"\
+        }],\
+        ["npm:4.2.5", {\
+          "packageLocation": "./.yarn/cache/minipass-npm-4.2.5-25860eb433-4f9c19af23.zip/node_modules/minipass/",\
+          "packageDependencies": [\
+            ["minipass", "npm:4.2.5"]\
           ],\
           "linkType": "HARD"\
         }]\
@@ -12944,6 +12977,17 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/path-parse-npm-1.0.7-09564527b7-49abf3d811.zip/node_modules/path-parse/",\
           "packageDependencies": [\
             ["path-parse", "npm:1.0.7"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["path-scurry", [\
+        ["npm:1.6.1", {\
+          "packageLocation": "./.yarn/cache/path-scurry-npm-1.6.1-b7f913ddad-7ba57e823c.zip/node_modules/path-scurry/",\
+          "packageDependencies": [\
+            ["path-scurry", "npm:1.6.1"],\
+            ["lru-cache", "npm:7.18.3"],\
+            ["minipass", "npm:4.2.5"]\
           ],\
           "linkType": "HARD"\
         }]\
@@ -14110,7 +14154,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["microbundle", "npm:0.15.1"],\
             ["pinst", "npm:3.0.0"],\
             ["prettier", "npm:2.8.3"],\
-            ["rimraf", "npm:4.1.0"],\
+            ["rimraf", "npm:4.4.0"],\
             ["semantic-release", "npm:20.0.2"],\
             ["typedoc", "virtual:051cb104c22b8a4e0fc1217ab67eb4294be6d1dbe0b9454983ac4f4e7296fc05a95620cedb4ff05520a1326bf702fd18789c1361837686e80807f22a213844f2#npm:0.23.24"],\
             ["typescript", "patch:typescript@npm%3A4.9.4#~builtin<compat/typescript>::version=4.9.4&hash=ad5954"]\
@@ -14578,10 +14622,11 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           ],\
           "linkType": "HARD"\
         }],\
-        ["npm:4.1.0", {\
-          "packageLocation": "./.yarn/cache/rimraf-npm-4.1.0-6bb59b8975-da48498027.zip/node_modules/rimraf/",\
+        ["npm:4.4.0", {\
+          "packageLocation": "./.yarn/cache/rimraf-npm-4.4.0-7bda7f3851-0cedaf9d13.zip/node_modules/rimraf/",\
           "packageDependencies": [\
-            ["rimraf", "npm:4.1.0"]\
+            ["rimraf", "npm:4.4.0"],\
+            ["glob", "npm:9.2.1"]\
           ],\
           "linkType": "HARD"\
         }]\
