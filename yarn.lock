@@ -6195,7 +6195,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"glob@npm:^9.3.0, glob@npm:^9.3.1":
+"glob@npm:^9.2.0, glob@npm:^9.3.0, glob@npm:^9.3.1":
   version: 9.3.4
   resolution: "glob@npm:9.3.4"
   dependencies:
@@ -11303,11 +11303,13 @@ __metadata:
   linkType: hard
 
 "rimraf@npm:^4.1.0":
-  version: 4.1.0
-  resolution: "rimraf@npm:4.1.0"
+  version: 4.4.1
+  resolution: "rimraf@npm:4.4.1"
+  dependencies:
+    glob: ^9.2.0
   bin:
     rimraf: dist/cjs/src/bin.js
-  checksum: da4849802779a8c8cbe3aa1fbdf817b1ec41f7e95fb82074de3129e0030cd4e6e1f512a732344f0062c1cea59569c8113c78c3f50267cc469e8e9bfbe7622cb5
+  checksum: b786adc02651e2e24bbedb04bbdea80652fc9612632931ff2d9f898c5e4708fe30956186597373c568bd5230a4dc2fadfc816ccacba8a1daded3a006a6b74f1a
   languageName: node
   linkType: hard
 
