@@ -43,7 +43,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@types/fast-list", "npm:1.0.0"],\
             ["@types/jest", "npm:29.2.5"],\
             ["@types/node", "npm:18.15.11"],\
-            ["@types/semantic-release", "npm:20.0.0"],\
+            ["@types/semantic-release", "npm:20.0.1"],\
             ["@typescript-eslint/eslint-plugin", "virtual:051cb104c22b8a4e0fc1217ab67eb4294be6d1dbe0b9454983ac4f4e7296fc05a95620cedb4ff05520a1326bf702fd18789c1361837686e80807f22a213844f2#npm:5.57.1"],\
             ["@typescript-eslint/parser", "virtual:051cb104c22b8a4e0fc1217ab67eb4294be6d1dbe0b9454983ac4f4e7296fc05a95620cedb4ff05520a1326bf702fd18789c1361837686e80807f22a213844f2#npm:5.57.0"],\
             ["babel-jest", "virtual:051cb104c22b8a4e0fc1217ab67eb4294be6d1dbe0b9454983ac4f4e7296fc05a95620cedb4ff05520a1326bf702fd18789c1361837686e80807f22a213844f2#npm:29.3.1"],\
@@ -5298,7 +5298,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/__virtual__/@semantic-release-commit-analyzer-virtual-580b2cc4d5/0/cache/@semantic-release-commit-analyzer-npm-9.0.2-6c1ff15dac-f7f759e608.zip/node_modules/@semantic-release/commit-analyzer/",\
           "packageDependencies": [\
             ["@semantic-release/commit-analyzer", "virtual:051cb104c22b8a4e0fc1217ab67eb4294be6d1dbe0b9454983ac4f4e7296fc05a95620cedb4ff05520a1326bf702fd18789c1361837686e80807f22a213844f2#npm:9.0.2"],\
-            ["@types/semantic-release", "npm:20.0.0"],\
+            ["@types/semantic-release", "npm:20.0.1"],\
             ["conventional-changelog-angular", "npm:5.0.13"],\
             ["conventional-commits-filter", "npm:2.0.7"],\
             ["conventional-commits-parser", "npm:3.2.4"],\
@@ -5358,7 +5358,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@semantic-release/github", "virtual:051cb104c22b8a4e0fc1217ab67eb4294be6d1dbe0b9454983ac4f4e7296fc05a95620cedb4ff05520a1326bf702fd18789c1361837686e80807f22a213844f2#npm:8.0.7"],\
             ["@octokit/rest", "npm:19.0.5"],\
             ["@semantic-release/error", "npm:3.0.0"],\
-            ["@types/semantic-release", "npm:20.0.0"],\
+            ["@types/semantic-release", "npm:20.0.1"],\
             ["aggregate-error", "npm:3.1.0"],\
             ["bottleneck", "npm:2.19.5"],\
             ["debug", "virtual:68fa1c73c8a72515d25eaa47c88fa7c560bf130de4f3364a9b6d609d13e1829a816ec0c736f56d3fcc20f15ad0950c234159dca04d6c003fcb753985d78df618#npm:4.3.4"],\
@@ -5431,7 +5431,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageDependencies": [\
             ["@semantic-release/npm", "virtual:051cb104c22b8a4e0fc1217ab67eb4294be6d1dbe0b9454983ac4f4e7296fc05a95620cedb4ff05520a1326bf702fd18789c1361837686e80807f22a213844f2#npm:9.0.2"],\
             ["@semantic-release/error", "npm:3.0.0"],\
-            ["@types/semantic-release", "npm:20.0.0"],\
+            ["@types/semantic-release", "npm:20.0.1"],\
             ["aggregate-error", "npm:3.1.0"],\
             ["execa", "npm:5.1.1"],\
             ["fs-extra", "npm:11.1.0"],\
@@ -5491,7 +5491,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/__virtual__/@semantic-release-release-notes-generator-virtual-9dc5ddb8b1/0/cache/@semantic-release-release-notes-generator-npm-10.0.3-91b5c0e396-0237e7e6eb.zip/node_modules/@semantic-release/release-notes-generator/",\
           "packageDependencies": [\
             ["@semantic-release/release-notes-generator", "virtual:051cb104c22b8a4e0fc1217ab67eb4294be6d1dbe0b9454983ac4f4e7296fc05a95620cedb4ff05520a1326bf702fd18789c1361837686e80807f22a213844f2#npm:10.0.3"],\
-            ["@types/semantic-release", "npm:20.0.0"],\
+            ["@types/semantic-release", "npm:20.0.1"],\
             ["conventional-changelog-angular", "npm:5.0.13"],\
             ["conventional-changelog-writer", "npm:5.0.1"],\
             ["conventional-commits-filter", "npm:2.0.7"],\
@@ -5863,10 +5863,10 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         }]\
       ]],\
       ["@types/semantic-release", [\
-        ["npm:20.0.0", {\
-          "packageLocation": "./.yarn/cache/@types-semantic-release-npm-20.0.0-d5f43aa75d-211f8ad233.zip/node_modules/@types/semantic-release/",\
+        ["npm:20.0.1", {\
+          "packageLocation": "./.yarn/cache/@types-semantic-release-npm-20.0.1-eba2368b6a-40167b7a51.zip/node_modules/@types/semantic-release/",\
           "packageDependencies": [\
-            ["@types/semantic-release", "npm:20.0.0"],\
+            ["@types/semantic-release", "npm:20.0.1"],\
             ["@types/node", "npm:18.15.11"]\
           ],\
           "linkType": "HARD"\
@@ -15087,7 +15087,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@types/fast-list", "npm:1.0.0"],\
             ["@types/jest", "npm:29.2.5"],\
             ["@types/node", "npm:18.15.11"],\
-            ["@types/semantic-release", "npm:20.0.0"],\
+            ["@types/semantic-release", "npm:20.0.1"],\
             ["@typescript-eslint/eslint-plugin", "virtual:051cb104c22b8a4e0fc1217ab67eb4294be6d1dbe0b9454983ac4f4e7296fc05a95620cedb4ff05520a1326bf702fd18789c1361837686e80807f22a213844f2#npm:5.57.1"],\
             ["@typescript-eslint/parser", "virtual:051cb104c22b8a4e0fc1217ab67eb4294be6d1dbe0b9454983ac4f4e7296fc05a95620cedb4ff05520a1326bf702fd18789c1361837686e80807f22a213844f2#npm:5.57.0"],\
             ["babel-jest", "virtual:051cb104c22b8a4e0fc1217ab67eb4294be6d1dbe0b9454983ac4f4e7296fc05a95620cedb4ff05520a1326bf702fd18789c1361837686e80807f22a213844f2#npm:29.3.1"],\

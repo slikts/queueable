@@ -3135,11 +3135,11 @@ __metadata:
   linkType: hard
 
 "@types/semantic-release@npm:^20":
-  version: 20.0.0
-  resolution: "@types/semantic-release@npm:20.0.0"
+  version: 20.0.1
+  resolution: "@types/semantic-release@npm:20.0.1"
   dependencies:
     "@types/node": "*"
-  checksum: 211f8ad233b772ae773ccbe8fa847b7c1f1946736423e468f51b27f83839580fe0c1d8712c1574f89bcad4def9cd4c526d8118cf9b7b5ba9435021b4b312afe2
+  checksum: 40167b7a51ca23e0ac5d1625d390d4d652c856312b4c8b1901fd971858d0d0cb10366fc7f329a536884f2b9844b13978d08a5e82ee3429da9a3b2ee27de3a057
   languageName: node
   linkType: hard
 
