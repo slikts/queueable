@@ -59,7 +59,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["microbundle", "npm:0.15.1"],\
             ["pinst", "npm:3.0.0"],\
             ["prettier", "npm:2.8.8"],\
-            ["rimraf", "npm:4.1.0"],\
+            ["rimraf", "npm:5.0.0"],\
             ["semantic-release", "npm:21.0.1"],\
             ["typedoc", "virtual:051cb104c22b8a4e0fc1217ab67eb4294be6d1dbe0b9454983ac4f4e7296fc05a95620cedb4ff05520a1326bf702fd18789c1361837686e80807f22a213844f2#npm:0.23.24"],\
             ["typescript", "patch:typescript@npm%3A4.9.4#~builtin<compat/typescript>::version=4.9.4&hash=ad5954"]\
@@ -5100,6 +5100,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD"\
         }]\
       ]],\
+      ["@pkgjs/parseargs", [\
+        ["npm:0.11.0", {\
+          "packageLocation": "./.yarn/cache/@pkgjs-parseargs-npm-0.11.0-cd2a3fe948-6ad6a00fc4.zip/node_modules/@pkgjs/parseargs/",\
+          "packageDependencies": [\
+            ["@pkgjs/parseargs", "npm:0.11.0"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
       ["@pnpm/network.ca-file", [\
         ["npm:1.0.2", {\
           "packageLocation": "./.yarn/cache/@pnpm-network.ca-file-npm-1.0.2-5faaf6e6bf-d8d0884646.zip/node_modules/@pnpm/network.ca-file/",\
@@ -7503,6 +7512,16 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         }]\
       ]],\
       ["cliui", [\
+        ["npm:7.0.4", {\
+          "packageLocation": "./.yarn/cache/cliui-npm-7.0.4-d6b8a9edb6-ce2e8f578a.zip/node_modules/cliui/",\
+          "packageDependencies": [\
+            ["cliui", "npm:7.0.4"],\
+            ["string-width", "npm:4.2.3"],\
+            ["strip-ansi", "npm:6.0.1"],\
+            ["wrap-ansi", "npm:7.0.0"]\
+          ],\
+          "linkType": "HARD"\
+        }],\
         ["npm:8.0.1", {\
           "packageLocation": "./.yarn/cache/cliui-npm-8.0.1-3b029092cf-79648b3b00.zip/node_modules/cliui/",\
           "packageDependencies": [\
@@ -9308,6 +9327,17 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD"\
         }]\
       ]],\
+      ["foreground-child", [\
+        ["npm:3.1.1", {\
+          "packageLocation": "./.yarn/cache/foreground-child-npm-3.1.1-77e78ed774-139d270bc8.zip/node_modules/foreground-child/",\
+          "packageDependencies": [\
+            ["foreground-child", "npm:3.1.1"],\
+            ["cross-spawn", "npm:7.0.3"],\
+            ["signal-exit", "npm:4.0.1"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
       ["forever-agent", [\
         ["npm:0.6.1", {\
           "packageLocation": "./.yarn/cache/forever-agent-npm-0.6.1-01dae53bf9-766ae6e220.zip/node_modules/forever-agent/",\
@@ -9580,6 +9610,18 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         }]\
       ]],\
       ["glob", [\
+        ["npm:10.2.2", {\
+          "packageLocation": "./.yarn/cache/glob-npm-10.2.2-4cf80ebee7-33cbbbea74.zip/node_modules/glob/",\
+          "packageDependencies": [\
+            ["glob", "npm:10.2.2"],\
+            ["foreground-child", "npm:3.1.1"],\
+            ["jackspeak", "npm:2.1.0"],\
+            ["minimatch", "npm:9.0.0"],\
+            ["minipass", "npm:5.0.0"],\
+            ["path-scurry", "npm:1.7.0"]\
+          ],\
+          "linkType": "HARD"\
+        }],\
         ["npm:7.2.3", {\
           "packageLocation": "./.yarn/cache/glob-npm-7.2.3-2d866d17a5-29452e97b3.zip/node_modules/glob/",\
           "packageDependencies": [\
@@ -10753,6 +10795,17 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["istanbul-reports", "npm:3.1.5"],\
             ["html-escaper", "npm:2.0.2"],\
             ["istanbul-lib-report", "npm:3.0.0"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["jackspeak", [\
+        ["npm:2.1.0", {\
+          "packageLocation": "./.yarn/cache/jackspeak-npm-2.1.0-082d536d5a-63edf74e0b.zip/node_modules/jackspeak/",\
+          "packageDependencies": [\
+            ["jackspeak", "npm:2.1.0"],\
+            ["@pkgjs/parseargs", "npm:0.11.0"],\
+            ["cliui", "npm:7.0.4"]\
           ],\
           "linkType": "HARD"\
         }]\
@@ -12220,6 +12273,13 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["lru-cache", "npm:7.18.3"]\
           ],\
           "linkType": "HARD"\
+        }],\
+        ["npm:9.1.1", {\
+          "packageLocation": "./.yarn/cache/lru-cache-npm-9.1.1-765199cb01-4d703bb9b6.zip/node_modules/lru-cache/",\
+          "packageDependencies": [\
+            ["lru-cache", "npm:9.1.1"]\
+          ],\
+          "linkType": "HARD"\
         }]\
       ]],\
       ["lunr", [\
@@ -12585,6 +12645,14 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["brace-expansion", "npm:2.0.1"]\
           ],\
           "linkType": "HARD"\
+        }],\
+        ["npm:9.0.0", {\
+          "packageLocation": "./.yarn/cache/minimatch-npm-9.0.0-c6737cb1be-7bd57899ed.zip/node_modules/minimatch/",\
+          "packageDependencies": [\
+            ["minimatch", "npm:9.0.0"],\
+            ["brace-expansion", "npm:2.0.1"]\
+          ],\
+          "linkType": "HARD"\
         }]\
       ]],\
       ["minimist", [\
@@ -12629,6 +12697,13 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/minipass-npm-4.2.5-25860eb433-4f9c19af23.zip/node_modules/minipass/",\
           "packageDependencies": [\
             ["minipass", "npm:4.2.5"]\
+          ],\
+          "linkType": "HARD"\
+        }],\
+        ["npm:5.0.0", {\
+          "packageLocation": "./.yarn/cache/minipass-npm-5.0.0-c64fb63c92-425dab2887.zip/node_modules/minipass/",\
+          "packageDependencies": [\
+            ["minipass", "npm:5.0.0"]\
           ],\
           "linkType": "HARD"\
         }]\
@@ -13915,6 +13990,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["minipass", "npm:4.2.5"]\
           ],\
           "linkType": "HARD"\
+        }],\
+        ["npm:1.7.0", {\
+          "packageLocation": "./.yarn/cache/path-scurry-npm-1.7.0-e40ac7023f-4e86df0fa6.zip/node_modules/path-scurry/",\
+          "packageDependencies": [\
+            ["path-scurry", "npm:1.7.0"],\
+            ["lru-cache", "npm:9.1.1"],\
+            ["minipass", "npm:5.0.0"]\
+          ],\
+          "linkType": "HARD"\
         }]\
       ]],\
       ["path-type", [\
@@ -15103,7 +15187,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["microbundle", "npm:0.15.1"],\
             ["pinst", "npm:3.0.0"],\
             ["prettier", "npm:2.8.8"],\
-            ["rimraf", "npm:4.1.0"],\
+            ["rimraf", "npm:5.0.0"],\
             ["semantic-release", "npm:21.0.1"],\
             ["typedoc", "virtual:051cb104c22b8a4e0fc1217ab67eb4294be6d1dbe0b9454983ac4f4e7296fc05a95620cedb4ff05520a1326bf702fd18789c1361837686e80807f22a213844f2#npm:0.23.24"],\
             ["typescript", "patch:typescript@npm%3A4.9.4#~builtin<compat/typescript>::version=4.9.4&hash=ad5954"]\
@@ -15608,10 +15692,11 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           ],\
           "linkType": "HARD"\
         }],\
-        ["npm:4.1.0", {\
-          "packageLocation": "./.yarn/cache/rimraf-npm-4.1.0-6bb59b8975-da48498027.zip/node_modules/rimraf/",\
+        ["npm:5.0.0", {\
+          "packageLocation": "./.yarn/cache/rimraf-npm-5.0.0-3bcbe577cb-60c5a7f152.zip/node_modules/rimraf/",\
           "packageDependencies": [\
-            ["rimraf", "npm:4.1.0"]\
+            ["rimraf", "npm:5.0.0"],\
+            ["glob", "npm:10.2.2"]\
           ],\
           "linkType": "HARD"\
         }]\
@@ -15988,6 +16073,13 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/signal-exit-npm-3.0.7-bd270458a3-a2f098f247.zip/node_modules/signal-exit/",\
           "packageDependencies": [\
             ["signal-exit", "npm:3.0.7"]\
+          ],\
+          "linkType": "HARD"\
+        }],\
+        ["npm:4.0.1", {\
+          "packageLocation": "./.yarn/cache/signal-exit-npm-4.0.1-8535b81e83-832043367d.zip/node_modules/signal-exit/",\
+          "packageDependencies": [\
+            ["signal-exit", "npm:4.0.1"]\
           ],\
           "linkType": "HARD"\
         }]\
