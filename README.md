@@ -225,6 +225,7 @@ To make TypeScript know about the asnyc iterable types (`AsyncIterable<T>`, `Asy
 - [callback-to-async-iterator]
 - [event-iterator]
 - [Repeater.js]
+- [rxjs-for-await](https://github.com/benlesh/rxjs-for-await)
 
 ## Tools for async iteration
 
