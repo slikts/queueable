@@ -42,7 +42,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@types/eslint", "npm:8.40.1"],\
             ["@types/fast-list", "npm:1.0.0"],\
             ["@types/jest", "npm:29.5.2"],\
-            ["@types/node", "npm:18.16.17"],\
+            ["@types/node", "npm:20.3.0"],\
             ["@types/semantic-release", "npm:20.0.1"],\
             ["@typescript-eslint/eslint-plugin", "virtual:051cb104c22b8a4e0fc1217ab67eb4294be6d1dbe0b9454983ac4f4e7296fc05a95620cedb4ff05520a1326bf702fd18789c1361837686e80807f22a213844f2#npm:5.59.9"],\
             ["@typescript-eslint/parser", "virtual:051cb104c22b8a4e0fc1217ab67eb4294be6d1dbe0b9454983ac4f4e7296fc05a95620cedb4ff05520a1326bf702fd18789c1361837686e80807f22a213844f2#npm:5.59.9"],\
@@ -7371,10 +7371,10 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           ],\
           "linkType": "HARD"\
         }],\
-        ["npm:18.16.17", {\
-          "packageLocation": "./.yarn/cache/@types-node-npm-18.16.17-9aa686b2c3-2f7e3a552d.zip/node_modules/@types/node/",\
+        ["npm:20.3.0", {\
+          "packageLocation": "./.yarn/cache/@types-node-npm-20.3.0-d475058203-613e878174.zip/node_modules/@types/node/",\
           "packageDependencies": [\
-            ["@types/node", "npm:18.16.17"]\
+            ["@types/node", "npm:20.3.0"]\
           ],\
           "linkType": "HARD"\
         }]\
@@ -16968,7 +16968,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@types/eslint", "npm:8.40.1"],\
             ["@types/fast-list", "npm:1.0.0"],\
             ["@types/jest", "npm:29.5.2"],\
-            ["@types/node", "npm:18.16.17"],\
+            ["@types/node", "npm:20.3.0"],\
             ["@types/semantic-release", "npm:20.0.1"],\
             ["@typescript-eslint/eslint-plugin", "virtual:051cb104c22b8a4e0fc1217ab67eb4294be6d1dbe0b9454983ac4f4e7296fc05a95620cedb4ff05520a1326bf702fd18789c1361837686e80807f22a213844f2#npm:5.59.9"],\
             ["@typescript-eslint/parser", "virtual:051cb104c22b8a4e0fc1217ab67eb4294be6d1dbe0b9454983ac4f4e7296fc05a95620cedb4ff05520a1326bf702fd18789c1361837686e80807f22a213844f2#npm:5.59.9"],\
