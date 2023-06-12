@@ -6473,6 +6473,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageDependencies": [\
             ["@octokit/plugin-retry", "virtual:0d520e44a14e615e34ae29a3d88d9295582b3d755a86598cc7438c27e6f79245ca03d66c356bbc3a624b617bc43dd12419db1b91baa0e75882674031003cd478#npm:4.1.6"],\
             ["@octokit/core", "npm:4.2.1"],\
+            ["@octokit/request-error", "npm:4.0.1"],\
             ["@octokit/types", "npm:9.3.1"],\
             ["@types/octokit__core", null],\
             ["bottleneck", "npm:2.19.5"]\
@@ -6488,6 +6489,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageDependencies": [\
             ["@octokit/plugin-retry", "virtual:8b10b1d4a02072ca2fd25fcabc1e2f52eee2d36671b117707e868b1e6e506bf26bc5edd077b776c86282d6b85cfdcb92655b6204f561ad3ebf9fd86945ef40e6#npm:5.0.2"],\
             ["@octokit/core", "npm:4.2.1"],\
+            ["@octokit/request-error", "npm:4.0.1"],\
             ["@octokit/types", "npm:9.3.1"],\
             ["@types/octokit__core", null],\
             ["bottleneck", "npm:2.19.5"]\
@@ -6566,6 +6568,16 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageDependencies": [\
             ["@octokit/request-error", "npm:3.0.2"],\
             ["@octokit/types", "npm:8.1.1"],\
+            ["deprecation", "npm:2.3.1"],\
+            ["once", "npm:1.4.0"]\
+          ],\
+          "linkType": "HARD"\
+        }],\
+        ["npm:4.0.1", {\
+          "packageLocation": "./.yarn/cache/@octokit-request-error-npm-4.0.1-216f85bc9c-be9869f3c6.zip/node_modules/@octokit/request-error/",\
+          "packageDependencies": [\
+            ["@octokit/request-error", "npm:4.0.1"],\
+            ["@octokit/types", "npm:9.3.1"],\
             ["deprecation", "npm:2.3.1"],\
             ["once", "npm:1.4.0"]\
           ],\
