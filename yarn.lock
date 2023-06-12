@@ -4021,7 +4021,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@semantic-release/commit-analyzer@npm:^10.0.0":
+"@semantic-release/commit-analyzer@npm:^10.0.0, @semantic-release/commit-analyzer@npm:^10.0.1":
   version: 10.0.1
   resolution: "@semantic-release/commit-analyzer@npm:10.0.1"
   dependencies:
@@ -4035,23 +4035,6 @@ __metadata:
   peerDependencies:
     semantic-release: ">=20.1.0"
   checksum: 24eba3f82ede83c14df3680a57651872b98c08b39809c180ed7181f40d7d7570bf00b3f2c5dd6e0e0ddc20168767d70b375d23163a6c6d4d3f7f6fdefcf94320
-  languageName: node
-  linkType: hard
-
-"@semantic-release/commit-analyzer@npm:^9.0.2":
-  version: 9.0.2
-  resolution: "@semantic-release/commit-analyzer@npm:9.0.2"
-  dependencies:
-    conventional-changelog-angular: ^5.0.0
-    conventional-commits-filter: ^2.0.0
-    conventional-commits-parser: ^3.2.3
-    debug: ^4.0.0
-    import-from: ^4.0.0
-    lodash: ^4.17.4
-    micromatch: ^4.0.2
-  peerDependencies:
-    semantic-release: ">=18.0.0-beta.1"
-  checksum: f7f759e608c0c044ba8ec1b3aabad4305ac057cc45156b60a2f8dc355f5193b84ff7c661aefd4522659172f4d6ecf80219b8b28714bd76e4eb32e734b2e6ead9
   languageName: node
   linkType: hard
 
@@ -5908,7 +5891,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"conventional-changelog-angular@npm:^5.0.0, conventional-changelog-angular@npm:^5.0.11":
+"conventional-changelog-angular@npm:^5.0.11":
   version: 5.0.13
   resolution: "conventional-changelog-angular@npm:5.0.13"
   dependencies:
@@ -5955,16 +5938,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"conventional-commits-filter@npm:^2.0.0":
-  version: 2.0.7
-  resolution: "conventional-commits-filter@npm:2.0.7"
-  dependencies:
-    lodash.ismatch: ^4.4.0
-    modify-values: ^1.0.0
-  checksum: feb567f680a6da1baaa1ef3cff393b3c56a5828f77ab9df5e70626475425d109a6fee0289b4979223c62bbd63bf9c98ef532baa6fcb1b66ee8b5f49077f5d46c
-  languageName: node
-  linkType: hard
-
 "conventional-commits-filter@npm:^3.0.0":
   version: 3.0.0
   resolution: "conventional-commits-filter@npm:3.0.0"
@@ -5975,7 +5948,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"conventional-commits-parser@npm:^3.2.2, conventional-commits-parser@npm:^3.2.3":
+"conventional-commits-parser@npm:^3.2.2":
   version: 3.2.4
   resolution: "conventional-commits-parser@npm:3.2.4"
   dependencies:
@@ -9749,7 +9722,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"lodash@npm:^4.17.15, lodash@npm:^4.17.21, lodash@npm:^4.17.4":
+"lodash@npm:^4.17.15, lodash@npm:^4.17.21":
   version: 4.17.21
   resolution: "lodash@npm:4.17.21"
   checksum: eb835a2e51d381e561e508ce932ea50a8e5a68f4ebdd771ea240d3048244a8d13658acbd502cd4829768c56f2e16bdd4340b9ea141297d472517b83868e677f7
@@ -10300,7 +10273,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"modify-values@npm:^1.0.0, modify-values@npm:^1.0.1":
+"modify-values@npm:^1.0.1":
   version: 1.0.1
   resolution: "modify-values@npm:1.0.1"
   checksum: 8296610c608bc97b03c2cf889c6cdf4517e32fa2d836440096374c2209f6b7b3e256c209493a0b32584b9cb32d528e99d0dd19dcd9a14d2d915a312d391cc7e9
@@ -11865,7 +11838,7 @@ __metadata:
     "@babel/preset-typescript": ^7.22.5
     "@commitlint/cli": ^17.6.5
     "@commitlint/config-conventional": ^17.6.5
-    "@semantic-release/commit-analyzer": ^9.0.2
+    "@semantic-release/commit-analyzer": ^10.0.1
     "@semantic-release/github": ^9.0.3
     "@semantic-release/npm": ^10.0.4
     "@semantic-release/release-notes-generator": ^11.0.3
