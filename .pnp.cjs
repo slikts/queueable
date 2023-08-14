@@ -32,7 +32,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@babel/preset-env", "virtual:051cb104c22b8a4e0fc1217ab67eb4294be6d1dbe0b9454983ac4f4e7296fc05a95620cedb4ff05520a1326bf702fd18789c1361837686e80807f22a213844f2#npm:7.22.9"],\
             ["@babel/preset-typescript", "virtual:051cb104c22b8a4e0fc1217ab67eb4294be6d1dbe0b9454983ac4f4e7296fc05a95620cedb4ff05520a1326bf702fd18789c1361837686e80807f22a213844f2#npm:7.22.5"],\
             ["@commitlint/cli", "npm:17.6.7"],\
-            ["@commitlint/config-conventional", "npm:17.6.7"],\
+            ["@commitlint/config-conventional", "npm:17.7.0"],\
             ["@semantic-release/commit-analyzer", "virtual:051cb104c22b8a4e0fc1217ab67eb4294be6d1dbe0b9454983ac4f4e7296fc05a95620cedb4ff05520a1326bf702fd18789c1361837686e80807f22a213844f2#npm:10.0.1"],\
             ["@semantic-release/github", "virtual:051cb104c22b8a4e0fc1217ab67eb4294be6d1dbe0b9454983ac4f4e7296fc05a95620cedb4ff05520a1326bf702fd18789c1361837686e80807f22a213844f2#npm:9.0.4"],\
             ["@semantic-release/npm", "virtual:051cb104c22b8a4e0fc1217ab67eb4294be6d1dbe0b9454983ac4f4e7296fc05a95620cedb4ff05520a1326bf702fd18789c1361837686e80807f22a213844f2#npm:10.0.4"],\
@@ -4739,11 +4739,11 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         }]\
       ]],\
       ["@commitlint/config-conventional", [\
-        ["npm:17.6.7", {\
-          "packageLocation": "./.yarn/cache/@commitlint-config-conventional-npm-17.6.7-a8b828882c-e8574db1a9.zip/node_modules/@commitlint/config-conventional/",\
+        ["npm:17.7.0", {\
+          "packageLocation": "./.yarn/cache/@commitlint-config-conventional-npm-17.7.0-291cc2bbe4-932cf35c12.zip/node_modules/@commitlint/config-conventional/",\
           "packageDependencies": [\
-            ["@commitlint/config-conventional", "npm:17.6.7"],\
-            ["conventional-changelog-conventionalcommits", "npm:5.0.0"]\
+            ["@commitlint/config-conventional", "npm:17.7.0"],\
+            ["conventional-changelog-conventionalcommits", "npm:6.1.0"]\
           ],\
           "linkType": "HARD"\
         }]\
@@ -8668,13 +8668,11 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         }]\
       ]],\
       ["conventional-changelog-conventionalcommits", [\
-        ["npm:5.0.0", {\
-          "packageLocation": "./.yarn/cache/conventional-changelog-conventionalcommits-npm-5.0.0-a270202fe8-b67d12e4e0.zip/node_modules/conventional-changelog-conventionalcommits/",\
+        ["npm:6.1.0", {\
+          "packageLocation": "./.yarn/cache/conventional-changelog-conventionalcommits-npm-6.1.0-10dd027396-4383a35cdf.zip/node_modules/conventional-changelog-conventionalcommits/",\
           "packageDependencies": [\
-            ["conventional-changelog-conventionalcommits", "npm:5.0.0"],\
-            ["compare-func", "npm:2.0.0"],\
-            ["lodash", "npm:4.17.21"],\
-            ["q", "npm:1.5.1"]\
+            ["conventional-changelog-conventionalcommits", "npm:6.1.0"],\
+            ["compare-func", "npm:2.0.0"]\
           ],\
           "linkType": "HARD"\
         }]\
@@ -15712,7 +15710,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@babel/preset-env", "virtual:051cb104c22b8a4e0fc1217ab67eb4294be6d1dbe0b9454983ac4f4e7296fc05a95620cedb4ff05520a1326bf702fd18789c1361837686e80807f22a213844f2#npm:7.22.9"],\
             ["@babel/preset-typescript", "virtual:051cb104c22b8a4e0fc1217ab67eb4294be6d1dbe0b9454983ac4f4e7296fc05a95620cedb4ff05520a1326bf702fd18789c1361837686e80807f22a213844f2#npm:7.22.5"],\
             ["@commitlint/cli", "npm:17.6.7"],\
-            ["@commitlint/config-conventional", "npm:17.6.7"],\
+            ["@commitlint/config-conventional", "npm:17.7.0"],\
             ["@semantic-release/commit-analyzer", "virtual:051cb104c22b8a4e0fc1217ab67eb4294be6d1dbe0b9454983ac4f4e7296fc05a95620cedb4ff05520a1326bf702fd18789c1361837686e80807f22a213844f2#npm:10.0.1"],\
             ["@semantic-release/github", "virtual:051cb104c22b8a4e0fc1217ab67eb4294be6d1dbe0b9454983ac4f4e7296fc05a95620cedb4ff05520a1326bf702fd18789c1361837686e80807f22a213844f2#npm:9.0.4"],\
             ["@semantic-release/npm", "virtual:051cb104c22b8a4e0fc1217ab67eb4294be6d1dbe0b9454983ac4f4e7296fc05a95620cedb4ff05520a1326bf702fd18789c1361837686e80807f22a213844f2#npm:10.0.4"],\
