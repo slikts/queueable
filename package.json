@@ -56,7 +56,7 @@
     "@semantic-release/commit-analyzer": "^10.0.1",
     "@semantic-release/github": "^9.0.3",
     "@semantic-release/npm": "^10.0.4",
-    "@semantic-release/release-notes-generator": "^11.0.3",
+    "@semantic-release/release-notes-generator": "^12.0.0",
     "@types/babel__core": "^7.20.1",
     "@types/babel__preset-env": "^7.9.2",
     "@types/eslint": "^8.40.1",

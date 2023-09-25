@@ -3246,7 +3246,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@semantic-release/release-notes-generator@npm:^11.0.0, @semantic-release/release-notes-generator@npm:^11.0.3":
+"@semantic-release/release-notes-generator@npm:^11.0.0":
   version: 11.0.6
   resolution: "@semantic-release/release-notes-generator@npm:11.0.6"
   dependencies:
@@ -3263,6 +3263,26 @@ __metadata:
   peerDependencies:
     semantic-release: ">=20.1.0"
   checksum: 54a2ad2595d2cef40ea5c10c8f7921df12484b92f408026dff385e41c04381bdc5166e692df6406b9ff222ce00c86c6a13708376bff1b89fa5bfc20b6688dc80
+  languageName: node
+  linkType: hard
+
+"@semantic-release/release-notes-generator@npm:^12.0.0":
+  version: 12.0.0
+  resolution: "@semantic-release/release-notes-generator@npm:12.0.0"
+  dependencies:
+    conventional-changelog-angular: ^7.0.0
+    conventional-changelog-writer: ^7.0.0
+    conventional-commits-filter: ^4.0.0
+    conventional-commits-parser: ^5.0.0
+    debug: ^4.0.0
+    get-stream: ^7.0.0
+    import-from: ^4.0.0
+    into-stream: ^7.0.0
+    lodash-es: ^4.17.21
+    read-pkg-up: ^10.0.0
+  peerDependencies:
+    semantic-release: ">=20.1.0"
+  checksum: 91c757c6ccadffd2caa7b03b4bcb22abc4194e51955a33cc6e9563f16d8869b6287daa4d432c302a622f78fb92db1fa82281c1cac18723bbcbab2321bbeb57ce
   languageName: node
   linkType: hard
 
@@ -5024,6 +5044,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"conventional-changelog-angular@npm:^7.0.0":
+  version: 7.0.0
+  resolution: "conventional-changelog-angular@npm:7.0.0"
+  dependencies:
+    compare-func: ^2.0.0
+  checksum: 2478962ad7ce42878449ba3568347d704f22c5c9af1cd36916b5600734bd7f82c09712a338c649195c44e907f1b0372ce52d6cb51df643f495c89af05ad4bc48
+  languageName: node
+  linkType: hard
+
 "conventional-changelog-conventionalcommits@npm:^6.1.0":
   version: 6.1.0
   resolution: "conventional-changelog-conventionalcommits@npm:6.1.0"
@@ -5050,6 +5079,22 @@ __metadata:
   languageName: node
   linkType: hard
 
+"conventional-changelog-writer@npm:^7.0.0":
+  version: 7.0.1
+  resolution: "conventional-changelog-writer@npm:7.0.1"
+  dependencies:
+    conventional-commits-filter: ^4.0.0
+    handlebars: ^4.7.7
+    json-stringify-safe: ^5.0.1
+    meow: ^12.0.1
+    semver: ^7.5.2
+    split2: ^4.0.0
+  bin:
+    conventional-changelog-writer: cli.mjs
+  checksum: 6d1e2ef2d75752c74d87321b9e33562f37a0734bbdb69ed48ce6cf868168e7847d5cf5238402ebd612ac763f521ba063aab452766d39ee81f5748b93a79ae51f
+  languageName: node
+  linkType: hard
+
 "conventional-commits-filter@npm:^3.0.0":
   version: 3.0.0
   resolution: "conventional-commits-filter@npm:3.0.0"
@@ -5057,6 +5102,13 @@ __metadata:
     lodash.ismatch: ^4.4.0
     modify-values: ^1.0.1
   checksum: 73337f42acff7189e1dfca8d13c9448ce085ac1c09976cb33617cc909949621befb1640b1c6c30a1be4953a1be0deea9e93fa0dc86725b8be8e249a64fbb4632
+  languageName: node
+  linkType: hard
+
+"conventional-commits-filter@npm:^4.0.0":
+  version: 4.0.0
+  resolution: "conventional-commits-filter@npm:4.0.0"
+  checksum: 46d2d90531f024d596f61d353876276e5357adb5c4684e042467bb7d159feb0a2831b74656bd3038ac9ec38d99b0b24ac39f319ad511861e1299c4cdfb5a119a
   languageName: node
   linkType: hard
 
@@ -11030,7 +11082,7 @@ __metadata:
     "@semantic-release/commit-analyzer": ^10.0.1
     "@semantic-release/github": ^9.0.3
     "@semantic-release/npm": ^10.0.4
-    "@semantic-release/release-notes-generator": ^11.0.3
+    "@semantic-release/release-notes-generator": ^12.0.0
     "@types/babel__core": ^7.20.1
     "@types/babel__preset-env": ^7.9.2
     "@types/eslint": ^8.40.1
@@ -11750,7 +11802,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"semver@npm:7.5.4, semver@npm:^7.5.3, semver@npm:^7.5.4":
+"semver@npm:7.5.4, semver@npm:^7.5.2, semver@npm:^7.5.3, semver@npm:^7.5.4":
   version: 7.5.4
   resolution: "semver@npm:7.5.4"
   dependencies:
