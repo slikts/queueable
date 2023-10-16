@@ -4,8 +4,8 @@
   "source": "src/index.ts",
   "exports": {
     "require": "./dist/queueable.js",
-    "default": "./dist/queueable.modern.mjs",
-    "types": "./dist/index.d.ts"
+    "types": "./dist/index.d.ts",
+    "default": "./dist/queueable.modern.mjs"
   },
   "types": "./dist/index.d.ts",
   "main": "./dist/queueable.js",
