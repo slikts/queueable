@@ -55,7 +55,7 @@
     "@commitlint/config-conventional": "^17.6.5",
     "@semantic-release/commit-analyzer": "^11.1.0",
     "@semantic-release/github": "^9.0.3",
-    "@semantic-release/npm": "^10.0.4",
+    "@semantic-release/npm": "^11.0.2",
     "@semantic-release/release-notes-generator": "^12.1.0",
     "@types/babel__core": "^7.20.1",
     "@types/babel__preset-env": "^7.9.2",
