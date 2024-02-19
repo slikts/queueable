@@ -6148,12 +6148,12 @@ __metadata:
   linkType: hard
 
 "eslint-plugin-jest@npm:^27.2.1":
-  version: 27.2.3
-  resolution: "eslint-plugin-jest@npm:27.2.3"
+  version: 27.9.0
+  resolution: "eslint-plugin-jest@npm:27.9.0"
   dependencies:
     "@typescript-eslint/utils": ^5.10.0
   peerDependencies:
-    "@typescript-eslint/eslint-plugin": ^5.0.0 || ^6.0.0
+    "@typescript-eslint/eslint-plugin": ^5.0.0 || ^6.0.0 || ^7.0.0
     eslint: ^7.0.0 || ^8.0.0
     jest: "*"
   peerDependenciesMeta:
@@ -6161,7 +6161,7 @@ __metadata:
       optional: true
     jest:
       optional: true
-  checksum: 4c7e07f52f17749ac6fd0ff5fcd5ce30b88983ba31eeee322e4d48859f55eaa112f06172e586ad2031c00ff28bb2dfdc3d35c83895251b9c0e860fa47dfc5ff4
+  checksum: e2a4b415105408de28ad146818fcc6f4e122f6a39c6b2216ec5c24a80393f1390298b20231b0467bc5fd730f6e24b05b89e1a6a3ce651fc159aa4174ecc233d0
   languageName: node
   linkType: hard
 
