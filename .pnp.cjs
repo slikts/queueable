@@ -61,7 +61,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["prettier", "npm:3.1.0"],\
             ["rimraf", "npm:5.0.1"],\
             ["semantic-release", "npm:22.0.12"],\
-            ["typedoc", "virtual:051cb104c22b8a4e0fc1217ab67eb4294be6d1dbe0b9454983ac4f4e7296fc05a95620cedb4ff05520a1326bf702fd18789c1361837686e80807f22a213844f2#npm:0.24.8"],\
+            ["typedoc", "virtual:051cb104c22b8a4e0fc1217ab67eb4294be6d1dbe0b9454983ac4f4e7296fc05a95620cedb4ff05520a1326bf702fd18789c1361837686e80807f22a213844f2#npm:0.25.9"],\
             ["typescript", "patch:typescript@npm%3A4.9.5#~builtin<compat/typescript>::version=4.9.5&hash=ad5954"]\
           ],\
           "linkType": "SOFT"\
@@ -16656,7 +16656,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["prettier", "npm:3.1.0"],\
             ["rimraf", "npm:5.0.1"],\
             ["semantic-release", "npm:22.0.12"],\
-            ["typedoc", "virtual:051cb104c22b8a4e0fc1217ab67eb4294be6d1dbe0b9454983ac4f4e7296fc05a95620cedb4ff05520a1326bf702fd18789c1361837686e80807f22a213844f2#npm:0.24.8"],\
+            ["typedoc", "virtual:051cb104c22b8a4e0fc1217ab67eb4294be6d1dbe0b9454983ac4f4e7296fc05a95620cedb4ff05520a1326bf702fd18789c1361837686e80807f22a213844f2#npm:0.25.9"],\
             ["typescript", "patch:typescript@npm%3A4.9.5#~builtin<compat/typescript>::version=4.9.5&hash=ad5954"]\
           ],\
           "linkType": "SOFT"\
@@ -17514,10 +17514,10 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         }]\
       ]],\
       ["shiki", [\
-        ["npm:0.14.2", {\
-          "packageLocation": "./.yarn/cache/shiki-npm-0.14.2-c7824692d5-f2a14302b1.zip/node_modules/shiki/",\
+        ["npm:0.14.7", {\
+          "packageLocation": "./.yarn/cache/shiki-npm-0.14.7-a8806632f6-2aec3b3519.zip/node_modules/shiki/",\
           "packageDependencies": [\
-            ["shiki", "npm:0.14.2"],\
+            ["shiki", "npm:0.14.7"],\
             ["ansi-sequence-parser", "npm:1.1.0"],\
             ["jsonc-parser", "npm:3.2.0"],\
             ["vscode-oniguruma", "npm:1.7.0"],\
@@ -18684,22 +18684,22 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         }]\
       ]],\
       ["typedoc", [\
-        ["npm:0.24.8", {\
-          "packageLocation": "./.yarn/cache/typedoc-npm-0.24.8-7f9229d7f2-a46a14497f.zip/node_modules/typedoc/",\
+        ["npm:0.25.9", {\
+          "packageLocation": "./.yarn/cache/typedoc-npm-0.25.9-b5c1ec5b46-c2e7d81e19.zip/node_modules/typedoc/",\
           "packageDependencies": [\
-            ["typedoc", "npm:0.24.8"]\
+            ["typedoc", "npm:0.25.9"]\
           ],\
           "linkType": "SOFT"\
         }],\
-        ["virtual:051cb104c22b8a4e0fc1217ab67eb4294be6d1dbe0b9454983ac4f4e7296fc05a95620cedb4ff05520a1326bf702fd18789c1361837686e80807f22a213844f2#npm:0.24.8", {\
-          "packageLocation": "./.yarn/__virtual__/typedoc-virtual-15ab9dc9bf/0/cache/typedoc-npm-0.24.8-7f9229d7f2-a46a14497f.zip/node_modules/typedoc/",\
+        ["virtual:051cb104c22b8a4e0fc1217ab67eb4294be6d1dbe0b9454983ac4f4e7296fc05a95620cedb4ff05520a1326bf702fd18789c1361837686e80807f22a213844f2#npm:0.25.9", {\
+          "packageLocation": "./.yarn/__virtual__/typedoc-virtual-aeccd97ffc/0/cache/typedoc-npm-0.25.9-b5c1ec5b46-c2e7d81e19.zip/node_modules/typedoc/",\
           "packageDependencies": [\
-            ["typedoc", "virtual:051cb104c22b8a4e0fc1217ab67eb4294be6d1dbe0b9454983ac4f4e7296fc05a95620cedb4ff05520a1326bf702fd18789c1361837686e80807f22a213844f2#npm:0.24.8"],\
+            ["typedoc", "virtual:051cb104c22b8a4e0fc1217ab67eb4294be6d1dbe0b9454983ac4f4e7296fc05a95620cedb4ff05520a1326bf702fd18789c1361837686e80807f22a213844f2#npm:0.25.9"],\
             ["@types/typescript", null],\
             ["lunr", "npm:2.3.9"],\
             ["marked", "npm:4.3.0"],\
-            ["minimatch", "npm:9.0.1"],\
-            ["shiki", "npm:0.14.2"],\
+            ["minimatch", "npm:9.0.3"],\
+            ["shiki", "npm:0.14.7"],\
             ["typescript", "patch:typescript@npm%3A4.9.5#~builtin<compat/typescript>::version=4.9.5&hash=ad5954"]\
           ],\
           "packagePeers": [\
