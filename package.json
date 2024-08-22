@@ -43,7 +43,7 @@
     "test": "jest",
     "test:watch": "jest --watch --runInBand --verbose false",
     "report-coverage": "cat ./coverage/lcov.info | coveralls",
-    "postinstall": "husky install",
+    "prepare": "husky install",
     "prepack": "pinst --disable",
     "postpack": "pinst --enable"
   },
